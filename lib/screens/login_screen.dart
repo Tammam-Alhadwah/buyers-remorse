@@ -37,7 +37,6 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   // Runs when the LOGIN button is pressed.
-  // Runs when the LOGIN button is pressed.
   Future<void> login() async {
     // Ask the database if this username + password exist.
     // First call also opens the DB and seeds the accounts automatically.
@@ -45,9 +44,6 @@ class _LoginScreenState extends State<LoginScreen> {
       usernameController.text,
       passwordController.text,
     );
-
-    // After an await, the screen might have closed. This guard prevents a
-    // crash/warning when we use `context` below. Always do this after await.
     if (!mounted) return;
 
     if (user == null) {
@@ -109,8 +105,6 @@ class _LoginScreenState extends State<LoginScreen> {
                 size: 50,
                 color: kPrimaryColor,
               ),
-              // For a real image instead:
-              //   backgroundImage: AssetImage('assets/images/logo.png'),
             ),
 
             const SizedBox(height: 20),
@@ -204,12 +198,6 @@ class _LoginScreenState extends State<LoginScreen> {
             ),
 
             const SizedBox(height: 20),
-
-            const Text(
-              'Mobile Programming - 2026',
-              textAlign: TextAlign.center,
-              style: TextStyle(color: Colors.white70, fontSize: 12),
-            ),
           ],
         ),
       ),

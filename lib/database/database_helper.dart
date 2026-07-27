@@ -44,10 +44,6 @@ class DatabaseHelper {
 
   // -------------------------------------------------------------------------
   // CREATING THE TABLES
-  //
-  // IMPORTANT: runs only ONE TIME, when the file is created. If you edit the
-  // CREATE TABLE lines after running the app, nothing changes until you call
-  // deleteEverything() (bottom of this file) or uninstall the app.
   // -------------------------------------------------------------------------
   Future<void> _createTables(Database db, int version) async {
     // ---- USERS table (used now, in Task 1) ----
@@ -65,34 +61,40 @@ class DatabaseHelper {
     await db.insert('users', {'username': 'Karam', 'password': 'Karam123', 'full_name': 'Karam Kanaan'});
 
 
-     await db.execute('''
-       CREATE TABLE expenses (
-         id       INTEGER PRIMARY KEY AUTOINCREMENT,
-         title    TEXT NOT NULL,
-         amount   REAL NOT NULL,
-         category TEXT NOT NULL,
-         date     TEXT NOT NULL
-       )
-     ''');
-
-     await db.execute('''
-       CREATE TABLE incomes (
-         id     INTEGER PRIMARY KEY AUTOINCREMENT,
-         title  TEXT NOT NULL,
-         amount REAL NOT NULL,
-         source TEXT NOT NULL,
-         date   TEXT NOT NULL
-       )
-     ''');
-
-     await db.execute('''
+    await db.execute('''
        CREATE TABLE categories (
          id         INTEGER PRIMARY KEY AUTOINCREMENT,
          name       TEXT NOT NULL,
-         iconCode   INTEGER NOT NULL,
-         colorValue INTEGER NOT NULL
+         icon       TEXT,
+         color      TEXT
        )
      ''');
+
+
+    await db.execute('''
+       CREATE TABLE incomes (
+         id          INTEGER PRIMARY KEY AUTOINCREMENT,
+         title       TEXT,
+         amount      REAL,
+         income_date DATE,
+         notes       TEXT
+       )
+     ''');
+
+
+     await db.execute('''
+       CREATE TABLE expenses (
+         id           INTEGER PRIMARY KEY AUTOINCREMENT,
+         title        TEXT,
+         amount       REAL,
+         expense_date DATE,
+         category_id  INTEGER,
+         notes        TEXT,
+         FOREIGN KEY(category_id)
+         REFERENCES categories(id)
+       )
+     ''');
+
   }
 
   // =========================================================================

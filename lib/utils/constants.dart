@@ -7,7 +7,7 @@
 import 'package:flutter/material.dart';
 
 // -------- TEXT --------
-const String kAppName = 'My Wallet';
+const String kAppName = "Buyer's Remorse";
 
 // -------- COLORS --------
 // 0xFF means "fully visible", then the 6-digit hex color.
