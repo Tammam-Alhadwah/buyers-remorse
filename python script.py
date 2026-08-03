@@ -62,7 +62,7 @@ IGNORE_EXTENSIONS = {
 }
 
 # Maximum size per file
-#MAX_FILE_SIZE = 1024 * 1024 * 2  # 2 MB
+MAX_FILE_SIZE = 1024 * 1024 * 20  # 20 MB
 
 
 def is_ignored(path: Path):

@@ -3,13 +3,16 @@
 //
 // We use SQLite (a small database inside the phone) through the "sqflite"
 // package. This is the ONLY file that writes SQL. Screens just call functions
-// like login() or addUser().
+// like login() or addExpense().
 // ===========================================================================
 
 import 'package:path/path.dart'; // gives us join()
 import 'package:sqflite/sqflite.dart'; // gives us the database
 
 import '../models/user.dart';
+import '../models/category.dart';
+import '../models/expense.dart';
+import '../models/income.dart';
 
 class DatabaseHelper {
   // -------------------------------------------------------------------------
@@ -37,16 +40,26 @@ class DatabaseHelper {
     final path = join(await getDatabasesPath(), 'app.db');
     return openDatabase(
       path,
-      version: 1, // increase this if you change the tables
+      version: 2, // increase this if you change the tables
+      onConfigure: _onConfigure, // runs EVERY time the file is opened
       onCreate: _createTables, // runs ONLY when the file is first created
+      onUpgrade: _upgradeTables, // runs when version is higher than the file's
     );
+  }
+
+  // Runs on every open, before anything else.
+  // SQLite ignores FOREIGN KEY rules unless you switch them on per connection.
+  // We switch them on so an expense can never point at a category that does
+  // not exist.
+  Future<void> _onConfigure(Database db) async {
+    await db.execute('PRAGMA foreign_keys = ON');
   }
 
   // -------------------------------------------------------------------------
   // CREATING THE TABLES
   // -------------------------------------------------------------------------
   Future<void> _createTables(Database db, int version) async {
-    // ---- USERS table (used now, in Task 1) ----
+    // ---- USERS table ----
     await db.execute('''
       CREATE TABLE users (
         id       INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -95,21 +108,70 @@ class DatabaseHelper {
        )
      ''');
 
+    // An expense cannot be saved without a category, so the app must never
+    // start with an empty categories table.
+    await _seedDefaultCategories(db);
+  }
+
+  // -------------------------------------------------------------------------
+  // UPGRADING AN EXISTING FILE
+  // -------------------------------------------------------------------------
+  // onCreate only runs on a phone that has never installed the app. Everyone
+  // who already ran version 1 has the tables but NO categories, so we add
+  // them here instead of asking people to delete the database.
+  //
+  // Rule for the rest of the project: never edit a released CREATE TABLE -
+  // raise `version` and add a step here.
+  Future<void> _upgradeTables(Database db, int oldVersion, int newVersion) async {
+    if (oldVersion < 2) {
+      await _seedDefaultCategories(db);
+    }
+  }
+
+  // Inserts the starter categories, but only if the table is empty, so it can
+  // never duplicate them or overwrite categories the user created.
+  Future<void> _seedDefaultCategories(DatabaseExecutor db) async {
+    final existing = await db.query('categories', limit: 1);
+    if (existing.isNotEmpty) return;
+
+    // The icon values are keys from utils/category_style.dart.
+    const defaults = [
+      {'name': 'Food', 'icon': 'food', 'color': '#E4572E'},
+      {'name': 'Transport', 'icon': 'transport', 'color': '#1E5F8C'},
+      {'name': 'Bills', 'icon': 'bills', 'color': '#6C5B7B'},
+      {'name': 'Entertainment', 'icon': 'entertainment', 'color': '#F2A65A'},
+      {'name': 'Health', 'icon': 'health', 'color': '#3BA776'},
+      {'name': 'Education', 'icon': 'education', 'color': '#4FA3C4'},
+      {'name': 'Other', 'icon': 'other', 'color': '#7A8B99'},
+    ];
+
+    // A batch sends all the inserts in one go instead of seven round trips.
+    final batch = db.batch();
+    for (final category in defaults) {
+      batch.insert('categories', category);
+    }
+    await batch.commit(noResult: true);
   }
 
   // =========================================================================
-  // CREATE - add data
+  // USERS
   // =========================================================================
 
   // Adds a new user. Returns the id of the new row.
-  Future<int> addUser(String username, String password) async {
+  //
+  // Throws a DatabaseException if the username is already taken, because the
+  // users table declares  username TEXT UNIQUE . The register screen checks
+  // usernameExists() first for a friendly message, but we keep the database
+  // rule as the LAST line of defence (two people could register at the same
+  // moment, and only the database can settle that race).
+  Future<int> addUser(String username, String password, String fullName) async {
     final db = await database;
-    return db.insert('users', {'username': username, 'password': password});
+    return db.insert(
+      'users',
+      {'username': username, 'password': password, 'full_name': fullName},
+      conflictAlgorithm: ConflictAlgorithm.abort, // duplicate -> throw, never overwrite
+    );
   }
-
-  // =========================================================================
-  // READ - get data
-  // =========================================================================
 
   // Checks if username + password exist. Returns a User, or null if wrong.
   Future<User?> login(String username, String password) async {
@@ -117,8 +179,11 @@ class DatabaseHelper {
 
     final rows = await db.query(
       'users',
-      where: 'username = ? AND password = ?',
-      whereArgs: [username, password],
+      // LOWER() on both sides makes the username case-insensitive, so
+      // "tammam" and "Tammam" are the same account (passwords stay exact).
+      where: 'LOWER(username) = ? AND password = ?',
+      whereArgs: [username.toLowerCase(), password],
+      limit: 1,
       // The ? marks are replaced by whereArgs safely.
       // NEVER build the query by joining strings (SQL injection risk).
     );
@@ -135,21 +200,51 @@ class DatabaseHelper {
     return rows.map((row) => User.fromMap(row)).toList();
   }
 
-  // Checks if a username already exists (for the register screen later).
-  Future<bool> usernameExists(String username) async {
+  // Returns one user by id, or null if that id is gone.
+  Future<User?> getUserById(int id) async {
     final db = await database;
     final rows = await db.query(
       'users',
-      where: 'username = ?',
-      whereArgs: [username],
+      where: 'id = ?',
+      whereArgs: [id],
+      limit: 1,
+    );
+    if (rows.isEmpty) return null;
+    return User.fromMap(rows.first);
+  }
+
+  // Checks if a username already exists (register screen + future edits).
+  // Comparison is case-insensitive, so "Ali" cannot be registered twice as
+  // "ali". excludeId lets a user keep their own name when editing a profile.
+  Future<bool> usernameExists(String username, {int? excludeId}) async {
+    final db = await database;
+    final rows = await db.query(
+      'users',
+      where: excludeId == null
+          ? 'LOWER(username) = ?'
+          : 'LOWER(username) = ? AND id != ?',
+      whereArgs: excludeId == null
+          ? [username.toLowerCase()]
+          : [username.toLowerCase(), excludeId],
+      limit: 1,
     );
     return rows.isNotEmpty;
   }
 
-  // =========================================================================
-  // UPDATE - change data
-  // =========================================================================
+  // Is this the password of user #id ? Used by the change-password screen to
+  // confirm the CURRENT password before allowing a new one.
+  Future<bool> verifyPassword(int id, String password) async {
+    final db = await database;
+    final rows = await db.query(
+      'users',
+      where: 'id = ? AND password = ?',
+      whereArgs: [id, password],
+      limit: 1,
+    );
+    return rows.isNotEmpty;
+  }
 
+  // Returns how many rows changed: 1 = success, 0 = no user with that id.
   Future<int> updatePassword(int id, String newPassword) async {
     final db = await database;
     return db.update(
@@ -160,13 +255,262 @@ class DatabaseHelper {
     );
   }
 
-  // =========================================================================
-  // DELETE - remove data
-  // =========================================================================
-
   Future<int> deleteUser(int id) async {
     final db = await database;
     return db.delete('users', where: 'id = ?', whereArgs: [id]);
+  }
+
+  // =========================================================================
+  // CATEGORIES
+  // =========================================================================
+
+  // Every category, A -> Z. Used by the expense form's dropdown.
+  Future<List<Category>> getAllCategories() async {
+    final db = await database;
+    final rows = await db.query('categories', orderBy: 'name COLLATE NOCASE ASC');
+    return rows.map((row) => Category.fromMap(row)).toList();
+  }
+
+  // One category, or null if it was deleted.
+  Future<Category?> getCategoryById(int id) async {
+    final db = await database;
+    final rows = await db.query(
+      'categories',
+      where: 'id = ?',
+      whereArgs: [id],
+      limit: 1,
+    );
+    if (rows.isEmpty) return null;
+    return Category.fromMap(rows.first);
+  }
+
+  // Is this category name already used? Case-insensitive, so "Food" and
+  // "food" count as the same category. excludeId lets a category keep its own
+  // name while being edited.
+  Future<bool> categoryNameExists(String name, {int? excludeId}) async {
+    final db = await database;
+    final rows = await db.query(
+      'categories',
+      where: excludeId == null
+          ? 'LOWER(name) = ?'
+          : 'LOWER(name) = ? AND id != ?',
+      whereArgs: excludeId == null
+          ? [name.toLowerCase()]
+          : [name.toLowerCase(), excludeId],
+      limit: 1,
+    );
+    return rows.isNotEmpty;
+  }
+
+  // How many expenses use each category, as {categoryId: count}.
+  //
+  // ONE query with GROUP BY instead of one query per category. With ten
+  // categories that is 1 round trip instead of 10 - the same "N+1 queries"
+  // trap the expenses JOIN avoids.
+  Future<Map<int, int>> getExpenseCountByCategory() async {
+    final db = await database;
+    final rows = await db.rawQuery('''
+      SELECT category_id, COUNT(*) AS total
+      FROM expenses
+      WHERE category_id IS NOT NULL
+      GROUP BY category_id
+    ''');
+
+    return {
+      for (final row in rows)
+        (row['category_id'] as int): (row['total'] as int),
+    };
+  }
+
+  // CREATE - returns the id of the new row.
+  Future<int> addCategory(Category category) async {
+    final db = await database;
+
+    final values = category.toMap();
+    values.remove('id'); // let SQLite generate the id
+
+    return db.insert('categories', values);
+  }
+
+  // UPDATE - returns the number of rows changed (1 = success, 0 = not found).
+  Future<int> updateCategory(Category category) async {
+    final db = await database;
+
+    final id = category.id;
+    if (id == null) {
+      throw ArgumentError('Cannot update a category that has no id');
+    }
+
+    final values = category.toMap();
+    values.remove('id'); // never overwrite the primary key
+
+    return db.update('categories', values, where: 'id = ?', whereArgs: [id]);
+  }
+
+  // DELETE.
+  //
+  // expenses.category_id REFERENCES categories(id), and we switched foreign
+  // keys ON, so SQLite REFUSES to delete a category that expenses still point
+  // at. That is the database protecting the data - not a bug to work around.
+  //
+  // detachExpenses: true means the user chose "delete it anyway". We then set
+  // those expenses' category_id to NULL first, so no expense is lost and none
+  // is left pointing at a row that no longer exists.
+  //
+  // Both statements run inside a transaction: either BOTH happen or NEITHER
+  // does. Without it, a crash between the two would leave the data broken.
+  Future<int> deleteCategory(int id, {bool detachExpenses = false}) async {
+    final db = await database;
+
+    return db.transaction((txn) async {
+      if (detachExpenses) {
+        await txn.update(
+          'expenses',
+          {'category_id': null},
+          where: 'category_id = ?',
+          whereArgs: [id],
+        );
+      }
+      return txn.delete('categories', where: 'id = ?', whereArgs: [id]);
+    });
+  }
+
+  // =========================================================================
+  // EXPENSES
+  // =========================================================================
+
+  // The SELECT used by every "read expenses" function.
+  //
+  // LEFT JOIN (not a plain JOIN): if the category was deleted, a plain JOIN
+  // would make the expense disappear from the list. With LEFT JOIN the
+  // expense still comes back, just with null category columns.
+  //
+  // The "AS category_name" aliases are what Expense.fromMap() reads.
+  static const String _expenseSelect = '''
+    SELECT
+      e.id, e.title, e.amount, e.expense_date, e.category_id, e.notes,
+      c.name  AS category_name,
+      c.icon  AS category_icon,
+      c.color AS category_color
+    FROM expenses e
+    LEFT JOIN categories c ON c.id = e.category_id
+  ''';
+
+  // CREATE - returns the id of the new row.
+  Future<int> addExpense(Expense expense) async {
+    final db = await database;
+
+    final values = expense.toMap();
+    values.remove('id'); // let SQLite generate the id
+
+    return db.insert('expenses', values);
+  }
+
+  // READ - newest first. Two sort keys, because several expenses can share a
+  // date; the id then keeps the order stable (last added on top).
+  Future<List<Expense>> getAllExpenses() async {
+    final db = await database;
+    final rows = await db.rawQuery(
+      '$_expenseSelect ORDER BY e.expense_date DESC, e.id DESC',
+    );
+    return rows.map((row) => Expense.fromMap(row)).toList();
+  }
+
+  // READ one - used by the details screen after an edit, so it always shows
+  // fresh data. Returns null if the row was deleted meanwhile.
+  Future<Expense?> getExpenseById(int id) async {
+    final db = await database;
+    final rows = await db.rawQuery('$_expenseSelect WHERE e.id = ?', [id]);
+    if (rows.isEmpty) return null;
+    return Expense.fromMap(rows.first);
+  }
+
+  // UPDATE - returns the number of rows changed (1 = success, 0 = not found).
+  Future<int> updateExpense(Expense expense) async {
+    final db = await database;
+
+    final id = expense.id;
+    if (id == null) {
+      // Programming mistake, not a user mistake: an unsaved expense has no
+      // row to update. Failing loudly here is better than silently doing
+      // nothing and leaving the user thinking their edit was saved.
+      throw ArgumentError('Cannot update an expense that has no id');
+    }
+
+    final values = expense.toMap();
+    values.remove('id'); // never overwrite the primary key
+
+    return db.update('expenses', values, where: 'id = ?', whereArgs: [id]);
+  }
+
+  // DELETE - returns the number of rows removed.
+  Future<int> deleteExpense(int id) async {
+    final db = await database;
+    return db.delete('expenses', where: 'id = ?', whereArgs: [id]);
+  }
+
+  // =========================================================================
+  // INCOMES
+  // =========================================================================
+  //
+  // Simpler than expenses: no category, so no JOIN is needed and the plain
+  // query/insert/update/delete helpers of sqflite are enough.
+
+  // CREATE - returns the id of the new row.
+  Future<int> addIncome(Income income) async {
+    final db = await database;
+
+    final values = income.toMap();
+    values.remove('id'); // let SQLite generate the id
+
+    return db.insert('incomes', values);
+  }
+
+  // READ - newest first. The id is the second sort key so incomes added on
+  // the same day keep a stable order (last added on top).
+  Future<List<Income>> getAllIncomes() async {
+    final db = await database;
+    final rows = await db.query(
+      'incomes',
+      orderBy: 'income_date DESC, id DESC',
+    );
+    return rows.map((row) => Income.fromMap(row)).toList();
+  }
+
+  // READ one - returns null if the row was deleted meanwhile.
+  Future<Income?> getIncomeById(int id) async {
+    final db = await database;
+    final rows = await db.query(
+      'incomes',
+      where: 'id = ?',
+      whereArgs: [id],
+      limit: 1,
+    );
+    if (rows.isEmpty) return null;
+    return Income.fromMap(rows.first);
+  }
+
+  // UPDATE - returns the number of rows changed (1 = success, 0 = not found).
+  Future<int> updateIncome(Income income) async {
+    final db = await database;
+
+    final id = income.id;
+    if (id == null) {
+      // Programming mistake, not a user mistake: an unsaved income has no row
+      // to update. Failing loudly beats silently saving nothing.
+      throw ArgumentError('Cannot update an income that has no id');
+    }
+
+    final values = income.toMap();
+    values.remove('id'); // never overwrite the primary key
+
+    return db.update('incomes', values, where: 'id = ?', whereArgs: [id]);
+  }
+
+  // DELETE - returns the number of rows removed.
+  Future<int> deleteIncome(int id) async {
+    final db = await database;
+    return db.delete('incomes', where: 'id = ?', whereArgs: [id]);
   }
 
   // =========================================================================
