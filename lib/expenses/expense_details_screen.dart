@@ -3,14 +3,18 @@
 // plus the two actions that belong to a single row: edit (FR6) and delete
 // with a confirmation message (FR7).
 //
-// It keeps its own copy of the expense and refreshes it from the database
+// It keeps its own copy of the expense and asks the provider for a fresh one
 // after an edit, so the screen can never show stale values.
+//
+// Both actions go through ExpenseProvider, so deleting here also updates the
+// list behind us, the dashboard totals and the reports - without any of those
+// screens knowing this screen exists.
 // ===========================================================================
 
 import 'package:flutter/material.dart';
 
 import '../models/expense.dart';
-import '../database/database_helper.dart';
+import '../providers/expense_provider.dart';
 import '../utils/constants.dart';
 import '../utils/formatters.dart';
 import '../utils/category_style.dart';
@@ -26,6 +30,8 @@ class ExpenseDetailsScreen extends StatefulWidget {
 }
 
 class _ExpenseDetailsScreenState extends State<ExpenseDetailsScreen> {
+  final ExpenseProvider provider = ExpenseProvider();
+
   late Expense expense = widget.expense;
   bool isDeleting = false;
 
@@ -48,7 +54,7 @@ class _ExpenseDetailsScreenState extends State<ExpenseDetailsScreen> {
 
     if (!mounted || saved != true) return;
 
-    final fresh = await DatabaseHelper().getExpenseById(expense.id!);
+    final fresh = await provider.getById(expense.id!);
     if (!mounted) return;
 
     if (fresh == null) {
@@ -69,7 +75,7 @@ class _ExpenseDetailsScreenState extends State<ExpenseDetailsScreen> {
         // Naming the expense in the question prevents "wrong row" accidents.
         content: Text(
           'Delete "${expense.title}" (${formatAmount(expense.amount)})?\n'
-          'This cannot be undone.',
+              'This cannot be undone.',
         ),
         actions: [
           TextButton(
@@ -89,9 +95,9 @@ class _ExpenseDetailsScreenState extends State<ExpenseDetailsScreen> {
 
     setState(() => isDeleting = true);
     try {
-      await DatabaseHelper().deleteExpense(expense.id!);
+      await provider.deleteExpense(expense.id!);
       if (!mounted) return;
-      Navigator.pop(context, true); // back to the list, which reloads
+      Navigator.pop(context, true); // back to the list, already refreshed
     } catch (e) {
       if (!mounted) return;
       setState(() => isDeleting = false);

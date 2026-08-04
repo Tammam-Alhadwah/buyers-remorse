@@ -13,6 +13,8 @@ import '../models/user.dart';
 import '../models/category.dart';
 import '../models/expense.dart';
 import '../models/income.dart';
+import '../utils/date_ranges.dart';
+import '../utils/formatters.dart';
 
 class DatabaseHelper {
   // -------------------------------------------------------------------------
@@ -95,7 +97,7 @@ class DatabaseHelper {
      ''');
 
 
-     await db.execute('''
+    await db.execute('''
        CREATE TABLE expenses (
          id           INTEGER PRIMARY KEY AUTOINCREMENT,
          title        TEXT,
@@ -447,6 +449,89 @@ class DatabaseHelper {
   Future<int> deleteExpense(int id) async {
     final db = await database;
     return db.delete('expenses', where: 'id = ?', whereArgs: [id]);
+  }
+
+  // =========================================================================
+  // SEARCH AND FILTER   (FR16 - FR20)
+  // =========================================================================
+
+  // ONE function answers all five requirements, because they are the same
+  // question with different pieces filled in:
+  //
+  //   FR16 search by name      -> text
+  //   FR17 search by date      -> range   (a day, a month, anything)
+  //   FR18 search by category  -> categoryId
+  //   FR19 search by amount    -> minAmount / maxAmount ("more than", "less than")
+  //   FR20 combined search     -> pass several at once; they are AND-ed
+  //
+  // Every parameter is optional (null = "do not filter on this"), so the
+  // search screen can send only the fields the user actually filled in.
+  // Passing nothing at all returns the whole list, exactly like
+  // getAllExpenses().
+  //
+  // HOW THE QUERY IS BUILT
+  // We collect the conditions in a list and join them with AND. The VALUES
+  // are never glued into the SQL text - they go into `args` and SQLite puts
+  // them in the ? holes itself. That is what makes SQL injection impossible:
+  // a user typing  ' OR 1=1 --  into the search box searches for that text,
+  // it does not become part of the query.
+  Future<List<Expense>> searchExpenses({
+    String? text,
+    DateRange? range,
+    int? categoryId,
+    double? minAmount,
+    double? maxAmount,
+  }) async {
+    final db = await database;
+
+    final conditions = <String>[];
+    final args = <Object?>[];
+
+    // ---- FR16: by name ----
+    // LIKE '%word%' means "contains word". SQLite's LIKE ignores upper/lower
+    // case for plain letters, so "taxi" also finds "Taxi".
+    final trimmed = text?.trim() ?? '';
+    if (trimmed.isNotEmpty) {
+      conditions.add('e.title LIKE ?');
+      args.add('%$trimmed%');
+    }
+
+    // ---- FR17: by date ----
+    // Dates are stored as 'yyyy-MM-dd' text, and BETWEEN compares that text.
+    // It gives the right answer only because that format sorts correctly -
+    // this is exactly why formatters.dart forbids saving any other format.
+    if (range != null) {
+      conditions.add('e.expense_date BETWEEN ? AND ?');
+      args.add(toDbDate(range.start));
+      args.add(toDbDate(range.end));
+    }
+
+    // ---- FR18: by category ----
+    if (categoryId != null) {
+      conditions.add('e.category_id = ?');
+      args.add(categoryId);
+    }
+
+    // ---- FR19: by amount ----
+    // Sent separately so the user can ask for only one side ("more than 500")
+    // or both ("between 100 and 500").
+    if (minAmount != null) {
+      conditions.add('e.amount >= ?');
+      args.add(minAmount);
+    }
+    if (maxAmount != null) {
+      conditions.add('e.amount <= ?');
+      args.add(maxAmount);
+    }
+
+    // ---- FR20: everything above is combined with AND ----
+    final where = conditions.isEmpty ? '' : 'WHERE ${conditions.join(' AND ')}';
+
+    final rows = await db.rawQuery(
+      '$_expenseSelect $where ORDER BY e.expense_date DESC, e.id DESC',
+      args,
+    );
+    return rows.map((row) => Expense.fromMap(row)).toList();
   }
 
   // =========================================================================

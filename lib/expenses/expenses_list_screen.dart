@@ -2,25 +2,29 @@
 // expenses_list_screen.dart  -  FR8: the list of all expenses (the READ part
 // of CRUD) and the entry point to add / view / edit / delete one.
 //
-// The screen owns three pieces of state and shows a different body for each:
-//   isLoading  -> a spinner
-//   error      -> a message with a "Try again" button
-//   expenses   -> the list, or a friendly "nothing yet" screen when empty
+// The screen does NOT own the list and never touches the database. It reads
+// ExpenseProvider and redraws whenever the provider says the data changed -
+// which happens after every add, edit and delete, wherever in the app they
+// were made. That is why there is no "reload after coming back" code here
+// any more: the provider has already told us.
 //
-// Searching and filtering (FR16-FR20) belong to their own task and are not
-// here yet.
+// Three states, three bodies: spinner while loading, an error view with
+// "Try again", or the list (with a friendly screen when it is empty).
+//
+// Searching and filtering (FR16-FR20) live in their own screen, opened from
+// the magnifier in the app bar.
 // ===========================================================================
 
 import 'package:flutter/material.dart';
 
 import '../models/user.dart';
-import '../models/expense.dart';
-import '../database/database_helper.dart';
+import '../providers/expense_provider.dart';
 import '../utils/constants.dart';
 import '../widgets/app_drawer.dart';
 import '../widgets/expense_card.dart';
 import 'add_expense_screen.dart';
 import 'expense_details_screen.dart';
+import 'search_expenses_screen.dart';
 
 class ExpensesListScreen extends StatefulWidget {
   // Needed only so this screen can show the same side menu as the dashboard.
@@ -33,79 +37,70 @@ class ExpensesListScreen extends StatefulWidget {
 }
 
 class _ExpensesListScreenState extends State<ExpensesListScreen> {
-  List<Expense> expenses = [];
-  bool isLoading = true;
-  String? errorMessage;
+  // ExpenseProvider() always returns the one shared object (it is a
+  // singleton), so this is the same provider the dashboard listens to.
+  final ExpenseProvider provider = ExpenseProvider();
 
   @override
   void initState() {
     super.initState();
-    // initState cannot be async, so we start the work and let it finish on
-    // its own. The screen shows the spinner until it does.
-    loadExpenses();
+
+    // Safe to call straight from initState: the provider defers its first
+    // notification to a microtask, so nothing is asked to redraw while this
+    // screen is still being built.
+    provider.loadExpenses();
   }
 
-  Future<void> loadExpenses() async {
-    setState(() {
-      isLoading = true;
-      errorMessage = null;
-    });
-
-    try {
-      final rows = await DatabaseHelper().getAllExpenses();
-      if (!mounted) return;
-      setState(() {
-        expenses = rows;
-        isLoading = false;
-      });
-    } catch (e) {
-      if (!mounted) return;
-      setState(() {
-        errorMessage = 'Could not load your expenses.';
-        isLoading = false;
-      });
-    }
-  }
-
-  // Opens a screen and reloads the list afterwards. Every screen we push can
-  // change the data (add, edit, delete), and reading a local database again
-  // is cheap - much safer than trying to patch the list by hand.
-  Future<void> openAndReload(Widget screen) async {
-    await Navigator.push(
-      context,
-      MaterialPageRoute(builder: (_) => screen),
-    );
-    if (!mounted) return;
-    await loadExpenses();
+  void openScreen(Widget screen) {
+    // No reload afterwards: whatever that screen changes, it changes through
+    // the provider, and the provider redraws us.
+    Navigator.push(context, MaterialPageRoute(builder: (_) => screen));
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Expenses')),
+      appBar: AppBar(
+        title: const Text('Expenses'),
+        actions: [
+          // FR16-FR20 live one tap away, where people look for them.
+          IconButton(
+            icon: const Icon(Icons.search),
+            tooltip: 'Search and filter',
+            onPressed: () => openScreen(SearchExpensesScreen(user: widget.user)),
+          ),
+          const LogoutAction(),
+        ],
+      ),
       drawer: AppDrawer(user: widget.user),
 
       // FR5 starts here: the "+" button in the corner.
       floatingActionButton: FloatingActionButton.extended(
-        onPressed: () => openAndReload(const AddExpenseScreen()),
+        onPressed: () => openScreen(const AddExpenseScreen()),
         backgroundColor: kExpenseColor,
         foregroundColor: Colors.white,
         icon: const Icon(Icons.add),
         label: const Text('Add'),
       ),
 
-      body: buildBody(),
+      // ListenableBuilder rebuilds ONLY what is inside it, every time the
+      // provider calls notifyListeners(). The app bar and the button above
+      // are built once and left alone.
+      body: ListenableBuilder(
+        listenable: provider,
+        builder: (context, _) => buildBody(),
+      ),
     );
   }
 
   // Splitting the body into its own method keeps build() readable: one look
   // tells you which of the three states the screen is in.
   Widget buildBody() {
-    if (isLoading) {
+    if (provider.isLoading) {
       return const Center(child: CircularProgressIndicator());
     }
 
-    if (errorMessage != null) {
+    if (provider.errorMessage != null) {
       return Center(
         child: Padding(
           padding: const EdgeInsets.all(kPadding * 2),
@@ -115,7 +110,7 @@ class _ExpensesListScreenState extends State<ExpensesListScreen> {
               const Icon(Icons.error_outline, size: 64, color: Colors.grey),
               const SizedBox(height: 16),
               Text(
-                errorMessage!,
+                provider.errorMessage!,
                 textAlign: TextAlign.center,
                 style: const TextStyle(fontSize: 16, color: Colors.grey),
               ),
@@ -123,7 +118,7 @@ class _ExpensesListScreenState extends State<ExpensesListScreen> {
               SizedBox(
                 width: 160,
                 child: ElevatedButton(
-                  onPressed: loadExpenses,
+                  onPressed: provider.loadExpenses,
                   child: const Text('Try again'),
                 ),
               ),
@@ -132,6 +127,8 @@ class _ExpensesListScreenState extends State<ExpensesListScreen> {
         ),
       );
     }
+
+    final expenses = provider.expenses;
 
     if (expenses.isEmpty) {
       // An empty list should explain itself instead of showing a blank page.
@@ -161,7 +158,7 @@ class _ExpensesListScreenState extends State<ExpensesListScreen> {
 
     // RefreshIndicator = pull the list down to reload it.
     return RefreshIndicator(
-      onRefresh: loadExpenses,
+      onRefresh: provider.loadExpenses,
       child: ListView.builder(
         // .builder only builds the rows that are visible, so a list of a
         // thousand expenses still scrolls smoothly.
@@ -172,9 +169,7 @@ class _ExpensesListScreenState extends State<ExpensesListScreen> {
           return ExpenseCard(
             expense: expense,
             // FR9: tap a row to see everything about it.
-            onTap: () => openAndReload(
-              ExpenseDetailsScreen(expense: expense),
-            ),
+            onTap: () => openScreen(ExpenseDetailsScreen(expense: expense)),
           );
         },
       ),

@@ -10,7 +10,7 @@
 import 'package:flutter/material.dart';
 
 import '../models/expense.dart';
-import '../database/database_helper.dart';
+import '../providers/expense_provider.dart';
 import '../widgets/expense_form.dart';
 
 class EditExpenseScreen extends StatelessWidget {
@@ -26,18 +26,19 @@ class EditExpenseScreen extends StatelessWidget {
         initial: expense, // <- the only real difference
         submitLabel: 'SAVE CHANGES',
         onSave: (updated) async {
-          final changed = await DatabaseHelper().updateExpense(updated);
+          // false = 0 rows changed, which means the expense was deleted from
+          // another screen while this one was open.
+          final saved = await ExpenseProvider().updateExpense(updated);
           if (!context.mounted) return;
 
-          if (changed == 0) {
-            // 0 rows changed = the expense was deleted from another screen.
+          if (!saved) {
             ScaffoldMessenger.of(context).showSnackBar(
               const SnackBar(content: Text('This expense no longer exists')),
             );
             return;
           }
 
-          Navigator.pop(context, true); // true = reload the list
+          Navigator.pop(context, true);
         },
       ),
     );

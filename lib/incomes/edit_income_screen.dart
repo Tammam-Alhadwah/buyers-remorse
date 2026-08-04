@@ -10,7 +10,7 @@
 import 'package:flutter/material.dart';
 
 import '../models/income.dart';
-import '../database/database_helper.dart';
+import '../providers/income_provider.dart';
 import '../widgets/income_form.dart';
 
 class EditIncomeScreen extends StatelessWidget {
@@ -26,18 +26,18 @@ class EditIncomeScreen extends StatelessWidget {
         initial: income, // <- the only real difference
         submitLabel: 'SAVE CHANGES',
         onSave: (updated) async {
-          final changed = await DatabaseHelper().updateIncome(updated);
+          // false = 0 rows changed, so the income was deleted meanwhile.
+          final saved = await IncomeProvider().updateIncome(updated);
           if (!context.mounted) return;
 
-          if (changed == 0) {
-            // 0 rows changed = the income was deleted from another screen.
+          if (!saved) {
             ScaffoldMessenger.of(context).showSnackBar(
               const SnackBar(content: Text('This income no longer exists')),
             );
             return;
           }
 
-          Navigator.pop(context, true); // true = reload the list
+          Navigator.pop(context, true);
         },
       ),
     );
