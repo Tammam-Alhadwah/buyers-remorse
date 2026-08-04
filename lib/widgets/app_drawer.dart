@@ -21,6 +21,9 @@ import 'package:flutter/material.dart';
 
 import '../models/user.dart';
 import '../utils/constants.dart';
+import '../utils/session.dart';
+import '../providers/expense_provider.dart';
+import '../providers/income_provider.dart';
 import '../screens/login_screen.dart';
 import '../screens/change_password_screen.dart';
 import '../expenses/expenses_list_screen.dart';
@@ -58,6 +61,14 @@ Future<void> confirmLogout(BuildContext context) async {
   // showDialog returns null if the user tapped outside the dialog.
   if (confirmed != true) return;
   if (!context.mounted) return;
+
+  // Forget who was logged in, and throw away the lists the providers are
+  // holding in memory. The providers are singletons that outlive this screen,
+  // so without clear() the next person to sign in could be shown the previous
+  // person's rows out of the cache before the first reload finishes.
+  Session.end();
+  ExpenseProvider().clear();
+  IncomeProvider().clear();
 
   // pushAndRemoveUntil throws away EVERY screen behind us, so the back button
   // cannot walk back into the logged-in part of the app.
@@ -198,7 +209,12 @@ class AppDrawer extends StatelessWidget {
                 context,
                 ChangePasswordScreen(user: user),
               );
-              if (updated != null) onUserChanged?.call(updated);
+              if (updated != null) {
+                // Keep the session copy in step with the new password, so a
+                // later screen never works from a stale User.
+                Session.update(updated);
+                onUserChanged?.call(updated);
+              }
             },
           ),
           ListTile(

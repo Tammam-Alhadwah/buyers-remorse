@@ -15,27 +15,143 @@ It contains the Flutter project structure and source code.
     pubspec.lock
     pubspec.yaml
     python script.py
+    android/
+        .gitignore
+        build.gradle.kts
+        gradle.properties
+        gradlew
+        gradlew.bat
+        local.properties
+        settings.gradle.kts
+        android\app/
+            build.gradle.kts
+            android\app\src/
+                android\app\src\debug/
+                    AndroidManifest.xml
+                android\app\src\main/
+                    AndroidManifest.xml
+                    android\app\src\main\java/
+                        android\app\src\main\java\io/
+                            android\app\src\main\java\io\flutter/
+                                android\app\src\main\java\io\flutter\plugins/
+                                    GeneratedPluginRegistrant.java
+                    android\app\src\main\kotlin/
+                        android\app\src\main\kotlin\com/
+                            android\app\src\main\kotlin\com\example/
+                                android\app\src\main\kotlin\com\example\final_project/
+                                    MainActivity.kt
+                    android\app\src\main\res/
+                        android\app\src\main\res\drawable/
+                            launch_background.xml
+                        android\app\src\main\res\drawable-v21/
+                            launch_background.xml
+                        android\app\src\main\res\mipmap-hdpi/
+                        android\app\src\main\res\mipmap-mdpi/
+                        android\app\src\main\res\mipmap-xhdpi/
+                        android\app\src\main\res\mipmap-xxhdpi/
+                        android\app\src\main\res\mipmap-xxxhdpi/
+                        android\app\src\main\res\values/
+                            styles.xml
+                        android\app\src\main\res\values-night/
+                            styles.xml
+                android\app\src\profile/
+                    AndroidManifest.xml
+        android\gradle/
+            android\gradle\wrapper/
+                gradle-wrapper.jar
+                gradle-wrapper.properties
+    ios/
+        .gitignore
+        ios\Flutter/
+            AppFrameworkInfo.plist
+            Debug.xcconfig
+            Generated.xcconfig
+            Release.xcconfig
+            flutter_export_environment.sh
+            ios\Flutter\ephemeral/
+                flutter_lldb_helper.py
+                flutter_lldbinit
+                flutter_native_integration.env
+                ios\Flutter\ephemeral\Packages/
+                    ios\Flutter\ephemeral\Packages\.packages/
+                    ios\Flutter\ephemeral\Packages\FlutterGeneratedPluginSwiftPackage/
+                        Package.swift
+                        ios\Flutter\ephemeral\Packages\FlutterGeneratedPluginSwiftPackage\Sources/
+                            ios\Flutter\ephemeral\Packages\FlutterGeneratedPluginSwiftPackage\Sources\FlutterGeneratedPluginSwiftPackage/
+                                FlutterGeneratedPluginSwiftPackage.swift
+        ios\Runner/
+            AppDelegate.swift
+            GeneratedPluginRegistrant.h
+            GeneratedPluginRegistrant.m
+            Info.plist
+            Runner-Bridging-Header.h
+            SceneDelegate.swift
+            ios\Runner\Assets.xcassets/
+                ios\Runner\Assets.xcassets\AppIcon.appiconset/
+                    Contents.json
+                ios\Runner\Assets.xcassets\LaunchImage.imageset/
+                    Contents.json
+                    README.md
+            ios\Runner\Base.lproj/
+                LaunchScreen.storyboard
+                Main.storyboard
+        ios\Runner.xcodeproj/
+            project.pbxproj
+            ios\Runner.xcodeproj\project.xcworkspace/
+                contents.xcworkspacedata
+                ios\Runner.xcodeproj\project.xcworkspace\xcshareddata/
+                    IDEWorkspaceChecks.plist
+                    WorkspaceSettings.xcsettings
+            ios\Runner.xcodeproj\xcshareddata/
+                ios\Runner.xcodeproj\xcshareddata\xcschemes/
+                    Runner.xcscheme
+        ios\Runner.xcworkspace/
+            contents.xcworkspacedata
+            ios\Runner.xcworkspace\xcshareddata/
+                IDEWorkspaceChecks.plist
+                WorkspaceSettings.xcsettings
+        ios\RunnerTests/
+            RunnerTests.swift
     lib/
         main.dart
-        lib/providers/
+        lib\categories/
+            categories_screen.dart
+        lib\database/
+            database_helper.dart
+        lib\expenses/
+            add_expense_screen.dart
+            edit_expense_screen.dart
+            expense_details_screen.dart
+            expenses_list_screen.dart
+            search_expenses_screen.dart
+        lib\incomes/
+            add_income_screen.dart
+            edit_income_screen.dart
+            incomes_screen.dart
+        lib\models/
+            category.dart
+            expense.dart
+            income.dart
+            user.dart
+        lib\providers/
             expense_provider.dart
             income_provider.dart
-        lib/theme/
+        lib\reports/
+            reports_screen.dart
+        lib\screens/
+            change_password_screen.dart
+            dashboard_screen.dart
+            login_screen.dart
+            register_screen.dart
+        lib\theme/
             app_theme.dart
-        lib/utils/
+        lib\utils/
             category_style.dart
             constants.dart
             date_ranges.dart
             formatters.dart
             validators.dart
-        lib/reports/
-            reports_screen.dart
-        lib/screens/
-            change_password_screen.dart
-            dashboard_screen.dart
-            login_screen.dart
-            register_screen.dart
-        lib/widgets/
+        lib\widgets/
             app_drawer.dart
             category_form_sheet.dart
             charts.dart
@@ -45,169 +161,135 @@ It contains the Flutter project structure and source code.
             expense_form.dart
             income_card.dart
             income_form.dart
-        lib/expenses/
-            add_expense_screen.dart
-            edit_expense_screen.dart
-            expense_details_screen.dart
-            expenses_list_screen.dart
-            search_expenses_screen.dart
-        lib/database/
-            database_helper.dart
-        lib/incomes/
-            add_income_screen.dart
-            edit_income_screen.dart
-            incomes_screen.dart
-        lib/categories/
-            categories_screen.dart
-        lib/models/
-            category.dart
-            expense.dart
-            income.dart
-            user.dart
-    test/
-        widget_test.dart
-    android/
+    linux/
         .gitignore
-        build.gradle.kts
-        gradle.properties
-        gradlew
-        gradlew.bat
-        local.properties
-        settings.gradle.kts
-        android/.kotlin/
-            android/.kotlin/sessions/
-        android/app/
-            build.gradle.kts
-            android/app/src/
-                android/app/src/debug/
-                    AndroidManifest.xml
-                android/app/src/profile/
-                    AndroidManifest.xml
-                android/app/src/main/
-                    AndroidManifest.xml
-                    android/app/src/main/java/
-                        android/app/src/main/java/io/
-                            android/app/src/main/java/io/flutter/
-                                android/app/src/main/java/io/flutter/plugins/
-                                    GeneratedPluginRegistrant.java
-                    android/app/src/main/res/
-                        android/app/src/main/res/mipmap-hdpi/
-                        android/app/src/main/res/mipmap-xxxhdpi/
-                        android/app/src/main/res/mipmap-xxhdpi/
-                        android/app/src/main/res/mipmap-mdpi/
-                        android/app/src/main/res/drawable/
-                            launch_background.xml
-                        android/app/src/main/res/drawable-v21/
-                            launch_background.xml
-                        android/app/src/main/res/mipmap-xhdpi/
-                        android/app/src/main/res/values/
-                            styles.xml
-                        android/app/src/main/res/values-night/
-                            styles.xml
-                    android/app/src/main/kotlin/
-                        android/app/src/main/kotlin/com/
-                            android/app/src/main/kotlin/com/example/
-                                android/app/src/main/kotlin/com/example/final_project/
-                                    MainActivity.kt
-        android/gradle/
-            android/gradle/wrapper/
-                gradle-wrapper.jar
-                gradle-wrapper.properties
-        android/.gradle/
-            file-system.probe
-            android/.gradle/buildOutputCleanup/
-                buildOutputCleanup.lock
-                cache.properties
-                outputFiles.bin
-            android/.gradle/9.1.0/
-                gc.properties
-                android/.gradle/9.1.0/vcsMetadata/
-                android/.gradle/9.1.0/expanded/
-                android/.gradle/9.1.0/executionHistory/
-                    executionHistory.bin
-                    executionHistory.lock
-                android/.gradle/9.1.0/fileChanges/
-                    last-build.bin
-                android/.gradle/9.1.0/fileHashes/
-                    fileHashes.bin
-                    fileHashes.lock
-                    resourceHashesCache.bin
-                android/.gradle/9.1.0/checksums/
-                    checksums.lock
-            android/.gradle/noVersion/
-                buildLogic.lock
-            android/.gradle/vcs-1/
-                gc.properties
-    web/
-        index.html
-        manifest.json
-        web/icons/
+        CMakeLists.txt
+        linux\flutter/
+            CMakeLists.txt
+            generated_plugin_registrant.cc
+            generated_plugin_registrant.h
+            generated_plugins.cmake
+            linux\flutter\ephemeral/
+                linux\flutter\ephemeral\.plugin_symlinks/
+        linux\runner/
+            CMakeLists.txt
+            main.cc
+            my_application.cc
+            my_application.h
     macos/
         .gitignore
-        macos/Flutter/
+        macos\Flutter/
             Flutter-Debug.xcconfig
             Flutter-Release.xcconfig
             GeneratedPluginRegistrant.swift
-            macos/Flutter/ephemeral/
+            macos\Flutter\ephemeral/
                 Flutter-Generated.xcconfig
                 flutter_export_environment.sh
                 flutter_native_integration.env
-                macos/Flutter/ephemeral/Packages/
-                    macos/Flutter/ephemeral/Packages/.packages/
-                    macos/Flutter/ephemeral/Packages/FlutterGeneratedPluginSwiftPackage/
+                macos\Flutter\ephemeral\Packages/
+                    macos\Flutter\ephemeral\Packages\.packages/
+                    macos\Flutter\ephemeral\Packages\FlutterGeneratedPluginSwiftPackage/
                         Package.swift
-                        macos/Flutter/ephemeral/Packages/FlutterGeneratedPluginSwiftPackage/Sources/
-                            macos/Flutter/ephemeral/Packages/FlutterGeneratedPluginSwiftPackage/Sources/FlutterGeneratedPluginSwiftPackage/
+                        macos\Flutter\ephemeral\Packages\FlutterGeneratedPluginSwiftPackage\Sources/
+                            macos\Flutter\ephemeral\Packages\FlutterGeneratedPluginSwiftPackage\Sources\FlutterGeneratedPluginSwiftPackage/
                                 FlutterGeneratedPluginSwiftPackage.swift
-        macos/RunnerTests/
-            RunnerTests.swift
-        macos/Runner/
+        macos\Runner/
             AppDelegate.swift
             DebugProfile.entitlements
             Info.plist
             MainFlutterWindow.swift
             Release.entitlements
-            macos/Runner/Base.lproj/
-                MainMenu.xib
-            macos/Runner/Assets.xcassets/
-                macos/Runner/Assets.xcassets/AppIcon.appiconset/
+            macos\Runner\Assets.xcassets/
+                macos\Runner\Assets.xcassets\AppIcon.appiconset/
                     Contents.json
-            macos/Runner/Configs/
+            macos\Runner\Base.lproj/
+                MainMenu.xib
+            macos\Runner\Configs/
                 AppInfo.xcconfig
                 Debug.xcconfig
                 Release.xcconfig
                 Warnings.xcconfig
-        macos/Runner.xcworkspace/
-            contents.xcworkspacedata
-            macos/Runner.xcworkspace/xcshareddata/
-                IDEWorkspaceChecks.plist
-        macos/Runner.xcodeproj/
+        macos\Runner.xcodeproj/
             project.pbxproj
-            macos/Runner.xcodeproj/project.xcworkspace/
-                macos/Runner.xcodeproj/project.xcworkspace/xcshareddata/
+            macos\Runner.xcodeproj\project.xcworkspace/
+                macos\Runner.xcodeproj\project.xcworkspace\xcshareddata/
                     IDEWorkspaceChecks.plist
-            macos/Runner.xcodeproj/xcshareddata/
-                macos/Runner.xcodeproj/xcshareddata/xcschemes/
+            macos\Runner.xcodeproj\xcshareddata/
+                macos\Runner.xcodeproj\xcshareddata\xcschemes/
                     Runner.xcscheme
-    linux/
+        macos\Runner.xcworkspace/
+            contents.xcworkspacedata
+            macos\Runner.xcworkspace\xcshareddata/
+                IDEWorkspaceChecks.plist
+        macos\RunnerTests/
+            RunnerTests.swift
+    test/
+        widget_test.dart
+    web/
+        index.html
+        manifest.json
+        web\icons/
+    windows/
         .gitignore
         CMakeLists.txt
-        linux/runner/
-            CMakeLists.txt
-            main.cc
-            my_application.cc
-            my_application.h
-        linux/flutter/
+        windows\flutter/
             CMakeLists.txt
             generated_plugin_registrant.cc
             generated_plugin_registrant.h
             generated_plugins.cmake
-            linux/flutter/ephemeral/
-                linux/flutter/ephemeral/.plugin_symlinks/
-    windows/
-        .gitignore
-        CMakeLists.txt
-        windows/runner/
+            windows\flutter\ephemeral/
+                flutter_export.h
+                flutter_messenger.h
+                flutter_plugin_registrar.h
+                flutter_texture_registrar.h
+                flutter_windows.dll
+                flutter_windows.dll.exp
+                flutter_windows.dll.lib
+                flutter_windows.dll.pdb
+                flutter_windows.h
+                generated_config.cmake
+                icudtl.dat
+                windows\flutter\ephemeral\.plugin_symlinks/
+                windows\flutter\ephemeral\cpp_client_wrapper/
+                    binary_messenger_impl.h
+                    byte_buffer_streams.h
+                    core_implementations.cc
+                    engine_method_result.cc
+                    flutter_engine.cc
+                    flutter_view_controller.cc
+                    plugin_registrar.cc
+                    readme
+                    standard_codec.cc
+                    texture_registrar_impl.h
+                    windows\flutter\ephemeral\cpp_client_wrapper\include/
+                        windows\flutter\ephemeral\cpp_client_wrapper\include\flutter/
+                            basic_message_channel.h
+                            binary_messenger.h
+                            byte_streams.h
+                            dart_project.h
+                            encodable_value.h
+                            engine_method_result.h
+                            event_channel.h
+                            event_sink.h
+                            event_stream_handler.h
+                            event_stream_handler_functions.h
+                            flutter_engine.h
+                            flutter_view.h
+                            flutter_view_controller.h
+                            message_codec.h
+                            method_call.h
+                            method_channel.h
+                            method_codec.h
+                            method_result.h
+                            method_result_functions.h
+                            plugin_registrar.h
+                            plugin_registrar_windows.h
+                            plugin_registry.h
+                            standard_codec_serializer.h
+                            standard_message_codec.h
+                            standard_method_codec.h
+                            texture_registrar.h
+        windows\runner/
             CMakeLists.txt
             Runner.rc
             flutter_window.cpp
@@ -219,66 +301,7 @@ It contains the Flutter project structure and source code.
             utils.h
             win32_window.cpp
             win32_window.h
-            windows/runner/resources/
-        windows/flutter/
-            CMakeLists.txt
-            generated_plugin_registrant.cc
-            generated_plugin_registrant.h
-            generated_plugins.cmake
-            windows/flutter/ephemeral/
-                windows/flutter/ephemeral/.plugin_symlinks/
-    ios/
-        .gitignore
-        ios/Flutter/
-            AppFrameworkInfo.plist
-            Debug.xcconfig
-            Generated.xcconfig
-            Release.xcconfig
-            flutter_export_environment.sh
-            ios/Flutter/ephemeral/
-                flutter_lldb_helper.py
-                flutter_lldbinit
-                flutter_native_integration.env
-                ios/Flutter/ephemeral/Packages/
-                    ios/Flutter/ephemeral/Packages/.packages/
-                    ios/Flutter/ephemeral/Packages/FlutterGeneratedPluginSwiftPackage/
-                        Package.swift
-                        ios/Flutter/ephemeral/Packages/FlutterGeneratedPluginSwiftPackage/Sources/
-                            ios/Flutter/ephemeral/Packages/FlutterGeneratedPluginSwiftPackage/Sources/FlutterGeneratedPluginSwiftPackage/
-                                FlutterGeneratedPluginSwiftPackage.swift
-        ios/RunnerTests/
-            RunnerTests.swift
-        ios/Runner/
-            AppDelegate.swift
-            GeneratedPluginRegistrant.h
-            GeneratedPluginRegistrant.m
-            Info.plist
-            Runner-Bridging-Header.h
-            SceneDelegate.swift
-            ios/Runner/Base.lproj/
-                LaunchScreen.storyboard
-                Main.storyboard
-            ios/Runner/Assets.xcassets/
-                ios/Runner/Assets.xcassets/AppIcon.appiconset/
-                    Contents.json
-                ios/Runner/Assets.xcassets/LaunchImage.imageset/
-                    Contents.json
-                    README.md
-        ios/Runner.xcworkspace/
-            contents.xcworkspacedata
-            ios/Runner.xcworkspace/xcshareddata/
-                IDEWorkspaceChecks.plist
-                WorkspaceSettings.xcsettings
-        ios/Runner.xcodeproj/
-            project.pbxproj
-            ios/Runner.xcodeproj/project.xcworkspace/
-                contents.xcworkspacedata
-                ios/Runner.xcodeproj/project.xcworkspace/xcshareddata/
-                    IDEWorkspaceChecks.plist
-                    WorkspaceSettings.xcsettings
-            ios/Runner.xcodeproj/xcshareddata/
-                ios/Runner.xcodeproj/xcshareddata/xcschemes/
-                    Runner.xcscheme
+            windows\runner\resources/
 
 
 # PROJECT FILES
@@ -808,6 +831,2689 @@ class MyApp extends StatelessWidget {
 ```
 
 ================================================================================
+FILE: lib/categories/categories_screen.dart
+================================================================================
+
+```dart
+// ===========================================================================
+// categories_screen.dart  -  the category module: add (FR13), edit (FR14)
+// and delete (FR15) the categories that expenses are grouped by.
+//
+// The form itself lives in widgets/category_form_sheet.dart; this screen owns
+// the list, the database calls and the rules that need the database:
+//   - a category name cannot be used twice
+//   - a category still used by expenses cannot just disappear
+// ===========================================================================
+
+import 'package:flutter/material.dart';
+
+import '../models/user.dart';
+import '../models/category.dart';
+import '../database/database_helper.dart';
+import '../utils/constants.dart';
+import '../utils/category_style.dart';
+import '../widgets/app_drawer.dart';
+import '../widgets/category_form_sheet.dart';
+
+class CategoriesScreen extends StatefulWidget {
+  // Needed only so this screen can show the same side menu as the dashboard.
+  final User user;
+
+  const CategoriesScreen({super.key, required this.user});
+
+  @override
+  State<CategoriesScreen> createState() => _CategoriesScreenState();
+}
+
+class _CategoriesScreenState extends State<CategoriesScreen> {
+  List<Category> categories = [];
+
+  // {categoryId: how many expenses use it}. Loaded in ONE query next to the
+  // categories, so the list can show "3 expenses" without a query per row.
+  Map<int, int> expenseCounts = {};
+
+  bool isLoading = true;
+  String? errorMessage;
+
+  @override
+  void initState() {
+    super.initState();
+    loadCategories();
+  }
+
+  Future<void> loadCategories() async {
+    setState(() {
+      isLoading = true;
+      errorMessage = null;
+    });
+
+    try {
+      final db = DatabaseHelper();
+      final rows = await db.getAllCategories();
+      final counts = await db.getExpenseCountByCategory();
+      if (!mounted) return;
+
+      setState(() {
+        categories = rows;
+        expenseCounts = counts;
+        isLoading = false;
+      });
+    } catch (e) {
+      if (!mounted) return;
+      setState(() {
+        errorMessage = 'Could not load your categories.';
+        isLoading = false;
+      });
+    }
+  }
+
+  void _showMessage(String message, {bool isError = true}) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(message),
+        backgroundColor: isError ? kExpenseColor : kIncomeColor,
+      ),
+    );
+  }
+
+  // -------------------------------------------------------------------------
+  // FR13 / FR14 - add and edit share one form and one save function.
+  // `initial` null means "add", otherwise "edit".
+  // -------------------------------------------------------------------------
+  Future<void> openForm({Category? initial}) async {
+    await showCategoryFormSheet(
+      context,
+      initial: initial,
+      onSave: (category) async {
+        // The rule that needs the database. excludeId lets a category keep
+        // its own name while being edited (without it, saving "Food" as
+        // "Food" would report a duplicate of itself).
+        final taken = await DatabaseHelper().categoryNameExists(
+          category.name,
+          excludeId: category.id,
+        );
+        if (taken) return 'A category with this name already exists';
+
+        if (category.id == null) {
+          await DatabaseHelper().addCategory(category);
+        } else {
+          final changed = await DatabaseHelper().updateCategory(category);
+          if (changed == 0) return 'This category no longer exists';
+        }
+
+        return null; // null = saved, the sheet closes itself
+      },
+    );
+
+    if (!mounted) return;
+    await loadCategories(); // reload whether it was saved or cancelled
+  }
+
+  // -------------------------------------------------------------------------
+  // FR15 - delete, with two different questions.
+  // -------------------------------------------------------------------------
+  Future<void> confirmAndDelete(Category category) async {
+    final used = expenseCounts[category.id] ?? 0;
+
+    final confirmed = await showDialog<bool>(
+      context: context,
+      builder: (dialogContext) => AlertDialog(
+        title: const Text('Delete category'),
+        content: Text(
+          used == 0
+              // Nothing depends on it: a plain confirmation.
+              ? 'Delete "${category.name}"?\nThis cannot be undone.'
+              // Something depends on it: say exactly what will happen to it.
+              // Deleting the expenses too would destroy the user's records,
+              // so we only remove the link - the expenses stay, without a
+              // category, and can be edited to a new one later.
+              : '"${category.name}" is used by $used '
+                  '${used == 1 ? 'expense' : 'expenses'}.\n\n'
+                  'Those expenses will be kept but will have no category.',
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(dialogContext, false),
+            child: const Text('Cancel'),
+          ),
+          TextButton(
+            onPressed: () => Navigator.pop(dialogContext, true),
+            style: TextButton.styleFrom(foregroundColor: kExpenseColor),
+            child: Text(used == 0 ? 'Delete' : 'Delete anyway'),
+          ),
+        ],
+      ),
+    );
+
+    if (confirmed != true || !mounted) return;
+
+    try {
+      await DatabaseHelper().deleteCategory(
+        category.id!,
+        // Only pass true when it is really needed, so the foreign key still
+        // guards every other case.
+        detachExpenses: used > 0,
+      );
+      if (!mounted) return;
+      _showMessage('Category deleted', isError: false);
+      await loadCategories();
+    } catch (e) {
+      if (!mounted) return;
+      _showMessage('Could not delete the category. Please try again.');
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: const Text('Categories')),
+      drawer: AppDrawer(user: widget.user),
+
+      floatingActionButton: FloatingActionButton.extended(
+        onPressed: () => openForm(),
+        icon: const Icon(Icons.add),
+        label: const Text('Add'),
+      ),
+
+      body: buildBody(),
+    );
+  }
+
+  Widget buildBody() {
+    if (isLoading) {
+      return const Center(child: CircularProgressIndicator());
+    }
+
+    if (errorMessage != null) {
+      return Center(
+        child: Padding(
+          padding: const EdgeInsets.all(kPadding * 2),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const Icon(Icons.error_outline, size: 64, color: Colors.grey),
+              const SizedBox(height: 16),
+              Text(
+                errorMessage!,
+                textAlign: TextAlign.center,
+                style: const TextStyle(fontSize: 16, color: Colors.grey),
+              ),
+              const SizedBox(height: 20),
+              SizedBox(
+                width: 160,
+                child: ElevatedButton(
+                  onPressed: loadCategories,
+                  child: const Text('Try again'),
+                ),
+              ),
+            ],
+          ),
+        ),
+      );
+    }
+
+    if (categories.isEmpty) {
+      // Expenses cannot be saved without a category, so this screen explains
+      // the consequence instead of just saying "empty".
+      return Center(
+        child: Padding(
+          padding: const EdgeInsets.all(kPadding * 2),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: const [
+              Icon(Icons.category_outlined, size: 72, color: Colors.grey),
+              SizedBox(height: 16),
+              Text(
+                'No categories',
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+              ),
+              SizedBox(height: 8),
+              Text(
+                'Add at least one category - an expense cannot be saved '
+                'without one.',
+                textAlign: TextAlign.center,
+                style: TextStyle(fontSize: 16, color: Colors.grey),
+              ),
+            ],
+          ),
+        ),
+      );
+    }
+
+    return RefreshIndicator(
+      onRefresh: loadCategories,
+      child: ListView.builder(
+        padding: const EdgeInsets.fromLTRB(kPadding, kPadding, kPadding, 90),
+        itemCount: categories.length,
+        itemBuilder: (context, index) {
+          final category = categories[index];
+          final color = categoryColor(category.color);
+          final used = expenseCounts[category.id] ?? 0;
+
+          return Card(
+            margin: const EdgeInsets.symmetric(vertical: 6),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(kRadius),
+            ),
+            child: ListTile(
+              contentPadding: const EdgeInsets.only(left: kPadding, right: 4),
+              leading: CircleAvatar(
+                backgroundColor: color.withValues(alpha: 0.15),
+                child: Icon(categoryIcon(category.icon), color: color),
+              ),
+              title: Text(
+                category.name,
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+                style: const TextStyle(fontWeight: FontWeight.bold),
+              ),
+              subtitle: Text(
+                used == 0
+                    ? 'Not used yet'
+                    : '$used ${used == 1 ? 'expense' : 'expenses'}',
+              ),
+              trailing: PopupMenuButton<String>(
+                tooltip: 'Actions',
+                onSelected: (value) {
+                  if (value == 'edit') openForm(initial: category);
+                  if (value == 'delete') confirmAndDelete(category);
+                },
+                itemBuilder: (context) => const [
+                  PopupMenuItem(
+                    value: 'edit',
+                    child: ListTile(
+                      contentPadding: EdgeInsets.zero,
+                      leading: Icon(Icons.edit, color: kPrimaryColor),
+                      title: Text('Edit'),
+                    ),
+                  ),
+                  PopupMenuItem(
+                    value: 'delete',
+                    child: ListTile(
+                      contentPadding: EdgeInsets.zero,
+                      leading: Icon(Icons.delete, color: kExpenseColor),
+                      title: Text('Delete'),
+                    ),
+                  ),
+                ],
+              ),
+              // Tapping the row opens the same edit form as the menu.
+              onTap: () => openForm(initial: category),
+            ),
+          );
+        },
+      ),
+    );
+  }
+}
+
+```
+
+================================================================================
+FILE: lib/database/database_helper.dart
+================================================================================
+
+```dart
+// ===========================================================================
+// database_helper.dart  -  the database file of the project.
+//
+// We use SQLite (a small database inside the phone) through the "sqflite"
+// package. This is the ONLY file that writes SQL. Screens just call functions
+// like login() or addExpense().
+// ===========================================================================
+
+import 'package:path/path.dart'; // gives us join()
+import 'package:sqflite/sqflite.dart'; // gives us the database
+
+import '../models/user.dart';
+import '../models/category.dart';
+import '../models/expense.dart';
+import '../models/income.dart';
+import '../utils/date_ranges.dart';
+import '../utils/formatters.dart';
+
+class DatabaseHelper {
+  // -------------------------------------------------------------------------
+  // SINGLETON
+  // These 3 lines make sure only ONE DatabaseHelper exists in the whole app.
+  // Every time you write DatabaseHelper() you get the same object back.
+  // Reason: opening the same database file twice causes errors.
+  // -------------------------------------------------------------------------
+  static final DatabaseHelper _instance = DatabaseHelper._internal();
+  factory DatabaseHelper() => _instance;
+  DatabaseHelper._internal();
+
+  // The open connection. null until we open it the first time.
+  static Database? _db;
+
+  // Use this in every function:  final db = await database;
+  Future<Database> get database async {
+    if (_db != null) return _db!; // already open -> return it
+    _db = await _openDatabase(); // not open -> open it now
+    return _db!;
+  }
+
+  // Opens the database file (creates it if it does not exist).
+  Future<Database> _openDatabase() async {
+    final path = join(await getDatabasesPath(), 'app.db');
+    return openDatabase(
+      path,
+      version: 2, // increase this if you change the tables
+      onConfigure: _onConfigure, // runs EVERY time the file is opened
+      onCreate: _createTables, // runs ONLY when the file is first created
+      onUpgrade: _upgradeTables, // runs when version is higher than the file's
+    );
+  }
+
+  // Runs on every open, before anything else.
+  // SQLite ignores FOREIGN KEY rules unless you switch them on per connection.
+  // We switch them on so an expense can never point at a category that does
+  // not exist.
+  Future<void> _onConfigure(Database db) async {
+    await db.execute('PRAGMA foreign_keys = ON');
+  }
+
+  // -------------------------------------------------------------------------
+  // CREATING THE TABLES
+  // -------------------------------------------------------------------------
+  Future<void> _createTables(Database db, int version) async {
+    // ---- USERS table ----
+    await db.execute('''
+      CREATE TABLE users (
+        id       INTEGER PRIMARY KEY AUTOINCREMENT,
+        username TEXT UNIQUE,
+        password TEXT,
+        full_name TEXT
+      )
+    ''');
+
+    // Test accounts so we can log in right away.
+    await db.insert('users', {'username': 'Tammam', 'password': 'Tammam123456', 'full_name': 'Tammam Alhadwah'});
+    await db.insert('users', {'username': 'Karam', 'password': 'Karam123', 'full_name': 'Karam Kanaan'});
+
+
+    await db.execute('''
+       CREATE TABLE categories (
+         id         INTEGER PRIMARY KEY AUTOINCREMENT,
+         name       TEXT NOT NULL,
+         icon       TEXT,
+         color      TEXT
+       )
+     ''');
+
+
+    await db.execute('''
+       CREATE TABLE incomes (
+         id          INTEGER PRIMARY KEY AUTOINCREMENT,
+         title       TEXT,
+         amount      REAL,
+         income_date DATE,
+         notes       TEXT
+       )
+     ''');
+
+
+    await db.execute('''
+       CREATE TABLE expenses (
+         id           INTEGER PRIMARY KEY AUTOINCREMENT,
+         title        TEXT,
+         amount       REAL,
+         expense_date DATE,
+         category_id  INTEGER,
+         notes        TEXT,
+         FOREIGN KEY(category_id)
+         REFERENCES categories(id)
+       )
+     ''');
+
+    // An expense cannot be saved without a category, so the app must never
+    // start with an empty categories table.
+    await _seedDefaultCategories(db);
+  }
+
+  // -------------------------------------------------------------------------
+  // UPGRADING AN EXISTING FILE
+  // -------------------------------------------------------------------------
+  // onCreate only runs on a phone that has never installed the app. Everyone
+  // who already ran version 1 has the tables but NO categories, so we add
+  // them here instead of asking people to delete the database.
+  //
+  // Rule for the rest of the project: never edit a released CREATE TABLE -
+  // raise `version` and add a step here.
+  Future<void> _upgradeTables(Database db, int oldVersion, int newVersion) async {
+    if (oldVersion < 2) {
+      await _seedDefaultCategories(db);
+    }
+  }
+
+  // Inserts the starter categories, but only if the table is empty, so it can
+  // never duplicate them or overwrite categories the user created.
+  Future<void> _seedDefaultCategories(DatabaseExecutor db) async {
+    final existing = await db.query('categories', limit: 1);
+    if (existing.isNotEmpty) return;
+
+    // The icon values are keys from utils/category_style.dart.
+    const defaults = [
+      {'name': 'Food', 'icon': 'food', 'color': '#E4572E'},
+      {'name': 'Transport', 'icon': 'transport', 'color': '#1E5F8C'},
+      {'name': 'Bills', 'icon': 'bills', 'color': '#6C5B7B'},
+      {'name': 'Entertainment', 'icon': 'entertainment', 'color': '#F2A65A'},
+      {'name': 'Health', 'icon': 'health', 'color': '#3BA776'},
+      {'name': 'Education', 'icon': 'education', 'color': '#4FA3C4'},
+      {'name': 'Other', 'icon': 'other', 'color': '#7A8B99'},
+    ];
+
+    // A batch sends all the inserts in one go instead of seven round trips.
+    final batch = db.batch();
+    for (final category in defaults) {
+      batch.insert('categories', category);
+    }
+    await batch.commit(noResult: true);
+  }
+
+  // =========================================================================
+  // USERS
+  // =========================================================================
+
+  // Adds a new user. Returns the id of the new row.
+  //
+  // Throws a DatabaseException if the username is already taken, because the
+  // users table declares  username TEXT UNIQUE . The register screen checks
+  // usernameExists() first for a friendly message, but we keep the database
+  // rule as the LAST line of defence (two people could register at the same
+  // moment, and only the database can settle that race).
+  Future<int> addUser(String username, String password, String fullName) async {
+    final db = await database;
+    return db.insert(
+      'users',
+      {'username': username, 'password': password, 'full_name': fullName},
+      conflictAlgorithm: ConflictAlgorithm.abort, // duplicate -> throw, never overwrite
+    );
+  }
+
+  // Checks if username + password exist. Returns a User, or null if wrong.
+  Future<User?> login(String username, String password) async {
+    final db = await database;
+
+    final rows = await db.query(
+      'users',
+      // LOWER() on both sides makes the username case-insensitive, so
+      // "tammam" and "Tammam" are the same account (passwords stay exact).
+      where: 'LOWER(username) = ? AND password = ?',
+      whereArgs: [username.toLowerCase(), password],
+      limit: 1,
+      // The ? marks are replaced by whereArgs safely.
+      // NEVER build the query by joining strings (SQL injection risk).
+    );
+
+    if (rows.isEmpty) return null; // no match -> wrong login
+    return User.fromMap(rows.first); // match -> turn the row into a User
+  }
+
+  // Returns every user.
+  Future<List<User>> getAllUsers() async {
+    final db = await database;
+    final rows = await db.query('users');
+    // Turn each Map row into a User object.
+    return rows.map((row) => User.fromMap(row)).toList();
+  }
+
+  // Returns one user by id, or null if that id is gone.
+  Future<User?> getUserById(int id) async {
+    final db = await database;
+    final rows = await db.query(
+      'users',
+      where: 'id = ?',
+      whereArgs: [id],
+      limit: 1,
+    );
+    if (rows.isEmpty) return null;
+    return User.fromMap(rows.first);
+  }
+
+  // Checks if a username already exists (register screen + future edits).
+  // Comparison is case-insensitive, so "Ali" cannot be registered twice as
+  // "ali". excludeId lets a user keep their own name when editing a profile.
+  Future<bool> usernameExists(String username, {int? excludeId}) async {
+    final db = await database;
+    final rows = await db.query(
+      'users',
+      where: excludeId == null
+          ? 'LOWER(username) = ?'
+          : 'LOWER(username) = ? AND id != ?',
+      whereArgs: excludeId == null
+          ? [username.toLowerCase()]
+          : [username.toLowerCase(), excludeId],
+      limit: 1,
+    );
+    return rows.isNotEmpty;
+  }
+
+  // Is this the password of user #id ? Used by the change-password screen to
+  // confirm the CURRENT password before allowing a new one.
+  Future<bool> verifyPassword(int id, String password) async {
+    final db = await database;
+    final rows = await db.query(
+      'users',
+      where: 'id = ? AND password = ?',
+      whereArgs: [id, password],
+      limit: 1,
+    );
+    return rows.isNotEmpty;
+  }
+
+  // Returns how many rows changed: 1 = success, 0 = no user with that id.
+  Future<int> updatePassword(int id, String newPassword) async {
+    final db = await database;
+    return db.update(
+      'users',
+      {'password': newPassword},
+      where: 'id = ?',
+      whereArgs: [id],
+    );
+  }
+
+  Future<int> deleteUser(int id) async {
+    final db = await database;
+    return db.delete('users', where: 'id = ?', whereArgs: [id]);
+  }
+
+  // =========================================================================
+  // CATEGORIES
+  // =========================================================================
+
+  // Every category, A -> Z. Used by the expense form's dropdown.
+  Future<List<Category>> getAllCategories() async {
+    final db = await database;
+    final rows = await db.query('categories', orderBy: 'name COLLATE NOCASE ASC');
+    return rows.map((row) => Category.fromMap(row)).toList();
+  }
+
+  // One category, or null if it was deleted.
+  Future<Category?> getCategoryById(int id) async {
+    final db = await database;
+    final rows = await db.query(
+      'categories',
+      where: 'id = ?',
+      whereArgs: [id],
+      limit: 1,
+    );
+    if (rows.isEmpty) return null;
+    return Category.fromMap(rows.first);
+  }
+
+  // Is this category name already used? Case-insensitive, so "Food" and
+  // "food" count as the same category. excludeId lets a category keep its own
+  // name while being edited.
+  Future<bool> categoryNameExists(String name, {int? excludeId}) async {
+    final db = await database;
+    final rows = await db.query(
+      'categories',
+      where: excludeId == null
+          ? 'LOWER(name) = ?'
+          : 'LOWER(name) = ? AND id != ?',
+      whereArgs: excludeId == null
+          ? [name.toLowerCase()]
+          : [name.toLowerCase(), excludeId],
+      limit: 1,
+    );
+    return rows.isNotEmpty;
+  }
+
+  // How many expenses use each category, as {categoryId: count}.
+  //
+  // ONE query with GROUP BY instead of one query per category. With ten
+  // categories that is 1 round trip instead of 10 - the same "N+1 queries"
+  // trap the expenses JOIN avoids.
+  Future<Map<int, int>> getExpenseCountByCategory() async {
+    final db = await database;
+    final rows = await db.rawQuery('''
+      SELECT category_id, COUNT(*) AS total
+      FROM expenses
+      WHERE category_id IS NOT NULL
+      GROUP BY category_id
+    ''');
+
+    return {
+      for (final row in rows)
+        (row['category_id'] as int): (row['total'] as int),
+    };
+  }
+
+  // CREATE - returns the id of the new row.
+  Future<int> addCategory(Category category) async {
+    final db = await database;
+
+    final values = category.toMap();
+    values.remove('id'); // let SQLite generate the id
+
+    return db.insert('categories', values);
+  }
+
+  // UPDATE - returns the number of rows changed (1 = success, 0 = not found).
+  Future<int> updateCategory(Category category) async {
+    final db = await database;
+
+    final id = category.id;
+    if (id == null) {
+      throw ArgumentError('Cannot update a category that has no id');
+    }
+
+    final values = category.toMap();
+    values.remove('id'); // never overwrite the primary key
+
+    return db.update('categories', values, where: 'id = ?', whereArgs: [id]);
+  }
+
+  // DELETE.
+  //
+  // expenses.category_id REFERENCES categories(id), and we switched foreign
+  // keys ON, so SQLite REFUSES to delete a category that expenses still point
+  // at. That is the database protecting the data - not a bug to work around.
+  //
+  // detachExpenses: true means the user chose "delete it anyway". We then set
+  // those expenses' category_id to NULL first, so no expense is lost and none
+  // is left pointing at a row that no longer exists.
+  //
+  // Both statements run inside a transaction: either BOTH happen or NEITHER
+  // does. Without it, a crash between the two would leave the data broken.
+  Future<int> deleteCategory(int id, {bool detachExpenses = false}) async {
+    final db = await database;
+
+    return db.transaction((txn) async {
+      if (detachExpenses) {
+        await txn.update(
+          'expenses',
+          {'category_id': null},
+          where: 'category_id = ?',
+          whereArgs: [id],
+        );
+      }
+      return txn.delete('categories', where: 'id = ?', whereArgs: [id]);
+    });
+  }
+
+  // =========================================================================
+  // EXPENSES
+  // =========================================================================
+
+  // The SELECT used by every "read expenses" function.
+  //
+  // LEFT JOIN (not a plain JOIN): if the category was deleted, a plain JOIN
+  // would make the expense disappear from the list. With LEFT JOIN the
+  // expense still comes back, just with null category columns.
+  //
+  // The "AS category_name" aliases are what Expense.fromMap() reads.
+  static const String _expenseSelect = '''
+    SELECT
+      e.id, e.title, e.amount, e.expense_date, e.category_id, e.notes,
+      c.name  AS category_name,
+      c.icon  AS category_icon,
+      c.color AS category_color
+    FROM expenses e
+    LEFT JOIN categories c ON c.id = e.category_id
+  ''';
+
+  // CREATE - returns the id of the new row.
+  Future<int> addExpense(Expense expense) async {
+    final db = await database;
+
+    final values = expense.toMap();
+    values.remove('id'); // let SQLite generate the id
+
+    return db.insert('expenses', values);
+  }
+
+  // READ - newest first. Two sort keys, because several expenses can share a
+  // date; the id then keeps the order stable (last added on top).
+  Future<List<Expense>> getAllExpenses() async {
+    final db = await database;
+    final rows = await db.rawQuery(
+      '$_expenseSelect ORDER BY e.expense_date DESC, e.id DESC',
+    );
+    return rows.map((row) => Expense.fromMap(row)).toList();
+  }
+
+  // READ one - used by the details screen after an edit, so it always shows
+  // fresh data. Returns null if the row was deleted meanwhile.
+  Future<Expense?> getExpenseById(int id) async {
+    final db = await database;
+    final rows = await db.rawQuery('$_expenseSelect WHERE e.id = ?', [id]);
+    if (rows.isEmpty) return null;
+    return Expense.fromMap(rows.first);
+  }
+
+  // UPDATE - returns the number of rows changed (1 = success, 0 = not found).
+  Future<int> updateExpense(Expense expense) async {
+    final db = await database;
+
+    final id = expense.id;
+    if (id == null) {
+      // Programming mistake, not a user mistake: an unsaved expense has no
+      // row to update. Failing loudly here is better than silently doing
+      // nothing and leaving the user thinking their edit was saved.
+      throw ArgumentError('Cannot update an expense that has no id');
+    }
+
+    final values = expense.toMap();
+    values.remove('id'); // never overwrite the primary key
+
+    return db.update('expenses', values, where: 'id = ?', whereArgs: [id]);
+  }
+
+  // DELETE - returns the number of rows removed.
+  Future<int> deleteExpense(int id) async {
+    final db = await database;
+    return db.delete('expenses', where: 'id = ?', whereArgs: [id]);
+  }
+
+  // =========================================================================
+  // SEARCH AND FILTER   (FR16 - FR20)
+  // =========================================================================
+
+  // ONE function answers all five requirements, because they are the same
+  // question with different pieces filled in:
+  //
+  //   FR16 search by name      -> text
+  //   FR17 search by date      -> range   (a day, a month, anything)
+  //   FR18 search by category  -> categoryId
+  //   FR19 search by amount    -> minAmount / maxAmount ("more than", "less than")
+  //   FR20 combined search     -> pass several at once; they are AND-ed
+  //
+  // Every parameter is optional (null = "do not filter on this"), so the
+  // search screen can send only the fields the user actually filled in.
+  // Passing nothing at all returns the whole list, exactly like
+  // getAllExpenses().
+  //
+  // HOW THE QUERY IS BUILT
+  // We collect the conditions in a list and join them with AND. The VALUES
+  // are never glued into the SQL text - they go into `args` and SQLite puts
+  // them in the ? holes itself. That is what makes SQL injection impossible:
+  // a user typing  ' OR 1=1 --  into the search box searches for that text,
+  // it does not become part of the query.
+  Future<List<Expense>> searchExpenses({
+    String? text,
+    DateRange? range,
+    int? categoryId,
+    double? minAmount,
+    double? maxAmount,
+  }) async {
+    final db = await database;
+
+    final conditions = <String>[];
+    final args = <Object?>[];
+
+    // ---- FR16: by name ----
+    // LIKE '%word%' means "contains word". SQLite's LIKE ignores upper/lower
+    // case for plain letters, so "taxi" also finds "Taxi".
+    final trimmed = text?.trim() ?? '';
+    if (trimmed.isNotEmpty) {
+      conditions.add('e.title LIKE ?');
+      args.add('%$trimmed%');
+    }
+
+    // ---- FR17: by date ----
+    // Dates are stored as 'yyyy-MM-dd' text, and BETWEEN compares that text.
+    // It gives the right answer only because that format sorts correctly -
+    // this is exactly why formatters.dart forbids saving any other format.
+    if (range != null) {
+      conditions.add('e.expense_date BETWEEN ? AND ?');
+      args.add(toDbDate(range.start));
+      args.add(toDbDate(range.end));
+    }
+
+    // ---- FR18: by category ----
+    if (categoryId != null) {
+      conditions.add('e.category_id = ?');
+      args.add(categoryId);
+    }
+
+    // ---- FR19: by amount ----
+    // Sent separately so the user can ask for only one side ("more than 500")
+    // or both ("between 100 and 500").
+    if (minAmount != null) {
+      conditions.add('e.amount >= ?');
+      args.add(minAmount);
+    }
+    if (maxAmount != null) {
+      conditions.add('e.amount <= ?');
+      args.add(maxAmount);
+    }
+
+    // ---- FR20: everything above is combined with AND ----
+    final where = conditions.isEmpty ? '' : 'WHERE ${conditions.join(' AND ')}';
+
+    final rows = await db.rawQuery(
+      '$_expenseSelect $where ORDER BY e.expense_date DESC, e.id DESC',
+      args,
+    );
+    return rows.map((row) => Expense.fromMap(row)).toList();
+  }
+
+  // =========================================================================
+  // INCOMES
+  // =========================================================================
+  //
+  // Simpler than expenses: no category, so no JOIN is needed and the plain
+  // query/insert/update/delete helpers of sqflite are enough.
+
+  // CREATE - returns the id of the new row.
+  Future<int> addIncome(Income income) async {
+    final db = await database;
+
+    final values = income.toMap();
+    values.remove('id'); // let SQLite generate the id
+
+    return db.insert('incomes', values);
+  }
+
+  // READ - newest first. The id is the second sort key so incomes added on
+  // the same day keep a stable order (last added on top).
+  Future<List<Income>> getAllIncomes() async {
+    final db = await database;
+    final rows = await db.query(
+      'incomes',
+      orderBy: 'income_date DESC, id DESC',
+    );
+    return rows.map((row) => Income.fromMap(row)).toList();
+  }
+
+  // READ one - returns null if the row was deleted meanwhile.
+  Future<Income?> getIncomeById(int id) async {
+    final db = await database;
+    final rows = await db.query(
+      'incomes',
+      where: 'id = ?',
+      whereArgs: [id],
+      limit: 1,
+    );
+    if (rows.isEmpty) return null;
+    return Income.fromMap(rows.first);
+  }
+
+  // UPDATE - returns the number of rows changed (1 = success, 0 = not found).
+  Future<int> updateIncome(Income income) async {
+    final db = await database;
+
+    final id = income.id;
+    if (id == null) {
+      // Programming mistake, not a user mistake: an unsaved income has no row
+      // to update. Failing loudly beats silently saving nothing.
+      throw ArgumentError('Cannot update an income that has no id');
+    }
+
+    final values = income.toMap();
+    values.remove('id'); // never overwrite the primary key
+
+    return db.update('incomes', values, where: 'id = ?', whereArgs: [id]);
+  }
+
+  // DELETE - returns the number of rows removed.
+  Future<int> deleteIncome(int id) async {
+    final db = await database;
+    return db.delete('incomes', where: 'id = ?', whereArgs: [id]);
+  }
+
+  // =========================================================================
+  // HELPER - development only
+  // =========================================================================
+
+  // Deletes the whole database file. Call once after changing CREATE TABLE,
+  // then restart the app so the tables rebuild from zero.
+  Future<void> deleteEverything() async {
+    final path = join(await getDatabasesPath(), 'app.db');
+    await deleteDatabase(path);
+    _db = null;
+  }
+}
+```
+
+================================================================================
+FILE: lib/expenses/add_expense_screen.dart
+================================================================================
+
+```dart
+// ===========================================================================
+// add_expense_screen.dart  -  FR5: add a new expense (CREATE).
+//
+// Notice how short this file is. All the fields, rules and the date picker
+// live in widgets/expense_form.dart; this screen only says what "Save" does:
+// hand the expense to the provider and close.
+//
+// It talks to ExpenseProvider, not to DatabaseHelper. The provider writes the
+// row AND refreshes its list, so the expenses list, the dashboard and the
+// reports are all correct the moment this screen closes.
+// ===========================================================================
+
+import 'package:flutter/material.dart';
+
+import '../providers/expense_provider.dart';
+import '../widgets/expense_form.dart';
+
+class AddExpenseScreen extends StatelessWidget {
+  const AddExpenseScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: const Text('Add Expense')),
+      body: ExpenseForm(
+        submitLabel: 'ADD EXPENSE',
+        onSave: (expense) async {
+          await ExpenseProvider().addExpense(expense);
+
+          // context.mounted: the screen may have been closed while the
+          // database was writing. Using a dead context crashes the app.
+          if (!context.mounted) return;
+
+          Navigator.pop(context, true);
+        },
+      ),
+    );
+  }
+}
+```
+
+================================================================================
+FILE: lib/expenses/edit_expense_screen.dart
+================================================================================
+
+```dart
+// ===========================================================================
+// edit_expense_screen.dart  -  FR6: edit an existing expense (UPDATE).
+//
+// The twin of add_expense_screen.dart. Same form, two differences:
+//   - it receives the expense to edit and passes it to the form as `initial`,
+//     so every field starts filled in
+//   - "Save" calls updateExpense() instead of addExpense()
+// ===========================================================================
+
+import 'package:flutter/material.dart';
+
+import '../models/expense.dart';
+import '../providers/expense_provider.dart';
+import '../widgets/expense_form.dart';
+
+class EditExpenseScreen extends StatelessWidget {
+  final Expense expense;
+
+  const EditExpenseScreen({super.key, required this.expense});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: const Text('Edit Expense')),
+      body: ExpenseForm(
+        initial: expense, // <- the only real difference
+        submitLabel: 'SAVE CHANGES',
+        onSave: (updated) async {
+          // false = 0 rows changed, which means the expense was deleted from
+          // another screen while this one was open.
+          final saved = await ExpenseProvider().updateExpense(updated);
+          if (!context.mounted) return;
+
+          if (!saved) {
+            ScaffoldMessenger.of(context).showSnackBar(
+              const SnackBar(content: Text('This expense no longer exists')),
+            );
+            return;
+          }
+
+          Navigator.pop(context, true);
+        },
+      ),
+    );
+  }
+}
+```
+
+================================================================================
+FILE: lib/expenses/expense_details_screen.dart
+================================================================================
+
+```dart
+// ===========================================================================
+// expense_details_screen.dart  -  FR9: show ALL the data of one expense,
+// plus the two actions that belong to a single row: edit (FR6) and delete
+// with a confirmation message (FR7).
+//
+// It keeps its own copy of the expense and asks the provider for a fresh one
+// after an edit, so the screen can never show stale values.
+//
+// Both actions go through ExpenseProvider, so deleting here also updates the
+// list behind us, the dashboard totals and the reports - without any of those
+// screens knowing this screen exists.
+// ===========================================================================
+
+import 'package:flutter/material.dart';
+
+import '../models/expense.dart';
+import '../providers/expense_provider.dart';
+import '../utils/constants.dart';
+import '../utils/formatters.dart';
+import '../utils/category_style.dart';
+import 'edit_expense_screen.dart';
+
+class ExpenseDetailsScreen extends StatefulWidget {
+  final Expense expense;
+
+  const ExpenseDetailsScreen({super.key, required this.expense});
+
+  @override
+  State<ExpenseDetailsScreen> createState() => _ExpenseDetailsScreenState();
+}
+
+class _ExpenseDetailsScreenState extends State<ExpenseDetailsScreen> {
+  final ExpenseProvider provider = ExpenseProvider();
+
+  late Expense expense = widget.expense;
+  bool isDeleting = false;
+
+  void _showMessage(String message, {bool isError = true}) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(message),
+        backgroundColor: isError ? kExpenseColor : kIncomeColor,
+      ),
+    );
+  }
+
+  // Opens the edit screen and, when it returns, reads the row again so the
+  // details we show are the ones actually stored.
+  Future<void> openEdit() async {
+    final saved = await Navigator.push<bool>(
+      context,
+      MaterialPageRoute(builder: (_) => EditExpenseScreen(expense: expense)),
+    );
+
+    if (!mounted || saved != true) return;
+
+    final fresh = await provider.getById(expense.id!);
+    if (!mounted) return;
+
+    if (fresh == null) {
+      // Someone deleted it meanwhile - there is nothing left to show.
+      Navigator.pop(context, true);
+      return;
+    }
+
+    setState(() => expense = fresh);
+  }
+
+  // FR7: delete, but never without asking first.
+  Future<void> confirmAndDelete() async {
+    final confirmed = await showDialog<bool>(
+      context: context,
+      builder: (dialogContext) => AlertDialog(
+        title: const Text('Delete expense'),
+        // Naming the expense in the question prevents "wrong row" accidents.
+        content: Text(
+          'Delete "${expense.title}" (${formatAmount(expense.amount)})?\n'
+              'This cannot be undone.',
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(dialogContext, false),
+            child: const Text('Cancel'),
+          ),
+          TextButton(
+            onPressed: () => Navigator.pop(dialogContext, true),
+            style: TextButton.styleFrom(foregroundColor: kExpenseColor),
+            child: const Text('Delete'),
+          ),
+        ],
+      ),
+    );
+
+    if (confirmed != true || !mounted) return;
+
+    setState(() => isDeleting = true);
+    try {
+      await provider.deleteExpense(expense.id!);
+      if (!mounted) return;
+      Navigator.pop(context, true); // back to the list, already refreshed
+    } catch (e) {
+      if (!mounted) return;
+      setState(() => isDeleting = false);
+      _showMessage('Could not delete the expense. Please try again.');
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final color = categoryColor(expense.categoryColor);
+
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Expense Details'),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.edit),
+            tooltip: 'Edit',
+            onPressed: isDeleting ? null : openEdit,
+          ),
+          IconButton(
+            icon: const Icon(Icons.delete),
+            tooltip: 'Delete',
+            onPressed: isDeleting ? null : confirmAndDelete,
+          ),
+        ],
+      ),
+      body: ListView(
+        padding: const EdgeInsets.all(kPadding),
+        children: [
+          // ---- HEADER: the amount, impossible to miss ----
+          Container(
+            width: double.infinity,
+            padding: const EdgeInsets.symmetric(vertical: 28),
+            decoration: BoxDecoration(
+              color: kExpenseColor,
+              borderRadius: BorderRadius.circular(kRadius),
+            ),
+            child: Column(
+              children: [
+                Icon(
+                  categoryIcon(expense.categoryIcon),
+                  color: Colors.white,
+                  size: 40,
+                ),
+                const SizedBox(height: 12),
+                Text(
+                  '-${formatAmount(expense.amount)}',
+                  style: const TextStyle(
+                    color: Colors.white,
+                    fontSize: 32,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                const SizedBox(height: 4),
+                Text(
+                  expense.title,
+                  textAlign: TextAlign.center,
+                  style: const TextStyle(color: Colors.white70, fontSize: 16),
+                ),
+              ],
+            ),
+          ),
+
+          const SizedBox(height: 20),
+
+          // ---- EVERY FIELD OF THE ROW ----
+          _DetailRow(
+            icon: Icons.title,
+            label: 'Title',
+            value: expense.title,
+          ),
+          _DetailRow(
+            icon: Icons.payments,
+            label: 'Amount',
+            value: formatAmount(expense.amount),
+          ),
+          _DetailRow(
+            icon: Icons.calendar_today,
+            label: 'Date',
+            value: formatDate(expense.expenseDate),
+          ),
+          _DetailRow(
+            icon: categoryIcon(expense.categoryIcon),
+            iconColor: color,
+            label: 'Category',
+            value: expense.categoryName ?? 'No category (it was deleted)',
+          ),
+          _DetailRow(
+            icon: Icons.notes,
+            label: 'Notes',
+            value: expense.notes.isEmpty ? '-' : expense.notes,
+          ),
+          _DetailRow(
+            icon: Icons.tag,
+            label: 'Record number',
+            value: '#${expense.id}',
+          ),
+
+          const SizedBox(height: 20),
+
+          // A second, easier-to-reach delete button. Same function as the
+          // app bar icon - written once, used twice.
+          OutlinedButton.icon(
+            onPressed: isDeleting ? null : confirmAndDelete,
+            icon: const Icon(Icons.delete_outline),
+            label: Text(isDeleting ? 'DELETING...' : 'DELETE EXPENSE'),
+            style: OutlinedButton.styleFrom(
+              foregroundColor: kExpenseColor,
+              minimumSize: const Size.fromHeight(50),
+              side: const BorderSide(color: kExpenseColor),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(12),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+// ---------------------------------------------------------------------------
+// One "label + value" line. Private to this file; it exists so the six lines
+// above are six short calls instead of six copies of the same Row.
+// ---------------------------------------------------------------------------
+class _DetailRow extends StatelessWidget {
+  final IconData icon;
+  final Color? iconColor;
+  final String label;
+  final String value;
+
+  const _DetailRow({
+    required this.icon,
+    required this.label,
+    required this.value,
+    this.iconColor,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      margin: const EdgeInsets.only(bottom: 10),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(kRadius),
+      ),
+      child: ListTile(
+        leading: Icon(icon, color: iconColor ?? kPrimaryColor),
+        title: Text(label, style: const TextStyle(color: Colors.grey)),
+        subtitle: Text(
+          value,
+          style: const TextStyle(
+            color: Colors.black87,
+            fontSize: 16,
+            fontWeight: FontWeight.w500,
+          ),
+        ),
+      ),
+    );
+  }
+}
+```
+
+================================================================================
+FILE: lib/expenses/expenses_list_screen.dart
+================================================================================
+
+```dart
+// ===========================================================================
+// expenses_list_screen.dart  -  FR8: the list of all expenses (the READ part
+// of CRUD) and the entry point to add / view / edit / delete one.
+//
+// The screen does NOT own the list and never touches the database. It reads
+// ExpenseProvider and redraws whenever the provider says the data changed -
+// which happens after every add, edit and delete, wherever in the app they
+// were made. That is why there is no "reload after coming back" code here
+// any more: the provider has already told us.
+//
+// Three states, three bodies: spinner while loading, an error view with
+// "Try again", or the list (with a friendly screen when it is empty).
+//
+// Searching and filtering (FR16-FR20) live in their own screen, opened from
+// the magnifier in the app bar.
+// ===========================================================================
+
+import 'package:flutter/material.dart';
+
+import '../models/user.dart';
+import '../providers/expense_provider.dart';
+import '../utils/constants.dart';
+import '../widgets/app_drawer.dart';
+import '../widgets/expense_card.dart';
+import 'add_expense_screen.dart';
+import 'expense_details_screen.dart';
+import 'search_expenses_screen.dart';
+
+class ExpensesListScreen extends StatefulWidget {
+  // Needed only so this screen can show the same side menu as the dashboard.
+  final User user;
+
+  const ExpensesListScreen({super.key, required this.user});
+
+  @override
+  State<ExpensesListScreen> createState() => _ExpensesListScreenState();
+}
+
+class _ExpensesListScreenState extends State<ExpensesListScreen> {
+  // ExpenseProvider() always returns the one shared object (it is a
+  // singleton), so this is the same provider the dashboard listens to.
+  final ExpenseProvider provider = ExpenseProvider();
+
+  @override
+  void initState() {
+    super.initState();
+
+    // Safe to call straight from initState: the provider defers its first
+    // notification to a microtask, so nothing is asked to redraw while this
+    // screen is still being built.
+    provider.loadExpenses();
+  }
+
+  void openScreen(Widget screen) {
+    // No reload afterwards: whatever that screen changes, it changes through
+    // the provider, and the provider redraws us.
+    Navigator.push(context, MaterialPageRoute(builder: (_) => screen));
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Expenses'),
+        actions: [
+          // FR16-FR20 live one tap away, where people look for them.
+          IconButton(
+            icon: const Icon(Icons.search),
+            tooltip: 'Search and filter',
+            onPressed: () => openScreen(SearchExpensesScreen(user: widget.user)),
+          ),
+          const LogoutAction(),
+        ],
+      ),
+      drawer: AppDrawer(user: widget.user),
+
+      // FR5 starts here: the "+" button in the corner.
+      floatingActionButton: FloatingActionButton.extended(
+        onPressed: () => openScreen(const AddExpenseScreen()),
+        backgroundColor: kExpenseColor,
+        foregroundColor: Colors.white,
+        icon: const Icon(Icons.add),
+        label: const Text('Add'),
+      ),
+
+      // ListenableBuilder rebuilds ONLY what is inside it, every time the
+      // provider calls notifyListeners(). The app bar and the button above
+      // are built once and left alone.
+      body: ListenableBuilder(
+        listenable: provider,
+        builder: (context, _) => buildBody(),
+      ),
+    );
+  }
+
+  // Splitting the body into its own method keeps build() readable: one look
+  // tells you which of the three states the screen is in.
+  Widget buildBody() {
+    if (provider.isLoading) {
+      return const Center(child: CircularProgressIndicator());
+    }
+
+    if (provider.errorMessage != null) {
+      return Center(
+        child: Padding(
+          padding: const EdgeInsets.all(kPadding * 2),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const Icon(Icons.error_outline, size: 64, color: Colors.grey),
+              const SizedBox(height: 16),
+              Text(
+                provider.errorMessage!,
+                textAlign: TextAlign.center,
+                style: const TextStyle(fontSize: 16, color: Colors.grey),
+              ),
+              const SizedBox(height: 20),
+              SizedBox(
+                width: 160,
+                child: ElevatedButton(
+                  onPressed: provider.loadExpenses,
+                  child: const Text('Try again'),
+                ),
+              ),
+            ],
+          ),
+        ),
+      );
+    }
+
+    final expenses = provider.expenses;
+
+    if (expenses.isEmpty) {
+      // An empty list should explain itself instead of showing a blank page.
+      return Center(
+        child: Padding(
+          padding: const EdgeInsets.all(kPadding * 2),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: const [
+              Icon(Icons.receipt_long, size: 72, color: Colors.grey),
+              SizedBox(height: 16),
+              Text(
+                'No expenses yet',
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+              ),
+              SizedBox(height: 8),
+              Text(
+                'Tap "Add" to record your first expense.',
+                textAlign: TextAlign.center,
+                style: TextStyle(fontSize: 16, color: Colors.grey),
+              ),
+            ],
+          ),
+        ),
+      );
+    }
+
+    // RefreshIndicator = pull the list down to reload it.
+    return RefreshIndicator(
+      onRefresh: provider.loadExpenses,
+      child: ListView.builder(
+        // .builder only builds the rows that are visible, so a list of a
+        // thousand expenses still scrolls smoothly.
+        padding: const EdgeInsets.fromLTRB(kPadding, kPadding, kPadding, 90),
+        itemCount: expenses.length,
+        itemBuilder: (context, index) {
+          final expense = expenses[index];
+          return ExpenseCard(
+            expense: expense,
+            // FR9: tap a row to see everything about it.
+            onTap: () => openScreen(ExpenseDetailsScreen(expense: expense)),
+          );
+        },
+      ),
+    );
+  }
+}
+```
+
+================================================================================
+FILE: lib/expenses/search_expenses_screen.dart
+================================================================================
+
+```dart
+// ===========================================================================
+// search_expenses_screen.dart  -  the search and filter module.
+//
+//    FR16 search by name        FR17 search by date
+//    FR18 search by category    FR19 search by amount (more than / less than)
+//    FR20 combined search       (several conditions at once)
+//
+// HOW IT WORKS
+// The screen collects whatever the user filled in and hands it to ONE
+// function, ExpenseProvider.search(). Anything left empty is sent as null,
+// which means "do not filter on this". So the five requirements are not five
+// separate searches - they are the same search with more or fewer conditions.
+//
+// The filtering is done by SQLite in the WHERE clause, NOT by loading every
+// expense and dropping the ones that do not match in Dart. That is the whole
+// point of using a database.
+//
+// WHY THE RESULTS ARE HELD HERE AND NOT IN THE PROVIDER
+// The provider owns the list every screen shares. A search result is not
+// that: it is a private answer to a question this screen just asked, and it
+// belongs to this screen only. So search() returns the rows instead of
+// replacing the shared list.
+// ===========================================================================
+
+import 'dart:async';
+
+import 'package:flutter/material.dart';
+
+import '../models/user.dart';
+import '../models/expense.dart';
+import '../models/category.dart';
+import '../database/database_helper.dart';
+import '../providers/expense_provider.dart';
+import '../utils/constants.dart';
+import '../utils/formatters.dart';
+import '../utils/date_ranges.dart';
+import '../widgets/app_drawer.dart';
+import '../widgets/expense_card.dart';
+import 'expense_details_screen.dart';
+
+class SearchExpensesScreen extends StatefulWidget {
+  final User user;
+
+  const SearchExpensesScreen({super.key, required this.user});
+
+  @override
+  State<SearchExpensesScreen> createState() => _SearchExpensesScreenState();
+}
+
+class _SearchExpensesScreenState extends State<SearchExpensesScreen> {
+  final ExpenseProvider provider = ExpenseProvider();
+
+  // The category dropdown is the only thing this screen reads straight from
+  // the database: categories are not one of the two lists the providers own.
+  final DatabaseHelper _db = DatabaseHelper();
+
+  // ---- the filters ----
+  final titleController = TextEditingController(); // FR16
+  final minController = TextEditingController(); // FR19
+  final maxController = TextEditingController(); // FR19
+  DateRange? dateRange; // FR17
+  int? categoryId; // FR18
+
+  // ---- the data ----
+  List<Category> categories = [];
+  List<Expense> results = [];
+  bool isLoading = true;
+  String? errorMessage;
+  bool filtersOpen = true;
+
+  // Typing "coffee" fires six changes. Without this timer we would send six
+  // queries and the answers could even arrive out of order. Instead we wait
+  // until the user has stopped typing for a moment, then search once.
+  Timer? _debounce;
+
+  @override
+  void initState() {
+    super.initState();
+    loadCategories();
+    runSearch(); // no filters yet -> shows everything
+  }
+
+  @override
+  void dispose() {
+    // Controllers and timers hold memory and keep running after the screen is
+    // gone. Releasing them here is not optional.
+    _debounce?.cancel();
+    titleController.dispose();
+    minController.dispose();
+    maxController.dispose();
+    super.dispose();
+  }
+
+  Future<void> loadCategories() async {
+    try {
+      final rows = await _db.getAllCategories();
+      if (!mounted) return;
+      setState(() => categories = rows);
+    } catch (e) {
+      // A failed category list must not break the whole screen: the user can
+      // still search by name, date and amount.
+      if (!mounted) return;
+      setState(() => categories = []);
+    }
+  }
+
+  // -------------------------------------------------------------------------
+  // THE SEARCH ITSELF
+  // -------------------------------------------------------------------------
+  Future<void> runSearch() async {
+    setState(() {
+      isLoading = true;
+      errorMessage = null;
+    });
+
+    try {
+      final rows = await provider.search(
+        text: titleController.text, // FR16
+        range: dateRange, // FR17
+        categoryId: categoryId, // FR18
+        // tryParse returns null when the box is empty or holds nonsense, and
+        // null is exactly what "no amount filter" means - so a half-typed
+        // number simply does not filter instead of crashing.
+        minAmount: double.tryParse(minController.text.trim()), // FR19
+        maxAmount: double.tryParse(maxController.text.trim()), // FR19
+      );
+
+      if (!mounted) return;
+      setState(() {
+        results = rows;
+        isLoading = false;
+      });
+    } catch (e) {
+      if (!mounted) return;
+      setState(() {
+        errorMessage = 'Could not run the search.';
+        isLoading = false;
+      });
+    }
+  }
+
+  // Called on every keystroke. It only starts the search once the typing has
+  // paused for 350 milliseconds.
+  void onTextChanged() {
+    // Redraw now so the clear button and the filter badge react to the very
+    // first letter; the search itself still waits for the pause.
+    setState(() {});
+    _debounce?.cancel();
+    _debounce = Timer(const Duration(milliseconds: 350), runSearch);
+  }
+
+  // FR17: let the user pick two dates. showDateRangePicker is the built-in
+  // Flutter calendar for a start and an end day.
+  Future<void> pickDateRange() async {
+    final firstDate = DateTime(2000);
+    final lastDate = dateOnly(DateTime.now());
+
+    // THE BUG THIS GUARD FIXES
+    // showDateRangePicker refuses to open if the range it starts with reaches
+    // outside firstDate..lastDate - in debug it throws an assertion, so the
+    // button looks dead. "This month" runs to the 31st while lastDate is
+    // today, which is exactly that case. So we trim the starting range to
+    // what the picker allows, and pass nothing at all if trimming leaves an
+    // impossible range.
+    DateTimeRange? initialRange;
+    final current = dateRange;
+    if (current != null) {
+      final start = current.start.isBefore(firstDate) ? firstDate : current.start;
+      final end = current.end.isAfter(lastDate) ? lastDate : current.end;
+      if (!end.isBefore(start)) {
+        initialRange = DateTimeRange(start: start, end: end);
+      }
+    }
+
+    final picked = await showDateRangePicker(
+      context: context,
+      firstDate: firstDate,
+      lastDate: lastDate,
+      initialDateRange: initialRange,
+      helpText: 'Expenses between',
+    );
+
+    if (picked == null || !mounted) return;
+    setState(() => dateRange = DateRange(picked.start, picked.end));
+    runSearch();
+  }
+
+  // Quick buttons for the ranges people actually ask for.
+  void useQuickRange(DateRange? value) {
+    setState(() => dateRange = value);
+    runSearch();
+  }
+
+  void clearFilters() {
+    setState(() {
+      titleController.clear();
+      minController.clear();
+      maxController.clear();
+      dateRange = null;
+      categoryId = null;
+    });
+    runSearch();
+  }
+
+  // How many conditions are switched on. Shown as a badge so the user always
+  // knows the list is filtered, even with the panel collapsed.
+  int get activeFilterCount {
+    var count = 0;
+    if (titleController.text.trim().isNotEmpty) count++;
+    if (dateRange != null) count++;
+    if (categoryId != null) count++;
+    if (double.tryParse(minController.text.trim()) != null) count++;
+    if (double.tryParse(maxController.text.trim()) != null) count++;
+    return count;
+  }
+
+  // The sum of what is on screen. Useful on its own: "how much did I spend on
+  // food in July?" is a search plus a total.
+  double get resultsTotal {
+    return results.fold<double>(0, (sum, expense) => sum + expense.amount);
+  }
+
+  // -------------------------------------------------------------------------
+  // DRAWING
+  // -------------------------------------------------------------------------
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Search expenses'),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.filter_alt_off),
+            tooltip: 'Clear filters',
+            onPressed: activeFilterCount == 0 ? null : clearFilters,
+          ),
+          const LogoutAction(),
+        ],
+      ),
+      drawer: AppDrawer(user: widget.user),
+      body: Column(
+        children: [
+          buildFilterPanel(),
+          const Divider(height: 1),
+          buildResultsHeader(),
+          Expanded(child: buildResults()),
+        ],
+      ),
+    );
+  }
+
+  Widget buildFilterPanel() {
+    return Container(
+      color: Colors.white,
+      child: Column(
+        children: [
+          // FR16: the name box is always visible - it is the one people use
+          // most. The rest of the filters hide behind the arrow.
+          Padding(
+            padding: const EdgeInsets.fromLTRB(kPadding, kPadding, kPadding, 8),
+            child: Row(
+              children: [
+                Expanded(
+                  child: TextField(
+                    controller: titleController,
+                    onChanged: (_) => onTextChanged(),
+                    textInputAction: TextInputAction.search,
+                    decoration: InputDecoration(
+                      hintText: 'Search by name',
+                      prefixIcon: const Icon(Icons.search),
+                      isDense: true,
+                      suffixIcon: titleController.text.isEmpty
+                          ? null
+                          : IconButton(
+                        icon: const Icon(Icons.close),
+                        onPressed: () {
+                          titleController.clear();
+                          runSearch();
+                        },
+                      ),
+                    ),
+                  ),
+                ),
+                IconButton(
+                  tooltip: filtersOpen ? 'Hide filters' : 'More filters',
+                  icon: Badge(
+                    // The badge is hidden when nothing is filtered, so it only
+                    // appears when it carries information.
+                    isLabelVisible: activeFilterCount > 0,
+                    label: Text('$activeFilterCount'),
+                    child: Icon(
+                      filtersOpen ? Icons.expand_less : Icons.tune,
+                    ),
+                  ),
+                  onPressed: () => setState(() => filtersOpen = !filtersOpen),
+                ),
+              ],
+            ),
+          ),
+
+          if (filtersOpen)
+            Padding(
+              padding: const EdgeInsets.fromLTRB(kPadding, 0, kPadding, kPadding),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  // ---- FR18: by category ----
+                  DropdownButtonFormField<int?>(
+                    initialValue: categoryId,
+                    isExpanded: true,
+                    decoration: const InputDecoration(
+                      labelText: 'Category',
+                      isDense: true,
+                    ),
+                    items: [
+                      // A null value is a real choice here: "all categories".
+                      const DropdownMenuItem<int?>(
+                        value: null,
+                        child: Text('All categories'),
+                      ),
+                      ...categories.map(
+                            (category) => DropdownMenuItem<int?>(
+                          value: category.id,
+                          child: Text(category.name),
+                        ),
+                      ),
+                    ],
+                    onChanged: (value) {
+                      setState(() => categoryId = value);
+                      runSearch();
+                    },
+                  ),
+                  const SizedBox(height: 12),
+
+                  // ---- FR19: by amount ----
+                  Row(
+                    children: [
+                      Expanded(
+                        child: TextField(
+                          controller: minController,
+                          keyboardType: const TextInputType.numberWithOptions(
+                            decimal: true,
+                          ),
+                          onChanged: (_) => onTextChanged(),
+                          decoration: const InputDecoration(
+                            labelText: 'More than',
+                            isDense: true,
+                          ),
+                        ),
+                      ),
+                      const SizedBox(width: 12),
+                      Expanded(
+                        child: TextField(
+                          controller: maxController,
+                          keyboardType: const TextInputType.numberWithOptions(
+                            decimal: true,
+                          ),
+                          onChanged: (_) => onTextChanged(),
+                          decoration: const InputDecoration(
+                            labelText: 'Less than',
+                            isDense: true,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 12),
+
+                  // ---- FR17: by date ----
+                  const Text('Date', style: TextStyle(color: Colors.grey)),
+                  const SizedBox(height: 6),
+                  Wrap(
+                    spacing: 8,
+                    runSpacing: 4,
+                    children: [
+                      quickChip('Any time', dateRange == null, () {
+                        useQuickRange(null);
+                      }),
+                      quickChip(
+                        'Today',
+                        isSameRange(DateRange.day(DateTime.now())),
+                            () => useQuickRange(DateRange.day(DateTime.now())),
+                      ),
+                      quickChip(
+                        'This week',
+                        isSameRange(DateRange.week(DateTime.now())),
+                            () => useQuickRange(DateRange.week(DateTime.now())),
+                      ),
+                      quickChip(
+                        'This month',
+                        isSameRange(DateRange.month(DateTime.now())),
+                            () => useQuickRange(DateRange.month(DateTime.now())),
+                      ),
+                      ActionChip(
+                        avatar: const Icon(Icons.date_range, size: 18),
+                        label: const Text('Pick dates'),
+                        onPressed: pickDateRange,
+                      ),
+                    ],
+                  ),
+                  if (dateRange != null)
+                    Padding(
+                      padding: const EdgeInsets.only(top: 8),
+                      child: Text(
+                        'Showing ${dateRange!.label}',
+                        style: const TextStyle(
+                          fontSize: 12,
+                          color: kPrimaryColor,
+                        ),
+                      ),
+                    ),
+                ],
+              ),
+            ),
+        ],
+      ),
+    );
+  }
+
+  // Small helper so the four date chips are written once.
+  Widget quickChip(String label, bool selected, VoidCallback onTap) {
+    return ChoiceChip(
+      label: Text(label),
+      selected: selected,
+      showCheckmark: false,
+      selectedColor: kPrimaryColor,
+      labelStyle: TextStyle(
+        color: selected ? Colors.white : Colors.black87,
+        fontSize: 13,
+      ),
+      onSelected: (_) => onTap(),
+    );
+  }
+
+  // Is the chosen range the same as this preset? Compared by both ends,
+  // because "this week" and "this month" can start on the same day.
+  bool isSameRange(DateRange other) {
+    final current = dateRange;
+    if (current == null) return false;
+    return current.start == other.start && current.end == other.end;
+  }
+
+  // FR20 in one line: how many rows matched, and what they add up to.
+  Widget buildResultsHeader() {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: kPadding, vertical: 10),
+      child: Row(
+        children: [
+          Expanded(
+            child: Text(
+              isLoading
+                  ? 'Searching...'
+                  : '${results.length} ${results.length == 1 ? 'expense' : 'expenses'}',
+              style: const TextStyle(fontWeight: FontWeight.bold),
+            ),
+          ),
+          if (!isLoading && results.isNotEmpty)
+            Text(
+              'Total: ${formatAmount(resultsTotal)}',
+              style: const TextStyle(
+                fontWeight: FontWeight.bold,
+                color: kExpenseColor,
+              ),
+            ),
+        ],
+      ),
+    );
+  }
+
+  Widget buildResults() {
+    if (isLoading) {
+      return const Center(child: CircularProgressIndicator());
+    }
+
+    if (errorMessage != null) {
+      return Center(
+        child: Padding(
+          padding: const EdgeInsets.all(kPadding * 2),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const Icon(Icons.error_outline, size: 64, color: Colors.grey),
+              const SizedBox(height: 16),
+              Text(
+                errorMessage!,
+                textAlign: TextAlign.center,
+                style: const TextStyle(fontSize: 16, color: Colors.grey),
+              ),
+              const SizedBox(height: 20),
+              SizedBox(
+                width: 160,
+                child: ElevatedButton(
+                  onPressed: runSearch,
+                  child: const Text('Try again'),
+                ),
+              ),
+            ],
+          ),
+        ),
+      );
+    }
+
+    if (results.isEmpty) {
+      // An empty result is not an error: it means the filters are too narrow.
+      // The message says what to do about it.
+      return Center(
+        child: Padding(
+          padding: const EdgeInsets.all(kPadding * 2),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const Icon(Icons.search_off, size: 72, color: Colors.grey),
+              const SizedBox(height: 16),
+              const Text(
+                'No expense matches',
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+              ),
+              const SizedBox(height: 8),
+              const Text(
+                'Try a shorter word, a wider date range, or remove a filter.',
+                textAlign: TextAlign.center,
+                style: TextStyle(fontSize: 15, color: Colors.grey),
+              ),
+              if (activeFilterCount > 0) ...[
+                const SizedBox(height: 20),
+                SizedBox(
+                  width: 200,
+                  child: ElevatedButton(
+                    onPressed: clearFilters,
+                    child: const Text('Clear all filters'),
+                  ),
+                ),
+              ],
+            ],
+          ),
+        ),
+      );
+    }
+
+    return ListView.builder(
+      padding: const EdgeInsets.fromLTRB(kPadding, 8, kPadding, kPadding),
+      itemCount: results.length,
+      itemBuilder: (context, index) {
+        final expense = results[index];
+        return ExpenseCard(
+          expense: expense,
+          // The details screen can edit or delete the row, so we search again
+          // when we come back: a renamed expense may no longer match.
+          onTap: () async {
+            await Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (_) => ExpenseDetailsScreen(expense: expense),
+              ),
+            );
+            if (!mounted) return;
+            await runSearch();
+          },
+        );
+      },
+    );
+  }
+}
+```
+
+================================================================================
+FILE: lib/incomes/add_income_screen.dart
+================================================================================
+
+```dart
+// ===========================================================================
+// add_income_screen.dart  -  FR10: record a salary or any other income
+// (CREATE).
+//
+// Short on purpose: the fields and the rules live in widgets/income_form.dart.
+// This screen only says what "Save" does - hand the income to the provider
+// and close. The provider stores it and refreshes every screen showing income.
+// ===========================================================================
+
+import 'package:flutter/material.dart';
+
+import '../providers/income_provider.dart';
+import '../widgets/income_form.dart';
+
+class AddIncomeScreen extends StatelessWidget {
+  const AddIncomeScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: const Text('Add Income')),
+      body: IncomeForm(
+        submitLabel: 'ADD INCOME',
+        onSave: (income) async {
+          await IncomeProvider().addIncome(income);
+
+          // context.mounted: the screen may have been closed while the
+          // database was writing. Using a dead context crashes the app.
+          if (!context.mounted) return;
+
+          Navigator.pop(context, true);
+        },
+      ),
+    );
+  }
+}
+```
+
+================================================================================
+FILE: lib/incomes/edit_income_screen.dart
+================================================================================
+
+```dart
+// ===========================================================================
+// edit_income_screen.dart  -  FR11: change the value (or any other field) of
+// an existing income (UPDATE).
+//
+// The twin of add_income_screen.dart. Two differences: it receives the income
+// and hands it to the form as `initial` so the fields start filled in, and
+// "Save" calls updateIncome() instead of addIncome().
+// ===========================================================================
+
+import 'package:flutter/material.dart';
+
+import '../models/income.dart';
+import '../providers/income_provider.dart';
+import '../widgets/income_form.dart';
+
+class EditIncomeScreen extends StatelessWidget {
+  final Income income;
+
+  const EditIncomeScreen({super.key, required this.income});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: const Text('Edit Income')),
+      body: IncomeForm(
+        initial: income, // <- the only real difference
+        submitLabel: 'SAVE CHANGES',
+        onSave: (updated) async {
+          // false = 0 rows changed, so the income was deleted meanwhile.
+          final saved = await IncomeProvider().updateIncome(updated);
+          if (!context.mounted) return;
+
+          if (!saved) {
+            ScaffoldMessenger.of(context).showSnackBar(
+              const SnackBar(content: Text('This income no longer exists')),
+            );
+            return;
+          }
+
+          Navigator.pop(context, true);
+        },
+      ),
+    );
+  }
+}
+```
+
+================================================================================
+FILE: lib/incomes/incomes_screen.dart
+================================================================================
+
+```dart
+// ===========================================================================
+// incomes_screen.dart  -  the income module's home: the list of all incomes
+// (READ) plus the entry points to add (FR10), edit (FR11) and delete (FR12).
+//
+// The mirror image of expenses_list_screen.dart: the screen owns no data, it
+// listens to IncomeProvider and redraws when the provider says so.
+//
+// Delete lives here rather than on a details screen: the specification asks
+// for add / edit / delete only, so income has no details screen.
+// ===========================================================================
+
+import 'package:flutter/material.dart';
+
+import '../models/user.dart';
+import '../models/income.dart';
+import '../providers/income_provider.dart';
+import '../utils/constants.dart';
+import '../utils/formatters.dart';
+import '../widgets/app_drawer.dart';
+import '../widgets/income_card.dart';
+import 'add_income_screen.dart';
+import 'edit_income_screen.dart';
+
+class IncomesScreen extends StatefulWidget {
+  // Needed only so this screen can show the same side menu as the dashboard.
+  final User user;
+
+  const IncomesScreen({super.key, required this.user});
+
+  @override
+  State<IncomesScreen> createState() => _IncomesScreenState();
+}
+
+class _IncomesScreenState extends State<IncomesScreen> {
+  // The one shared IncomeProvider - the same object the dashboard listens to.
+  final IncomeProvider provider = IncomeProvider();
+
+  @override
+  void initState() {
+    super.initState();
+    // Safe from initState: the provider defers its first notification.
+    provider.loadIncomes();
+  }
+
+  void _showMessage(String message, {bool isError = true}) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(message),
+        backgroundColor: isError ? kExpenseColor : kIncomeColor,
+      ),
+    );
+  }
+
+  // No reload afterwards: the add and edit screens write through the
+  // provider, and the provider redraws this list by itself.
+  void openScreen(Widget screen) {
+    Navigator.push(context, MaterialPageRoute(builder: (_) => screen));
+  }
+
+  // FR12: delete, but never without asking first.
+  Future<void> confirmAndDelete(Income income) async {
+    final confirmed = await showDialog<bool>(
+      context: context,
+      builder: (dialogContext) => AlertDialog(
+        title: const Text('Delete income'),
+        // Naming the row in the question prevents "wrong row" accidents.
+        content: Text(
+          'Delete "${income.title}" (${formatAmount(income.amount)})?\n'
+              'This cannot be undone.',
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(dialogContext, false),
+            child: const Text('Cancel'),
+          ),
+          TextButton(
+            onPressed: () => Navigator.pop(dialogContext, true),
+            style: TextButton.styleFrom(foregroundColor: kExpenseColor),
+            child: const Text('Delete'),
+          ),
+        ],
+      ),
+    );
+
+    // null = the dialog was dismissed by tapping outside it.
+    if (confirmed != true || !mounted) return;
+
+    try {
+      await provider.deleteIncome(income.id!);
+      if (!mounted) return;
+      _showMessage('Income deleted', isError: false);
+    } catch (e) {
+      if (!mounted) return;
+      _showMessage('Could not delete the income. Please try again.');
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Incomes'),
+        actions: const [LogoutAction()],
+      ),
+      drawer: AppDrawer(user: widget.user),
+
+      floatingActionButton: FloatingActionButton.extended(
+        onPressed: () => openScreen(const AddIncomeScreen()),
+        backgroundColor: kIncomeColor,
+        foregroundColor: Colors.white,
+        icon: const Icon(Icons.add),
+        label: const Text('Add'),
+      ),
+
+      // Everything that depends on the data sits inside the builder, so only
+      // that part is rebuilt when the provider changes.
+      body: ListenableBuilder(
+        listenable: provider,
+        builder: (context, _) => buildBody(),
+      ),
+    );
+  }
+
+  // Keeping the body in its own method means one look at build() tells you
+  // the whole screen; the four states are separated here.
+  Widget buildBody() {
+    if (provider.isLoading) {
+      return const Center(child: CircularProgressIndicator());
+    }
+
+    if (provider.errorMessage != null) {
+      return Center(
+        child: Padding(
+          padding: const EdgeInsets.all(kPadding * 2),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const Icon(Icons.error_outline, size: 64, color: Colors.grey),
+              const SizedBox(height: 16),
+              Text(
+                provider.errorMessage!,
+                textAlign: TextAlign.center,
+                style: const TextStyle(fontSize: 16, color: Colors.grey),
+              ),
+              const SizedBox(height: 20),
+              SizedBox(
+                width: 160,
+                child: ElevatedButton(
+                  onPressed: provider.loadIncomes,
+                  child: const Text('Try again'),
+                ),
+              ),
+            ],
+          ),
+        ),
+      );
+    }
+
+    final incomes = provider.incomes;
+
+    if (incomes.isEmpty) {
+      return Center(
+        child: Padding(
+          padding: const EdgeInsets.all(kPadding * 2),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: const [
+              Icon(Icons.savings, size: 72, color: Colors.grey),
+              SizedBox(height: 16),
+              Text(
+                'No income recorded yet',
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+              ),
+              SizedBox(height: 8),
+              Text(
+                'Tap "Add" to record your salary or any other income.',
+                textAlign: TextAlign.center,
+                style: TextStyle(fontSize: 16, color: Colors.grey),
+              ),
+            ],
+          ),
+        ),
+      );
+    }
+
+    // RefreshIndicator = pull the list down to reload it.
+    return RefreshIndicator(
+      onRefresh: provider.loadIncomes,
+      child: ListView.builder(
+        // .builder only builds the visible rows, so a long list stays smooth.
+        padding: const EdgeInsets.fromLTRB(kPadding, kPadding, kPadding, 90),
+        itemCount: incomes.length,
+        itemBuilder: (context, index) {
+          final income = incomes[index];
+          return IncomeCard(
+            income: income,
+            // Tapping the row and choosing "Edit" do the same thing, so the
+            // action is easy to reach either way.
+            onTap: () => openScreen(EditIncomeScreen(income: income)),
+            onEdit: () => openScreen(EditIncomeScreen(income: income)),
+            onDelete: () => confirmAndDelete(income),
+          );
+        },
+      ),
+    );
+  }
+}
+```
+
+================================================================================
+FILE: lib/models/category.dart
+================================================================================
+
+```dart
+// ===========================================================================
+// category.dart  -  the Category model  (e.g. Food, Transport, Bills).
+//
+// Mirrors the categories table from the specification:
+//    categories(id, name, icon, color)
+//
+// Both icon and color are TEXT columns, so we store TEXT:
+//   icon  -> a key such as 'food' (see utils/category_style.dart)
+//   color -> a hex string such as '#D2544F'
+//
+// WHY NOT STORE THE ICON AS A NUMBER (its codePoint)?
+// Because building an IconData from a number at runtime is not constant, and
+// Flutter's release build ("tree shaking") removes icons it cannot see being
+// used - the app would then show blank squares. A key + a fixed map keeps
+// every icon constant and safe.
+// ===========================================================================
+
+class Category {
+  final int? id;
+  final String name;
+  final String icon; // key into kCategoryIcons
+  final String color; // '#RRGGBB'
+
+  Category({
+    this.id,
+    required this.name,
+    this.icon = 'other',
+    this.color = '#1E5F8C',
+  });
+
+  Map<String, dynamic> toMap() {
+    return {'id': id, 'name': name, 'icon': icon, 'color': color};
+  }
+
+  factory Category.fromMap(Map<String, dynamic> map) {
+    return Category(
+      id: map['id'] as int?,
+      name: (map['name'] as String?) ?? '',
+      // Old or hand-written rows may hold null; fall back to safe defaults.
+      icon: (map['icon'] as String?) ?? 'other',
+      color: (map['color'] as String?) ?? '#1E5F8C',
+    );
+  }
+
+  Category copyWith({int? id, String? name, String? icon, String? color}) {
+    return Category(
+      id: id ?? this.id,
+      name: name ?? this.name,
+      icon: icon ?? this.icon,
+      color: color ?? this.color,
+    );
+  }
+}
+
+```
+
+================================================================================
+FILE: lib/models/expense.dart
+================================================================================
+
+```dart
+// ===========================================================================
+// expense.dart  -  the Expense model  (money going OUT).
+//
+// Mirrors the expenses table from the specification:
+//    expenses(id, title, amount, expense_date, category_id, notes)
+//
+// The Dart names are camelCase, the columns are snake_case; toMap/fromMap do
+// the translation so no screen ever writes a column name by hand.
+// ===========================================================================
+
+import '../utils/formatters.dart';
+
+class Expense {
+  final int? id;
+  final String title;
+  final double amount;
+  final DateTime expenseDate;
+  final int? categoryId; // null = the category was deleted
+  final String notes;
+
+  // -------------------------------------------------------------------------
+  // DISPLAY-ONLY FIELDS
+  // -------------------------------------------------------------------------
+  // These do NOT exist in the expenses table. getAllExpenses() JOINs the
+  // categories table and fills them in, so a list can show the category name,
+  // icon and color without asking the database once per row (the classic
+  // "N+1 queries" mistake). They are never written back - see toMap().
+  final String? categoryName;
+  final String? categoryIcon;
+  final String? categoryColor;
+
+  Expense({
+    this.id,
+    required this.title,
+    required this.amount,
+    required this.expenseDate,
+    this.categoryId,
+    this.notes = '',
+    this.categoryName,
+    this.categoryIcon,
+    this.categoryColor,
+  });
+
+  // Object -> Map (for saving). Only real columns are listed here.
+  // 'id' is included so update() knows which row to change; on insert it is
+  // null and SQLite generates the value.
+  Map<String, dynamic> toMap() {
+    return {
+      'id': id,
+      'title': title,
+      'amount': amount,
+      'expense_date': toDbDate(expenseDate), // always 'yyyy-MM-dd'
+      'category_id': categoryId,
+      'notes': notes,
+    };
+  }
+
+  // Map -> Object (for reading).
+  factory Expense.fromMap(Map<String, dynamic> map) {
+    return Expense(
+      id: map['id'] as int?,
+      title: (map['title'] as String?) ?? '',
+      // A REAL column can come back as int (e.g. 20 instead of 20.0),
+      // so we read it as num and convert. Casting straight to double crashes.
+      amount: (map['amount'] as num?)?.toDouble() ?? 0.0,
+      expenseDate: parseDbDate(map['expense_date'] as String?),
+      categoryId: map['category_id'] as int?,
+      notes: (map['notes'] as String?) ?? '',
+      // Present only when the query JOINed the categories table.
+      categoryName: map['category_name'] as String?,
+      categoryIcon: map['category_icon'] as String?,
+      categoryColor: map['category_color'] as String?,
+    );
+  }
+
+  Expense copyWith({
+    int? id,
+    String? title,
+    double? amount,
+    DateTime? expenseDate,
+    int? categoryId,
+    String? notes,
+  }) {
+    return Expense(
+      id: id ?? this.id,
+      title: title ?? this.title,
+      amount: amount ?? this.amount,
+      expenseDate: expenseDate ?? this.expenseDate,
+      categoryId: categoryId ?? this.categoryId,
+      notes: notes ?? this.notes,
+      categoryName: categoryName,
+      categoryIcon: categoryIcon,
+      categoryColor: categoryColor,
+    );
+  }
+}
+
+```
+
+================================================================================
+FILE: lib/models/income.dart
+================================================================================
+
+```dart
+// ===========================================================================
+// income.dart  -  the Income model  (money coming IN).
+//
+// Mirrors the incomes table from the specification:
+//    incomes(id, title, amount, income_date, notes)
+//
+// Same shape as expense.dart, minus the category: income is not classified in
+// this project, so there is no category_id and no JOIN.
+// ===========================================================================
+
+import '../utils/formatters.dart';
+
+class Income {
+  final int? id;
+  final String title;
+  final double amount;
+  final DateTime incomeDate;
+  final String notes;
+
+  Income({
+    this.id,
+    required this.title,
+    required this.amount,
+    required this.incomeDate,
+    this.notes = '',
+  });
+
+  // Object -> Map (for saving). The date is written in the database format
+  // 'yyyy-MM-dd' - never the pretty screen format.
+  Map<String, dynamic> toMap() {
+    return {
+      'id': id,
+      'title': title,
+      'amount': amount,
+      'income_date': toDbDate(incomeDate),
+      'notes': notes,
+    };
+  }
+
+  // Map -> Object (for reading).
+  factory Income.fromMap(Map<String, dynamic> map) {
+    return Income(
+      id: map['id'] as int?,
+      title: (map['title'] as String?) ?? '',
+      // A REAL column can come back as int (20 instead of 20.0), so we read
+      // it as num first. Casting straight to double crashes.
+      amount: (map['amount'] as num?)?.toDouble() ?? 0.0,
+      incomeDate: parseDbDate(map['income_date'] as String?),
+      notes: (map['notes'] as String?) ?? '',
+    );
+  }
+
+  Income copyWith({
+    int? id,
+    String? title,
+    double? amount,
+    DateTime? incomeDate,
+    String? notes,
+  }) {
+    return Income(
+      id: id ?? this.id,
+      title: title ?? this.title,
+      amount: amount ?? this.amount,
+      incomeDate: incomeDate ?? this.incomeDate,
+      notes: notes ?? this.notes,
+    );
+  }
+}
+
+```
+
+================================================================================
+FILE: lib/models/user.dart
+================================================================================
+
+```dart
+// ===========================================================================
+// user.dart  -  the User model.
+//
+// A "model" is a plain class that describes ONE thing in the app.
+// The database speaks Maps; our screens speak objects. This class translates
+// between the two using toMap() and fromMap().
+//
+// The users table is:
+//    users(id, username, password, full_name)
+// so the model must carry full_name too - the drawer and the dashboard greet
+// the user by their real name, not by their login name.
+// ===========================================================================
+
+class User {
+  final int? id; // null before saving; the database fills it in
+  final String username;
+  final String password;
+  final String fullName;
+
+  User({
+    this.id,
+    required this.username,
+    required this.password,
+    this.fullName = '',
+  });
+
+  // What the screens should print.
+  //
+  // Registration asks for a full name, but the two seeded test accounts and
+  // any older row could still have it empty, so we fall back to the username
+  // instead of showing a blank space where a name should be.
+  String get displayName => fullName.trim().isEmpty ? username : fullName;
+
+  // Object  ->  Map   (used when SAVING to the database)
+  Map<String, dynamic> toMap() {
+    return {
+      'id': id,
+      'username': username,
+      'password': password,
+      'full_name': fullName,
+    };
+  }
+
+  // Map  ->  Object   (used when READING from the database)
+  factory User.fromMap(Map<String, dynamic> map) {
+    return User(
+      id: map['id'] as int?,
+      username: map['username'] as String,
+      password: map['password'] as String,
+      // full_name can be NULL for rows written before this column was used,
+      // so we never cast it straight to String.
+      fullName: (map['full_name'] as String?) ?? '',
+    );
+  }
+
+  // Returns a copy with some fields changed. Used after a password change:
+  // the screen gets a NEW User object instead of editing a final field.
+  User copyWith({int? id, String? username, String? password, String? fullName}) {
+    return User(
+      id: id ?? this.id,
+      username: username ?? this.username,
+      password: password ?? this.password,
+      fullName: fullName ?? this.fullName,
+    );
+  }
+}
+```
+
+================================================================================
 FILE: lib/providers/expense_provider.dart
 ================================================================================
 
@@ -1230,561 +3936,6 @@ class IncomeProvider extends ChangeNotifier {
 ```
 
 ================================================================================
-FILE: lib/theme/app_theme.dart
-================================================================================
-
-```dart
-// ===========================================================================
-// app_theme.dart  -  the visual style of the whole app.
-//
-// Instead of styling every button and app bar by hand, we set the style ONCE
-// here. MaterialApp uses it, and every widget inherits it automatically.
-// ===========================================================================
-
-import 'package:flutter/material.dart';
-import '../utils/constants.dart';
-
-class AppTheme {
-  // A "static" value belongs to the class itself, so we can write
-  // AppTheme.light without creating an object first.
-  static ThemeData get light {
-    return ThemeData(
-      useMaterial3: true, // use the modern Material 3 look
-      primaryColor: kPrimaryColor,
-      scaffoldBackgroundColor: const Color(0xFFF3F6F8), // light grey page
-
-      // ---- APP BAR (top bar) default look ----
-      appBarTheme: const AppBarTheme(
-        backgroundColor: kPrimaryColor,
-        foregroundColor: Colors.white, // white title + icons
-        centerTitle: true,
-        elevation: 0,
-      ),
-
-      // ---- ELEVATED BUTTON default look ----
-      elevatedButtonTheme: ElevatedButtonThemeData(
-        style: ElevatedButton.styleFrom(
-          backgroundColor: kPrimaryColor,
-          foregroundColor: Colors.white,
-          minimumSize: const Size.fromHeight(50), // full-width, 50 tall
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(12),
-          ),
-        ),
-      ),
-
-      // ---- TEXT FIELD default look ----
-      inputDecorationTheme: const InputDecorationTheme(
-        border: OutlineInputBorder(), // box around every text field
-        filled: true,
-        fillColor: Colors.white,
-      ),
-    );
-  }
-}
-
-```
-
-================================================================================
-FILE: lib/utils/category_style.dart
-================================================================================
-
-```dart
-// ===========================================================================
-// category_style.dart  -  turns the TEXT stored in the categories table into
-// real Flutter objects (an IconData and a Color).
-//
-// The database can only hold text, but the UI needs Icons.restaurant and
-// Color(0xFFD2544F). This file is the bridge, and it is the only place that
-// knows the list of allowed icons - the category screens will reuse it.
-// ===========================================================================
-
-import 'package:flutter/material.dart';
-
-import 'constants.dart';
-
-// -------------------------------------------------------------------------
-// ICONS
-// -------------------------------------------------------------------------
-// key (stored in the database)  ->  icon (shown on screen).
-// Everything here is const, so Flutter can safely keep these icons in the
-// release build. Add a new pair to support a new icon.
-const Map<String, IconData> kCategoryIcons = {
-  'food': Icons.restaurant,
-  'transport': Icons.directions_bus,
-  'bills': Icons.receipt_long,
-  'entertainment': Icons.movie,
-  'health': Icons.local_hospital,
-  'education': Icons.school,
-  'shopping': Icons.shopping_bag,
-  'home': Icons.home,
-  'other': Icons.category,
-};
-
-// Never throws: an unknown or missing key falls back to a neutral icon.
-IconData categoryIcon(String? key) {
-  return kCategoryIcons[key] ?? Icons.category;
-}
-
-// -------------------------------------------------------------------------
-// COLORS
-// -------------------------------------------------------------------------
-// '#RRGGBB' -> Color. We add 0xFF000000 to make the color fully opaque,
-// because a Color needs 8 hex digits (alpha + red + green + blue) and we
-// only store 6.
-Color categoryColor(String? hex) {
-  if (hex == null) return kPrimaryColor;
-
-  final cleaned = hex.replaceAll('#', '').trim();
-  if (cleaned.length != 6) return kPrimaryColor;
-
-  final value = int.tryParse(cleaned, radix: 16);
-  if (value == null) return kPrimaryColor;
-
-  return Color(value | 0xFF000000);
-}
-
-// The choices offered by the category form. Keeping them next to the map
-// above means a new icon is added in exactly one place.
-List<String> get kCategoryIconKeys => kCategoryIcons.keys.toList();
-
-// A small, deliberately limited palette. A free colour picker would let a
-// user choose white on white; a fixed set always looks right with the theme.
-const List<String> kCategoryColorOptions = [
-  '#E4572E', // orange red
-  '#D2544F', // red
-  '#F2A65A', // amber
-  '#3BA776', // green
-  '#1E5F8C', // primary blue
-  '#4FA3C4', // light blue
-  '#6C5B7B', // purple
-  '#8E44AD', // violet
-  '#2C3E50', // dark slate
-  '#7A8B99', // grey
-];
-
-```
-
-================================================================================
-FILE: lib/utils/constants.dart
-================================================================================
-
-```dart
-// ===========================================================================
-// constants.dart  -  values used all over the app, kept in ONE place.
-// Change something here and it changes everywhere. No magic numbers scattered
-// around the code.
-// ===========================================================================
-
-import 'package:flutter/material.dart';
-
-// -------- TEXT --------
-const String kAppName = "Buyer's Remorse";
-
-// -------- COLORS --------
-// 0xFF means "fully visible", then the 6-digit hex color.
-const Color kPrimaryColor = Color(0xFF1E5F8C); // dark blue (main color)
-const Color kAccentColor = Color(0xFF4FA3C4); // light blue
-const Color kExpenseColor = Color(0xFFD2544F); // red   (money going out)
-const Color kIncomeColor = Color(0xFF3BA776); // green (money coming in)
-
-// -------- SPACING --------
-// Standard gaps so all screens breathe the same way.
-const double kPadding = 16.0;
-const double kRadius = 16.0; // corner rounding for cards and buttons
-
-```
-
-================================================================================
-FILE: lib/utils/date_ranges.dart
-================================================================================
-
-```dart
-// ===========================================================================
-// date_ranges.dart  -  a start date + an end date, and the four ranges the
-// reports need (FR21 daily, FR22 weekly, FR23 monthly, FR24 yearly).
-//
-// WHY A CLASS INSTEAD OF TWO LOOSE DateTime VARIABLES?
-// Every report query needs a pair of dates that belong together. Passing them
-// separately invites the classic bug of swapping them by accident. One object
-// also means the "what is this week?" rule is written ONCE, here, instead of
-// being re-invented in every screen.
-//
-// Both ends are INCLUSIVE: an expense dated exactly on `end` is inside the
-// range. That matches how the SQL uses it (BETWEEN ? AND ? is inclusive too).
-//
-// No Flutter imports here on purpose - this is pure logic, so the database
-// layer can use it without dragging the UI in.
-// ===========================================================================
-
-import 'package:intl/intl.dart';
-
-import 'formatters.dart';
-
-class DateRange {
-  final DateTime start; // first day, included
-  final DateTime end; // last day, included
-
-  const DateRange(this.start, this.end);
-
-  // ---- FR21: one single day ----
-  factory DateRange.day(DateTime value) {
-    final day = dateOnly(value);
-    return DateRange(day, day);
-  }
-
-  // ---- FR22: the week that contains `value`, Monday -> Sunday ----
-  //
-  // weekday is 1 for Monday ... 7 for Sunday, so subtracting (weekday - 1)
-  // days always lands on the Monday of that week.
-  //
-  // We rebuild the date with DateTime(y, m, d - n) instead of
-  // subtract(Duration(days: n)). Duration counts HOURS, so on the night the
-  // clock changes (daylight saving) it can land on the wrong day. Asking for
-  // "day number 3 minus 5" has no such problem: Dart rolls the month back for
-  // us, and day 0 means "the last day of the previous month".
-  factory DateRange.week(DateTime value) {
-    final day = dateOnly(value);
-    final start = DateTime(day.year, day.month, day.day - (day.weekday - 1));
-    final end = DateTime(start.year, start.month, start.day + 6);
-    return DateRange(start, end);
-  }
-
-  // ---- FR23: the whole month that contains `value` ----
-  //
-  // The trick in the second line: day 0 of the NEXT month is the last day of
-  // THIS month, so we never have to remember which months have 30 or 31 days,
-  // and February works in leap years for free.
-  factory DateRange.month(DateTime value) {
-    return DateRange(
-      DateTime(value.year, value.month, 1),
-      DateTime(value.year, value.month + 1, 0),
-    );
-  }
-
-  // ---- FR24: the whole year that contains `value` ----
-  factory DateRange.year(DateTime value) {
-    return DateRange(DateTime(value.year, 1, 1), DateTime(value.year, 12, 31));
-  }
-
-  // Is one date inside the range? (Used by screens, not by SQL.)
-  bool contains(DateTime value) {
-    final day = dateOnly(value);
-    return !day.isBefore(start) && !day.isAfter(end);
-  }
-
-  // How many days the range covers, including both ends.
-  int get days => end.difference(start).inDays + 1;
-
-  // A short title for the report header, e.g.
-  //   'Today'  /  '03 - 09 Aug 2026'  /  'August 2026'  /  '2026'
-  String get label {
-    if (start == end) {
-      final today = dateOnly(DateTime.now());
-      if (start == today) return 'Today';
-      return formatDate(start);
-    }
-
-    // A full calendar year.
-    if (start.month == 1 && start.day == 1 && end.month == 12 && end.day == 31) {
-      return DateFormat('yyyy').format(start);
-    }
-
-    // A full calendar month.
-    if (start.day == 1 && end.day == DateTime(end.year, end.month + 1, 0).day &&
-        start.month == end.month && start.year == end.year) {
-      return DateFormat('MMMM yyyy').format(start);
-    }
-
-    // Anything else (a week, or a range the user picked by hand).
-    return '${formatDate(start)} - ${formatDate(end)}';
-  }
-}
-```
-
-================================================================================
-FILE: lib/utils/formatters.dart
-================================================================================
-
-```dart
-// ===========================================================================
-// formatters.dart  -  turning values into text, in ONE place.
-//
-// Two different jobs live here, and mixing them up is a classic bug:
-//
-//   1. DATABASE format  (toDbDate / parseDbDate)
-//      Always 'yyyy-MM-dd'. SQLite has no real DATE type - it stores text -
-//      and this format is the only one where sorting the TEXT also sorts the
-//      dates correctly ('2026-01-09' < '2026-02-01'). It also makes the
-//      monthly / yearly reports later a simple LIKE '2026-02%'.
-//      NEVER show this format to the user.
-//
-//   2. SCREEN format  (formatDate / formatAmount)
-//      Pretty text for humans. NEVER save this to the database.
-//
-// This file imports intl only (no Flutter), so models can use it too.
-// ===========================================================================
-
-import 'package:intl/intl.dart';
-
-// -------- DATES: database side --------
-
-// Throws away the time part. An expense happens on a DAY; keeping
-// hours/minutes would break "is this the same date?" comparisons.
-DateTime dateOnly(DateTime value) {
-  return DateTime(value.year, value.month, value.day);
-}
-
-// DateTime -> '2026-08-03'   (what we store)
-String toDbDate(DateTime value) {
-  return DateFormat('yyyy-MM-dd').format(value);
-}
-
-// '2026-08-03' -> DateTime   (what we read)
-// Defensive on purpose: a row written by hand, or an older row, must not
-// crash the whole list. If the text is unusable we fall back to today.
-DateTime parseDbDate(String? text) {
-  if (text == null || text.isEmpty) return dateOnly(DateTime.now());
-  final parsed = DateTime.tryParse(text);
-  return parsed == null ? dateOnly(DateTime.now()) : dateOnly(parsed);
-}
-
-// -------- DATES: screen side --------
-
-// DateTime -> '03 Aug 2026'
-String formatDate(DateTime value) {
-  return DateFormat('dd MMM yyyy').format(value);
-}
-
-// -------- MONEY --------
-
-// 1234.5 -> '1,234.50'
-// Always two decimals, so a column of amounts lines up neatly.
-String formatAmount(double value) {
-  return NumberFormat('#,##0.00').format(value);
-}
-
-```
-
-================================================================================
-FILE: lib/utils/validators.dart
-================================================================================
-
-```dart
-// ===========================================================================
-// validators.dart  -  all the input rules of the app, kept in ONE place.
-//
-// WHY A SEPARATE FILE?
-// A Flutter TextFormField asks a question: "is this text acceptable?".
-// The answer must be:
-//    null            -> the value is GOOD
-//    "some message"  -> the value is BAD, show this message under the field
-//
-// If every screen wrote its own rules, the same rule would be copy-pasted
-// (and would slowly drift apart). Here we write each rule once and reuse it:
-//
-//    TextFormField(validator: Validators.username)
-//
-// Every function below has the same shape: it takes String? and returns
-// String? , because that is exactly the shape Flutter expects.
-// ===========================================================================
-
-class Validators {
-  // -------------------------------------------------------------------------
-  // SANITIZING (cleaning) INPUT
-  // -------------------------------------------------------------------------
-  // Users type messy text: leading spaces, double spaces, a newline pasted
-  // from somewhere. We clean it BEFORE validating and BEFORE saving, so the
-  // database never stores "  ali  " next to "ali".
-  static String sanitize(String value) {
-    return value
-        .trim() // remove spaces at the start and the end
-        .replaceAll(RegExp(r'\s+'), ' '); // collapse inner spaces into one
-  }
-
-  // -------------------------------------------------------------------------
-  // USERNAME
-  // -------------------------------------------------------------------------
-  // Rules:
-  //   - not empty
-  //   - 3 to 20 characters (short names are easy to guess / clash)
-  //   - letters, digits and underscore only  -> no spaces, no symbols
-  // NOTE: "is this username already taken?" is NOT checked here, because that
-  // question needs the database (an async call) and validators must answer
-  // instantly. The register screen asks the database separately.
-  static String? username(String? value) {
-    final text = (value ?? '').trim();
-
-    if (text.isEmpty) return 'Username is required';
-    if (text.length < 3) return 'Username must be at least 3 characters';
-    if (text.length > 20) return 'Username must be at most 20 characters';
-
-    // ^ = start, $ = end, so the WHOLE text must match the allowed set.
-    if (!RegExp(r'^[a-zA-Z0-9_]+$').hasMatch(text)) {
-      return 'Use letters, numbers and _ only (no spaces)';
-    }
-    return null;
-  }
-
-  // -------------------------------------------------------------------------
-  // PASSWORD
-  // -------------------------------------------------------------------------
-  // Rules:
-  //   - not empty
-  //   - at least 6 characters
-  //   - contains at least one letter AND one digit
-  // The two demo accounts created in database_helper.dart already follow
-  // these rules, so old accounts keep working.
-  static String? password(String? value) {
-    final text = value ?? '';
-
-    if (text.isEmpty) return 'Password is required';
-    if (text.length < 6) return 'Password must be at least 6 characters';
-    if (!RegExp(r'[A-Za-z]').hasMatch(text)) {
-      return 'Password must contain at least one letter';
-    }
-    if (!RegExp(r'[0-9]').hasMatch(text)) {
-      return 'Password must contain at least one number';
-    }
-    return null;
-  }
-
-  // -------------------------------------------------------------------------
-  // PASSWORD USED ONLY TO LOG IN
-  // -------------------------------------------------------------------------
-  // On the LOGIN screen we must NOT apply the strength rules above: an old
-  // account might have a weak password, and telling a stranger "your password
-  // needs a digit" leaks information. Empty is the only invalid case here.
-  static String? loginPassword(String? value) {
-    if (value == null || value.isEmpty) return 'Password is required';
-    return null;
-  }
-
-  // -------------------------------------------------------------------------
-  // CONFIRM PASSWORD
-  // -------------------------------------------------------------------------
-  // Needs the first password to compare with, so it takes a second argument.
-  // In the screen we call it inside a small closure:
-  //    validator: (v) => Validators.confirmPassword(v, passwordController.text)
-  static String? confirmPassword(String? value, String original) {
-    if (value == null || value.isEmpty) return 'Please confirm the password';
-    if (value != original) return 'Passwords do not match';
-    return null;
-  }
-
-  // -------------------------------------------------------------------------
-  // FULL NAME
-  // -------------------------------------------------------------------------
-  // Rules:
-  //   - not empty
-  //   - at least 3 characters
-  //   - no digits (a name is not "Ali 123")
-  // We deliberately do NOT restrict the alphabet, because the app must accept
-  // Arabic names as well as English ones.
-  static String? fullName(String? value) {
-    final text = sanitize(value ?? '');
-
-    if (text.isEmpty) return 'Full name is required';
-    if (text.length < 3) return 'Full name must be at least 3 characters';
-    if (RegExp(r'[0-9]').hasMatch(text)) {
-      return 'Full name cannot contain numbers';
-    }
-    return null;
-  }
-
-  // -------------------------------------------------------------------------
-  // TITLE  (expenses, incomes)
-  // -------------------------------------------------------------------------
-  // The specification requires NOT NULL columns to be filled in. A title is
-  // what the user recognises the row by, so an empty one is useless.
-  static String? title(String? value) {
-    final text = sanitize(value ?? '');
-
-    if (text.isEmpty) return 'Title is required';
-    if (text.length < 2) return 'Title must be at least 2 characters';
-    if (text.length > 60) return 'Title must be at most 60 characters';
-    return null;
-  }
-
-  // -------------------------------------------------------------------------
-  // AMOUNT  (money)
-  // -------------------------------------------------------------------------
-  // Rules from the specification: required, a real number, and POSITIVE
-  // ("the value must be positive"). Zero is refused too - saving an expense
-  // of 0 is always a mistake.
-  static String? amount(String? value) {
-    final text = (value ?? '').trim();
-
-    if (text.isEmpty) return 'Amount is required';
-
-    // tryParse returns null instead of throwing when the text is not a
-    // number, which is exactly what a validator wants.
-    final parsed = double.tryParse(text);
-    if (parsed == null) return 'Enter a valid number';
-
-    if (parsed <= 0) return 'The value must be positive';
-    if (parsed > 1000000000) return 'This amount is too large';
-
-    // 12.345 would be silently rounded when displayed, so refuse it here.
-    final dot = text.indexOf('.');
-    if (dot != -1 && text.length - dot - 1 > 2) {
-      return 'Use at most 2 decimals';
-    }
-    return null;
-  }
-
-  // -------------------------------------------------------------------------
-  // NOTES  (optional field)
-  // -------------------------------------------------------------------------
-  // Empty is valid here - that is the whole point of an optional field. We
-  // only guard the length so one row cannot hold a whole essay.
-  static String? notes(String? value) {
-    final text = sanitize(value ?? '');
-    if (text.length > 200) return 'Notes must be at most 200 characters';
-    return null;
-  }
-
-  // -------------------------------------------------------------------------
-  // DATE
-  // -------------------------------------------------------------------------
-  // The date picker already blocks impossible dates, but a validator is the
-  // safety net if a screen ever sets the date in code.
-  // A daily expense/income is something that HAPPENED, so the future is out.
-  static String? pastOrToday(DateTime? value) {
-    if (value == null) return 'Date is required';
-
-    final today = DateTime.now();
-    final endOfToday = DateTime(today.year, today.month, today.day, 23, 59, 59);
-
-    if (value.isAfter(endOfToday)) return 'The date cannot be in the future';
-    if (value.year < 2000) return 'The date is too far in the past';
-    return null;
-  }
-  // -------------------------------------------------------------------------
-  // CATEGORY NAME
-  // -------------------------------------------------------------------------
-  // The categories table declares  name TEXT NOT NULL , so empty is refused
-  // here too. "Already exists" is NOT checked here: that question needs the
-  // database, and a validator must answer instantly - the categories screen
-  // asks separately.
-  static String? categoryName(String? value) {
-    final text = sanitize(value ?? '');
-
-    if (text.isEmpty) return 'Name is required';
-    if (text.length < 2) return 'Name must be at least 2 characters';
-    if (text.length > 30) return 'Name must be at most 30 characters';
-
-    // At least one letter or digit, so " -- " cannot become a category.
-    if (!RegExp(r'[A-Za-z0-9\u0600-\u06FF]').hasMatch(text)) {
-      return 'Name must contain letters or numbers';
-    }
-    return null;
-  }
-}
-
-```
-
-================================================================================
 FILE: lib/reports/reports_screen.dart
 ================================================================================
 
@@ -2152,27 +4303,36 @@ class _ReportsScreenState extends State<ReportsScreen> {
         padding: const EdgeInsets.all(kPadding),
         children: [
           // ---- The two totals of the selected range ----
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              Expanded(
-                child: DashboardCard(
-                  title: 'Income',
-                  value: formatAmount(income),
-                  color: kIncomeColor,
-                  icon: Icons.south_west,
+          //
+          // IntrinsicHeight is required, not cosmetic: this Row sits directly
+          // in a vertical ListView, so its height is unbounded, and
+          // CrossAxisAlignment.stretch would ask both cards to be infinitely
+          // tall. That throws during layout and the whole report body is
+          // replaced by empty space under the AppBar. IntrinsicHeight measures
+          // the taller card first, so stretch gets a finite height to use.
+          IntrinsicHeight(
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                Expanded(
+                  child: DashboardCard(
+                    title: 'Income',
+                    value: formatAmount(income),
+                    color: kIncomeColor,
+                    icon: Icons.south_west,
+                  ),
                 ),
-              ),
-              const SizedBox(width: 12),
-              Expanded(
-                child: DashboardCard(
-                  title: 'Expenses',
-                  value: formatAmount(expenses),
-                  color: kExpenseColor,
-                  icon: Icons.north_east,
+                const SizedBox(width: 12),
+                Expanded(
+                  child: DashboardCard(
+                    title: 'Expenses',
+                    value: formatAmount(expenses),
+                    color: kExpenseColor,
+                    icon: Icons.north_east,
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
           const SizedBox(height: 12),
 
@@ -2780,30 +4940,41 @@ class _DashboardScreenState extends State<DashboardScreen> {
           // ---- Total in / total out, side by side ----
           // Each Expanded takes half of the row, so the two cards stay equal
           // whatever the screen width.
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              Expanded(
-                child: DashboardCard(
-                  title: 'Total income',
-                  value: formatAmount(totalIncome),
-                  color: kIncomeColor,
-                  icon: Icons.south_west,
-                  onTap: () => openScreen(IncomesScreen(user: currentUser)),
+          //
+          // WHY IntrinsicHeight IS NOT DECORATION
+          // This Row is a direct child of a vertical ListView, so it is laid
+          // out with UNBOUNDED height. CrossAxisAlignment.stretch then tries
+          // to force both children to maxHeight - which is infinity - and
+          // layout throws "BoxConstraints forces an infinite height", leaving
+          // the whole body blank with only the AppBar drawn.
+          // IntrinsicHeight measures the taller card first and hands the Row
+          // a real number, so stretch has something finite to stretch to.
+          IntrinsicHeight(
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                Expanded(
+                  child: DashboardCard(
+                    title: 'Total income',
+                    value: formatAmount(totalIncome),
+                    color: kIncomeColor,
+                    icon: Icons.south_west,
+                    onTap: () => openScreen(IncomesScreen(user: currentUser)),
+                  ),
                 ),
-              ),
-              const SizedBox(width: kPadding),
-              Expanded(
-                child: DashboardCard(
-                  title: 'Total expenses',
-                  value: formatAmount(totalExpenses),
-                  color: kExpenseColor,
-                  icon: Icons.north_east,
-                  onTap: () =>
-                      openScreen(ExpensesListScreen(user: currentUser)),
+                const SizedBox(width: kPadding),
+                Expanded(
+                  child: DashboardCard(
+                    title: 'Total expenses',
+                    value: formatAmount(totalExpenses),
+                    color: kExpenseColor,
+                    icon: Icons.north_east,
+                    onTap: () =>
+                        openScreen(ExpensesListScreen(user: currentUser)),
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
           const SizedBox(height: kPadding),
 
@@ -3577,6 +5748,561 @@ class _RegisterScreenState extends State<RegisterScreen> {
         ),
       ),
     );
+  }
+}
+
+```
+
+================================================================================
+FILE: lib/theme/app_theme.dart
+================================================================================
+
+```dart
+// ===========================================================================
+// app_theme.dart  -  the visual style of the whole app.
+//
+// Instead of styling every button and app bar by hand, we set the style ONCE
+// here. MaterialApp uses it, and every widget inherits it automatically.
+// ===========================================================================
+
+import 'package:flutter/material.dart';
+import '../utils/constants.dart';
+
+class AppTheme {
+  // A "static" value belongs to the class itself, so we can write
+  // AppTheme.light without creating an object first.
+  static ThemeData get light {
+    return ThemeData(
+      useMaterial3: true, // use the modern Material 3 look
+      primaryColor: kPrimaryColor,
+      scaffoldBackgroundColor: const Color(0xFFF3F6F8), // light grey page
+
+      // ---- APP BAR (top bar) default look ----
+      appBarTheme: const AppBarTheme(
+        backgroundColor: kPrimaryColor,
+        foregroundColor: Colors.white, // white title + icons
+        centerTitle: true,
+        elevation: 0,
+      ),
+
+      // ---- ELEVATED BUTTON default look ----
+      elevatedButtonTheme: ElevatedButtonThemeData(
+        style: ElevatedButton.styleFrom(
+          backgroundColor: kPrimaryColor,
+          foregroundColor: Colors.white,
+          minimumSize: const Size.fromHeight(50), // full-width, 50 tall
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(12),
+          ),
+        ),
+      ),
+
+      // ---- TEXT FIELD default look ----
+      inputDecorationTheme: const InputDecorationTheme(
+        border: OutlineInputBorder(), // box around every text field
+        filled: true,
+        fillColor: Colors.white,
+      ),
+    );
+  }
+}
+
+```
+
+================================================================================
+FILE: lib/utils/category_style.dart
+================================================================================
+
+```dart
+// ===========================================================================
+// category_style.dart  -  turns the TEXT stored in the categories table into
+// real Flutter objects (an IconData and a Color).
+//
+// The database can only hold text, but the UI needs Icons.restaurant and
+// Color(0xFFD2544F). This file is the bridge, and it is the only place that
+// knows the list of allowed icons - the category screens will reuse it.
+// ===========================================================================
+
+import 'package:flutter/material.dart';
+
+import 'constants.dart';
+
+// -------------------------------------------------------------------------
+// ICONS
+// -------------------------------------------------------------------------
+// key (stored in the database)  ->  icon (shown on screen).
+// Everything here is const, so Flutter can safely keep these icons in the
+// release build. Add a new pair to support a new icon.
+const Map<String, IconData> kCategoryIcons = {
+  'food': Icons.restaurant,
+  'transport': Icons.directions_bus,
+  'bills': Icons.receipt_long,
+  'entertainment': Icons.movie,
+  'health': Icons.local_hospital,
+  'education': Icons.school,
+  'shopping': Icons.shopping_bag,
+  'home': Icons.home,
+  'other': Icons.category,
+};
+
+// Never throws: an unknown or missing key falls back to a neutral icon.
+IconData categoryIcon(String? key) {
+  return kCategoryIcons[key] ?? Icons.category;
+}
+
+// -------------------------------------------------------------------------
+// COLORS
+// -------------------------------------------------------------------------
+// '#RRGGBB' -> Color. We add 0xFF000000 to make the color fully opaque,
+// because a Color needs 8 hex digits (alpha + red + green + blue) and we
+// only store 6.
+Color categoryColor(String? hex) {
+  if (hex == null) return kPrimaryColor;
+
+  final cleaned = hex.replaceAll('#', '').trim();
+  if (cleaned.length != 6) return kPrimaryColor;
+
+  final value = int.tryParse(cleaned, radix: 16);
+  if (value == null) return kPrimaryColor;
+
+  return Color(value | 0xFF000000);
+}
+
+// The choices offered by the category form. Keeping them next to the map
+// above means a new icon is added in exactly one place.
+List<String> get kCategoryIconKeys => kCategoryIcons.keys.toList();
+
+// A small, deliberately limited palette. A free colour picker would let a
+// user choose white on white; a fixed set always looks right with the theme.
+const List<String> kCategoryColorOptions = [
+  '#E4572E', // orange red
+  '#D2544F', // red
+  '#F2A65A', // amber
+  '#3BA776', // green
+  '#1E5F8C', // primary blue
+  '#4FA3C4', // light blue
+  '#6C5B7B', // purple
+  '#8E44AD', // violet
+  '#2C3E50', // dark slate
+  '#7A8B99', // grey
+];
+
+```
+
+================================================================================
+FILE: lib/utils/constants.dart
+================================================================================
+
+```dart
+// ===========================================================================
+// constants.dart  -  values used all over the app, kept in ONE place.
+// Change something here and it changes everywhere. No magic numbers scattered
+// around the code.
+// ===========================================================================
+
+import 'package:flutter/material.dart';
+
+// -------- TEXT --------
+const String kAppName = "Buyer's Remorse";
+
+// -------- COLORS --------
+// 0xFF means "fully visible", then the 6-digit hex color.
+const Color kPrimaryColor = Color(0xFF1E5F8C); // dark blue (main color)
+const Color kAccentColor = Color(0xFF4FA3C4); // light blue
+const Color kExpenseColor = Color(0xFFD2544F); // red   (money going out)
+const Color kIncomeColor = Color(0xFF3BA776); // green (money coming in)
+
+// -------- SPACING --------
+// Standard gaps so all screens breathe the same way.
+const double kPadding = 16.0;
+const double kRadius = 16.0; // corner rounding for cards and buttons
+
+```
+
+================================================================================
+FILE: lib/utils/date_ranges.dart
+================================================================================
+
+```dart
+// ===========================================================================
+// date_ranges.dart  -  a start date + an end date, and the four ranges the
+// reports need (FR21 daily, FR22 weekly, FR23 monthly, FR24 yearly).
+//
+// WHY A CLASS INSTEAD OF TWO LOOSE DateTime VARIABLES?
+// Every report query needs a pair of dates that belong together. Passing them
+// separately invites the classic bug of swapping them by accident. One object
+// also means the "what is this week?" rule is written ONCE, here, instead of
+// being re-invented in every screen.
+//
+// Both ends are INCLUSIVE: an expense dated exactly on `end` is inside the
+// range. That matches how the SQL uses it (BETWEEN ? AND ? is inclusive too).
+//
+// No Flutter imports here on purpose - this is pure logic, so the database
+// layer can use it without dragging the UI in.
+// ===========================================================================
+
+import 'package:intl/intl.dart';
+
+import 'formatters.dart';
+
+class DateRange {
+  final DateTime start; // first day, included
+  final DateTime end; // last day, included
+
+  const DateRange(this.start, this.end);
+
+  // ---- FR21: one single day ----
+  factory DateRange.day(DateTime value) {
+    final day = dateOnly(value);
+    return DateRange(day, day);
+  }
+
+  // ---- FR22: the week that contains `value`, Monday -> Sunday ----
+  //
+  // weekday is 1 for Monday ... 7 for Sunday, so subtracting (weekday - 1)
+  // days always lands on the Monday of that week.
+  //
+  // We rebuild the date with DateTime(y, m, d - n) instead of
+  // subtract(Duration(days: n)). Duration counts HOURS, so on the night the
+  // clock changes (daylight saving) it can land on the wrong day. Asking for
+  // "day number 3 minus 5" has no such problem: Dart rolls the month back for
+  // us, and day 0 means "the last day of the previous month".
+  factory DateRange.week(DateTime value) {
+    final day = dateOnly(value);
+    final start = DateTime(day.year, day.month, day.day - (day.weekday - 1));
+    final end = DateTime(start.year, start.month, start.day + 6);
+    return DateRange(start, end);
+  }
+
+  // ---- FR23: the whole month that contains `value` ----
+  //
+  // The trick in the second line: day 0 of the NEXT month is the last day of
+  // THIS month, so we never have to remember which months have 30 or 31 days,
+  // and February works in leap years for free.
+  factory DateRange.month(DateTime value) {
+    return DateRange(
+      DateTime(value.year, value.month, 1),
+      DateTime(value.year, value.month + 1, 0),
+    );
+  }
+
+  // ---- FR24: the whole year that contains `value` ----
+  factory DateRange.year(DateTime value) {
+    return DateRange(DateTime(value.year, 1, 1), DateTime(value.year, 12, 31));
+  }
+
+  // Is one date inside the range? (Used by screens, not by SQL.)
+  bool contains(DateTime value) {
+    final day = dateOnly(value);
+    return !day.isBefore(start) && !day.isAfter(end);
+  }
+
+  // How many days the range covers, including both ends.
+  int get days => end.difference(start).inDays + 1;
+
+  // A short title for the report header, e.g.
+  //   'Today'  /  '03 - 09 Aug 2026'  /  'August 2026'  /  '2026'
+  String get label {
+    if (start == end) {
+      final today = dateOnly(DateTime.now());
+      if (start == today) return 'Today';
+      return formatDate(start);
+    }
+
+    // A full calendar year.
+    if (start.month == 1 && start.day == 1 && end.month == 12 && end.day == 31) {
+      return DateFormat('yyyy').format(start);
+    }
+
+    // A full calendar month.
+    if (start.day == 1 && end.day == DateTime(end.year, end.month + 1, 0).day &&
+        start.month == end.month && start.year == end.year) {
+      return DateFormat('MMMM yyyy').format(start);
+    }
+
+    // Anything else (a week, or a range the user picked by hand).
+    return '${formatDate(start)} - ${formatDate(end)}';
+  }
+}
+```
+
+================================================================================
+FILE: lib/utils/formatters.dart
+================================================================================
+
+```dart
+// ===========================================================================
+// formatters.dart  -  turning values into text, in ONE place.
+//
+// Two different jobs live here, and mixing them up is a classic bug:
+//
+//   1. DATABASE format  (toDbDate / parseDbDate)
+//      Always 'yyyy-MM-dd'. SQLite has no real DATE type - it stores text -
+//      and this format is the only one where sorting the TEXT also sorts the
+//      dates correctly ('2026-01-09' < '2026-02-01'). It also makes the
+//      monthly / yearly reports later a simple LIKE '2026-02%'.
+//      NEVER show this format to the user.
+//
+//   2. SCREEN format  (formatDate / formatAmount)
+//      Pretty text for humans. NEVER save this to the database.
+//
+// This file imports intl only (no Flutter), so models can use it too.
+// ===========================================================================
+
+import 'package:intl/intl.dart';
+
+// -------- DATES: database side --------
+
+// Throws away the time part. An expense happens on a DAY; keeping
+// hours/minutes would break "is this the same date?" comparisons.
+DateTime dateOnly(DateTime value) {
+  return DateTime(value.year, value.month, value.day);
+}
+
+// DateTime -> '2026-08-03'   (what we store)
+String toDbDate(DateTime value) {
+  return DateFormat('yyyy-MM-dd').format(value);
+}
+
+// '2026-08-03' -> DateTime   (what we read)
+// Defensive on purpose: a row written by hand, or an older row, must not
+// crash the whole list. If the text is unusable we fall back to today.
+DateTime parseDbDate(String? text) {
+  if (text == null || text.isEmpty) return dateOnly(DateTime.now());
+  final parsed = DateTime.tryParse(text);
+  return parsed == null ? dateOnly(DateTime.now()) : dateOnly(parsed);
+}
+
+// -------- DATES: screen side --------
+
+// DateTime -> '03 Aug 2026'
+String formatDate(DateTime value) {
+  return DateFormat('dd MMM yyyy').format(value);
+}
+
+// -------- MONEY --------
+
+// 1234.5 -> '1,234.50'
+// Always two decimals, so a column of amounts lines up neatly.
+String formatAmount(double value) {
+  return NumberFormat('#,##0.00').format(value);
+}
+
+```
+
+================================================================================
+FILE: lib/utils/validators.dart
+================================================================================
+
+```dart
+// ===========================================================================
+// validators.dart  -  all the input rules of the app, kept in ONE place.
+//
+// WHY A SEPARATE FILE?
+// A Flutter TextFormField asks a question: "is this text acceptable?".
+// The answer must be:
+//    null            -> the value is GOOD
+//    "some message"  -> the value is BAD, show this message under the field
+//
+// If every screen wrote its own rules, the same rule would be copy-pasted
+// (and would slowly drift apart). Here we write each rule once and reuse it:
+//
+//    TextFormField(validator: Validators.username)
+//
+// Every function below has the same shape: it takes String? and returns
+// String? , because that is exactly the shape Flutter expects.
+// ===========================================================================
+
+class Validators {
+  // -------------------------------------------------------------------------
+  // SANITIZING (cleaning) INPUT
+  // -------------------------------------------------------------------------
+  // Users type messy text: leading spaces, double spaces, a newline pasted
+  // from somewhere. We clean it BEFORE validating and BEFORE saving, so the
+  // database never stores "  ali  " next to "ali".
+  static String sanitize(String value) {
+    return value
+        .trim() // remove spaces at the start and the end
+        .replaceAll(RegExp(r'\s+'), ' '); // collapse inner spaces into one
+  }
+
+  // -------------------------------------------------------------------------
+  // USERNAME
+  // -------------------------------------------------------------------------
+  // Rules:
+  //   - not empty
+  //   - 3 to 20 characters (short names are easy to guess / clash)
+  //   - letters, digits and underscore only  -> no spaces, no symbols
+  // NOTE: "is this username already taken?" is NOT checked here, because that
+  // question needs the database (an async call) and validators must answer
+  // instantly. The register screen asks the database separately.
+  static String? username(String? value) {
+    final text = (value ?? '').trim();
+
+    if (text.isEmpty) return 'Username is required';
+    if (text.length < 3) return 'Username must be at least 3 characters';
+    if (text.length > 20) return 'Username must be at most 20 characters';
+
+    // ^ = start, $ = end, so the WHOLE text must match the allowed set.
+    if (!RegExp(r'^[a-zA-Z0-9_]+$').hasMatch(text)) {
+      return 'Use letters, numbers and _ only (no spaces)';
+    }
+    return null;
+  }
+
+  // -------------------------------------------------------------------------
+  // PASSWORD
+  // -------------------------------------------------------------------------
+  // Rules:
+  //   - not empty
+  //   - at least 6 characters
+  //   - contains at least one letter AND one digit
+  // The two demo accounts created in database_helper.dart already follow
+  // these rules, so old accounts keep working.
+  static String? password(String? value) {
+    final text = value ?? '';
+
+    if (text.isEmpty) return 'Password is required';
+    if (text.length < 6) return 'Password must be at least 6 characters';
+    if (!RegExp(r'[A-Za-z]').hasMatch(text)) {
+      return 'Password must contain at least one letter';
+    }
+    if (!RegExp(r'[0-9]').hasMatch(text)) {
+      return 'Password must contain at least one number';
+    }
+    return null;
+  }
+
+  // -------------------------------------------------------------------------
+  // PASSWORD USED ONLY TO LOG IN
+  // -------------------------------------------------------------------------
+  // On the LOGIN screen we must NOT apply the strength rules above: an old
+  // account might have a weak password, and telling a stranger "your password
+  // needs a digit" leaks information. Empty is the only invalid case here.
+  static String? loginPassword(String? value) {
+    if (value == null || value.isEmpty) return 'Password is required';
+    return null;
+  }
+
+  // -------------------------------------------------------------------------
+  // CONFIRM PASSWORD
+  // -------------------------------------------------------------------------
+  // Needs the first password to compare with, so it takes a second argument.
+  // In the screen we call it inside a small closure:
+  //    validator: (v) => Validators.confirmPassword(v, passwordController.text)
+  static String? confirmPassword(String? value, String original) {
+    if (value == null || value.isEmpty) return 'Please confirm the password';
+    if (value != original) return 'Passwords do not match';
+    return null;
+  }
+
+  // -------------------------------------------------------------------------
+  // FULL NAME
+  // -------------------------------------------------------------------------
+  // Rules:
+  //   - not empty
+  //   - at least 3 characters
+  //   - no digits (a name is not "Ali 123")
+  // We deliberately do NOT restrict the alphabet, because the app must accept
+  // Arabic names as well as English ones.
+  static String? fullName(String? value) {
+    final text = sanitize(value ?? '');
+
+    if (text.isEmpty) return 'Full name is required';
+    if (text.length < 3) return 'Full name must be at least 3 characters';
+    if (RegExp(r'[0-9]').hasMatch(text)) {
+      return 'Full name cannot contain numbers';
+    }
+    return null;
+  }
+
+  // -------------------------------------------------------------------------
+  // TITLE  (expenses, incomes)
+  // -------------------------------------------------------------------------
+  // The specification requires NOT NULL columns to be filled in. A title is
+  // what the user recognises the row by, so an empty one is useless.
+  static String? title(String? value) {
+    final text = sanitize(value ?? '');
+
+    if (text.isEmpty) return 'Title is required';
+    if (text.length < 2) return 'Title must be at least 2 characters';
+    if (text.length > 60) return 'Title must be at most 60 characters';
+    return null;
+  }
+
+  // -------------------------------------------------------------------------
+  // AMOUNT  (money)
+  // -------------------------------------------------------------------------
+  // Rules from the specification: required, a real number, and POSITIVE
+  // ("the value must be positive"). Zero is refused too - saving an expense
+  // of 0 is always a mistake.
+  static String? amount(String? value) {
+    final text = (value ?? '').trim();
+
+    if (text.isEmpty) return 'Amount is required';
+
+    // tryParse returns null instead of throwing when the text is not a
+    // number, which is exactly what a validator wants.
+    final parsed = double.tryParse(text);
+    if (parsed == null) return 'Enter a valid number';
+
+    if (parsed <= 0) return 'The value must be positive';
+    if (parsed > 1000000000) return 'This amount is too large';
+
+    // 12.345 would be silently rounded when displayed, so refuse it here.
+    final dot = text.indexOf('.');
+    if (dot != -1 && text.length - dot - 1 > 2) {
+      return 'Use at most 2 decimals';
+    }
+    return null;
+  }
+
+  // -------------------------------------------------------------------------
+  // NOTES  (optional field)
+  // -------------------------------------------------------------------------
+  // Empty is valid here - that is the whole point of an optional field. We
+  // only guard the length so one row cannot hold a whole essay.
+  static String? notes(String? value) {
+    final text = sanitize(value ?? '');
+    if (text.length > 200) return 'Notes must be at most 200 characters';
+    return null;
+  }
+
+  // -------------------------------------------------------------------------
+  // DATE
+  // -------------------------------------------------------------------------
+  // The date picker already blocks impossible dates, but a validator is the
+  // safety net if a screen ever sets the date in code.
+  // A daily expense/income is something that HAPPENED, so the future is out.
+  static String? pastOrToday(DateTime? value) {
+    if (value == null) return 'Date is required';
+
+    final today = DateTime.now();
+    final endOfToday = DateTime(today.year, today.month, today.day, 23, 59, 59);
+
+    if (value.isAfter(endOfToday)) return 'The date cannot be in the future';
+    if (value.year < 2000) return 'The date is too far in the past';
+    return null;
+  }
+  // -------------------------------------------------------------------------
+  // CATEGORY NAME
+  // -------------------------------------------------------------------------
+  // The categories table declares  name TEXT NOT NULL , so empty is refused
+  // here too. "Already exists" is NOT checked here: that question needs the
+  // database, and a validator must answer instantly - the categories screen
+  // asks separately.
+  static String? categoryName(String? value) {
+    final text = sanitize(value ?? '');
+
+    if (text.isEmpty) return 'Name is required';
+    if (text.length < 2) return 'Name must be at least 2 characters';
+    if (text.length > 30) return 'Name must be at most 30 characters';
+
+    // At least one letter or digit, so " -- " cannot become a category.
+    if (!RegExp(r'[A-Za-z0-9\u0600-\u06FF]').hasMatch(text)) {
+      return 'Name must contain letters or numbers';
+    }
+    return null;
   }
 }
 
@@ -5443,2689 +8169,6 @@ class _IncomeFormState extends State<IncomeForm> {
   }
 }
 
-```
-
-================================================================================
-FILE: lib/expenses/add_expense_screen.dart
-================================================================================
-
-```dart
-// ===========================================================================
-// add_expense_screen.dart  -  FR5: add a new expense (CREATE).
-//
-// Notice how short this file is. All the fields, rules and the date picker
-// live in widgets/expense_form.dart; this screen only says what "Save" does:
-// hand the expense to the provider and close.
-//
-// It talks to ExpenseProvider, not to DatabaseHelper. The provider writes the
-// row AND refreshes its list, so the expenses list, the dashboard and the
-// reports are all correct the moment this screen closes.
-// ===========================================================================
-
-import 'package:flutter/material.dart';
-
-import '../providers/expense_provider.dart';
-import '../widgets/expense_form.dart';
-
-class AddExpenseScreen extends StatelessWidget {
-  const AddExpenseScreen({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text('Add Expense')),
-      body: ExpenseForm(
-        submitLabel: 'ADD EXPENSE',
-        onSave: (expense) async {
-          await ExpenseProvider().addExpense(expense);
-
-          // context.mounted: the screen may have been closed while the
-          // database was writing. Using a dead context crashes the app.
-          if (!context.mounted) return;
-
-          Navigator.pop(context, true);
-        },
-      ),
-    );
-  }
-}
-```
-
-================================================================================
-FILE: lib/expenses/edit_expense_screen.dart
-================================================================================
-
-```dart
-// ===========================================================================
-// edit_expense_screen.dart  -  FR6: edit an existing expense (UPDATE).
-//
-// The twin of add_expense_screen.dart. Same form, two differences:
-//   - it receives the expense to edit and passes it to the form as `initial`,
-//     so every field starts filled in
-//   - "Save" calls updateExpense() instead of addExpense()
-// ===========================================================================
-
-import 'package:flutter/material.dart';
-
-import '../models/expense.dart';
-import '../providers/expense_provider.dart';
-import '../widgets/expense_form.dart';
-
-class EditExpenseScreen extends StatelessWidget {
-  final Expense expense;
-
-  const EditExpenseScreen({super.key, required this.expense});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text('Edit Expense')),
-      body: ExpenseForm(
-        initial: expense, // <- the only real difference
-        submitLabel: 'SAVE CHANGES',
-        onSave: (updated) async {
-          // false = 0 rows changed, which means the expense was deleted from
-          // another screen while this one was open.
-          final saved = await ExpenseProvider().updateExpense(updated);
-          if (!context.mounted) return;
-
-          if (!saved) {
-            ScaffoldMessenger.of(context).showSnackBar(
-              const SnackBar(content: Text('This expense no longer exists')),
-            );
-            return;
-          }
-
-          Navigator.pop(context, true);
-        },
-      ),
-    );
-  }
-}
-```
-
-================================================================================
-FILE: lib/expenses/expense_details_screen.dart
-================================================================================
-
-```dart
-// ===========================================================================
-// expense_details_screen.dart  -  FR9: show ALL the data of one expense,
-// plus the two actions that belong to a single row: edit (FR6) and delete
-// with a confirmation message (FR7).
-//
-// It keeps its own copy of the expense and asks the provider for a fresh one
-// after an edit, so the screen can never show stale values.
-//
-// Both actions go through ExpenseProvider, so deleting here also updates the
-// list behind us, the dashboard totals and the reports - without any of those
-// screens knowing this screen exists.
-// ===========================================================================
-
-import 'package:flutter/material.dart';
-
-import '../models/expense.dart';
-import '../providers/expense_provider.dart';
-import '../utils/constants.dart';
-import '../utils/formatters.dart';
-import '../utils/category_style.dart';
-import 'edit_expense_screen.dart';
-
-class ExpenseDetailsScreen extends StatefulWidget {
-  final Expense expense;
-
-  const ExpenseDetailsScreen({super.key, required this.expense});
-
-  @override
-  State<ExpenseDetailsScreen> createState() => _ExpenseDetailsScreenState();
-}
-
-class _ExpenseDetailsScreenState extends State<ExpenseDetailsScreen> {
-  final ExpenseProvider provider = ExpenseProvider();
-
-  late Expense expense = widget.expense;
-  bool isDeleting = false;
-
-  void _showMessage(String message, {bool isError = true}) {
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Text(message),
-        backgroundColor: isError ? kExpenseColor : kIncomeColor,
-      ),
-    );
-  }
-
-  // Opens the edit screen and, when it returns, reads the row again so the
-  // details we show are the ones actually stored.
-  Future<void> openEdit() async {
-    final saved = await Navigator.push<bool>(
-      context,
-      MaterialPageRoute(builder: (_) => EditExpenseScreen(expense: expense)),
-    );
-
-    if (!mounted || saved != true) return;
-
-    final fresh = await provider.getById(expense.id!);
-    if (!mounted) return;
-
-    if (fresh == null) {
-      // Someone deleted it meanwhile - there is nothing left to show.
-      Navigator.pop(context, true);
-      return;
-    }
-
-    setState(() => expense = fresh);
-  }
-
-  // FR7: delete, but never without asking first.
-  Future<void> confirmAndDelete() async {
-    final confirmed = await showDialog<bool>(
-      context: context,
-      builder: (dialogContext) => AlertDialog(
-        title: const Text('Delete expense'),
-        // Naming the expense in the question prevents "wrong row" accidents.
-        content: Text(
-          'Delete "${expense.title}" (${formatAmount(expense.amount)})?\n'
-              'This cannot be undone.',
-        ),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.pop(dialogContext, false),
-            child: const Text('Cancel'),
-          ),
-          TextButton(
-            onPressed: () => Navigator.pop(dialogContext, true),
-            style: TextButton.styleFrom(foregroundColor: kExpenseColor),
-            child: const Text('Delete'),
-          ),
-        ],
-      ),
-    );
-
-    if (confirmed != true || !mounted) return;
-
-    setState(() => isDeleting = true);
-    try {
-      await provider.deleteExpense(expense.id!);
-      if (!mounted) return;
-      Navigator.pop(context, true); // back to the list, already refreshed
-    } catch (e) {
-      if (!mounted) return;
-      setState(() => isDeleting = false);
-      _showMessage('Could not delete the expense. Please try again.');
-    }
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    final color = categoryColor(expense.categoryColor);
-
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Expense Details'),
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.edit),
-            tooltip: 'Edit',
-            onPressed: isDeleting ? null : openEdit,
-          ),
-          IconButton(
-            icon: const Icon(Icons.delete),
-            tooltip: 'Delete',
-            onPressed: isDeleting ? null : confirmAndDelete,
-          ),
-        ],
-      ),
-      body: ListView(
-        padding: const EdgeInsets.all(kPadding),
-        children: [
-          // ---- HEADER: the amount, impossible to miss ----
-          Container(
-            width: double.infinity,
-            padding: const EdgeInsets.symmetric(vertical: 28),
-            decoration: BoxDecoration(
-              color: kExpenseColor,
-              borderRadius: BorderRadius.circular(kRadius),
-            ),
-            child: Column(
-              children: [
-                Icon(
-                  categoryIcon(expense.categoryIcon),
-                  color: Colors.white,
-                  size: 40,
-                ),
-                const SizedBox(height: 12),
-                Text(
-                  '-${formatAmount(expense.amount)}',
-                  style: const TextStyle(
-                    color: Colors.white,
-                    fontSize: 32,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                const SizedBox(height: 4),
-                Text(
-                  expense.title,
-                  textAlign: TextAlign.center,
-                  style: const TextStyle(color: Colors.white70, fontSize: 16),
-                ),
-              ],
-            ),
-          ),
-
-          const SizedBox(height: 20),
-
-          // ---- EVERY FIELD OF THE ROW ----
-          _DetailRow(
-            icon: Icons.title,
-            label: 'Title',
-            value: expense.title,
-          ),
-          _DetailRow(
-            icon: Icons.payments,
-            label: 'Amount',
-            value: formatAmount(expense.amount),
-          ),
-          _DetailRow(
-            icon: Icons.calendar_today,
-            label: 'Date',
-            value: formatDate(expense.expenseDate),
-          ),
-          _DetailRow(
-            icon: categoryIcon(expense.categoryIcon),
-            iconColor: color,
-            label: 'Category',
-            value: expense.categoryName ?? 'No category (it was deleted)',
-          ),
-          _DetailRow(
-            icon: Icons.notes,
-            label: 'Notes',
-            value: expense.notes.isEmpty ? '-' : expense.notes,
-          ),
-          _DetailRow(
-            icon: Icons.tag,
-            label: 'Record number',
-            value: '#${expense.id}',
-          ),
-
-          const SizedBox(height: 20),
-
-          // A second, easier-to-reach delete button. Same function as the
-          // app bar icon - written once, used twice.
-          OutlinedButton.icon(
-            onPressed: isDeleting ? null : confirmAndDelete,
-            icon: const Icon(Icons.delete_outline),
-            label: Text(isDeleting ? 'DELETING...' : 'DELETE EXPENSE'),
-            style: OutlinedButton.styleFrom(
-              foregroundColor: kExpenseColor,
-              minimumSize: const Size.fromHeight(50),
-              side: const BorderSide(color: kExpenseColor),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(12),
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-// ---------------------------------------------------------------------------
-// One "label + value" line. Private to this file; it exists so the six lines
-// above are six short calls instead of six copies of the same Row.
-// ---------------------------------------------------------------------------
-class _DetailRow extends StatelessWidget {
-  final IconData icon;
-  final Color? iconColor;
-  final String label;
-  final String value;
-
-  const _DetailRow({
-    required this.icon,
-    required this.label,
-    required this.value,
-    this.iconColor,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Card(
-      margin: const EdgeInsets.only(bottom: 10),
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(kRadius),
-      ),
-      child: ListTile(
-        leading: Icon(icon, color: iconColor ?? kPrimaryColor),
-        title: Text(label, style: const TextStyle(color: Colors.grey)),
-        subtitle: Text(
-          value,
-          style: const TextStyle(
-            color: Colors.black87,
-            fontSize: 16,
-            fontWeight: FontWeight.w500,
-          ),
-        ),
-      ),
-    );
-  }
-}
-```
-
-================================================================================
-FILE: lib/expenses/expenses_list_screen.dart
-================================================================================
-
-```dart
-// ===========================================================================
-// expenses_list_screen.dart  -  FR8: the list of all expenses (the READ part
-// of CRUD) and the entry point to add / view / edit / delete one.
-//
-// The screen does NOT own the list and never touches the database. It reads
-// ExpenseProvider and redraws whenever the provider says the data changed -
-// which happens after every add, edit and delete, wherever in the app they
-// were made. That is why there is no "reload after coming back" code here
-// any more: the provider has already told us.
-//
-// Three states, three bodies: spinner while loading, an error view with
-// "Try again", or the list (with a friendly screen when it is empty).
-//
-// Searching and filtering (FR16-FR20) live in their own screen, opened from
-// the magnifier in the app bar.
-// ===========================================================================
-
-import 'package:flutter/material.dart';
-
-import '../models/user.dart';
-import '../providers/expense_provider.dart';
-import '../utils/constants.dart';
-import '../widgets/app_drawer.dart';
-import '../widgets/expense_card.dart';
-import 'add_expense_screen.dart';
-import 'expense_details_screen.dart';
-import 'search_expenses_screen.dart';
-
-class ExpensesListScreen extends StatefulWidget {
-  // Needed only so this screen can show the same side menu as the dashboard.
-  final User user;
-
-  const ExpensesListScreen({super.key, required this.user});
-
-  @override
-  State<ExpensesListScreen> createState() => _ExpensesListScreenState();
-}
-
-class _ExpensesListScreenState extends State<ExpensesListScreen> {
-  // ExpenseProvider() always returns the one shared object (it is a
-  // singleton), so this is the same provider the dashboard listens to.
-  final ExpenseProvider provider = ExpenseProvider();
-
-  @override
-  void initState() {
-    super.initState();
-
-    // Safe to call straight from initState: the provider defers its first
-    // notification to a microtask, so nothing is asked to redraw while this
-    // screen is still being built.
-    provider.loadExpenses();
-  }
-
-  void openScreen(Widget screen) {
-    // No reload afterwards: whatever that screen changes, it changes through
-    // the provider, and the provider redraws us.
-    Navigator.push(context, MaterialPageRoute(builder: (_) => screen));
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Expenses'),
-        actions: [
-          // FR16-FR20 live one tap away, where people look for them.
-          IconButton(
-            icon: const Icon(Icons.search),
-            tooltip: 'Search and filter',
-            onPressed: () => openScreen(SearchExpensesScreen(user: widget.user)),
-          ),
-          const LogoutAction(),
-        ],
-      ),
-      drawer: AppDrawer(user: widget.user),
-
-      // FR5 starts here: the "+" button in the corner.
-      floatingActionButton: FloatingActionButton.extended(
-        onPressed: () => openScreen(const AddExpenseScreen()),
-        backgroundColor: kExpenseColor,
-        foregroundColor: Colors.white,
-        icon: const Icon(Icons.add),
-        label: const Text('Add'),
-      ),
-
-      // ListenableBuilder rebuilds ONLY what is inside it, every time the
-      // provider calls notifyListeners(). The app bar and the button above
-      // are built once and left alone.
-      body: ListenableBuilder(
-        listenable: provider,
-        builder: (context, _) => buildBody(),
-      ),
-    );
-  }
-
-  // Splitting the body into its own method keeps build() readable: one look
-  // tells you which of the three states the screen is in.
-  Widget buildBody() {
-    if (provider.isLoading) {
-      return const Center(child: CircularProgressIndicator());
-    }
-
-    if (provider.errorMessage != null) {
-      return Center(
-        child: Padding(
-          padding: const EdgeInsets.all(kPadding * 2),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const Icon(Icons.error_outline, size: 64, color: Colors.grey),
-              const SizedBox(height: 16),
-              Text(
-                provider.errorMessage!,
-                textAlign: TextAlign.center,
-                style: const TextStyle(fontSize: 16, color: Colors.grey),
-              ),
-              const SizedBox(height: 20),
-              SizedBox(
-                width: 160,
-                child: ElevatedButton(
-                  onPressed: provider.loadExpenses,
-                  child: const Text('Try again'),
-                ),
-              ),
-            ],
-          ),
-        ),
-      );
-    }
-
-    final expenses = provider.expenses;
-
-    if (expenses.isEmpty) {
-      // An empty list should explain itself instead of showing a blank page.
-      return Center(
-        child: Padding(
-          padding: const EdgeInsets.all(kPadding * 2),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: const [
-              Icon(Icons.receipt_long, size: 72, color: Colors.grey),
-              SizedBox(height: 16),
-              Text(
-                'No expenses yet',
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-              ),
-              SizedBox(height: 8),
-              Text(
-                'Tap "Add" to record your first expense.',
-                textAlign: TextAlign.center,
-                style: TextStyle(fontSize: 16, color: Colors.grey),
-              ),
-            ],
-          ),
-        ),
-      );
-    }
-
-    // RefreshIndicator = pull the list down to reload it.
-    return RefreshIndicator(
-      onRefresh: provider.loadExpenses,
-      child: ListView.builder(
-        // .builder only builds the rows that are visible, so a list of a
-        // thousand expenses still scrolls smoothly.
-        padding: const EdgeInsets.fromLTRB(kPadding, kPadding, kPadding, 90),
-        itemCount: expenses.length,
-        itemBuilder: (context, index) {
-          final expense = expenses[index];
-          return ExpenseCard(
-            expense: expense,
-            // FR9: tap a row to see everything about it.
-            onTap: () => openScreen(ExpenseDetailsScreen(expense: expense)),
-          );
-        },
-      ),
-    );
-  }
-}
-```
-
-================================================================================
-FILE: lib/expenses/search_expenses_screen.dart
-================================================================================
-
-```dart
-// ===========================================================================
-// search_expenses_screen.dart  -  the search and filter module.
-//
-//    FR16 search by name        FR17 search by date
-//    FR18 search by category    FR19 search by amount (more than / less than)
-//    FR20 combined search       (several conditions at once)
-//
-// HOW IT WORKS
-// The screen collects whatever the user filled in and hands it to ONE
-// function, ExpenseProvider.search(). Anything left empty is sent as null,
-// which means "do not filter on this". So the five requirements are not five
-// separate searches - they are the same search with more or fewer conditions.
-//
-// The filtering is done by SQLite in the WHERE clause, NOT by loading every
-// expense and dropping the ones that do not match in Dart. That is the whole
-// point of using a database.
-//
-// WHY THE RESULTS ARE HELD HERE AND NOT IN THE PROVIDER
-// The provider owns the list every screen shares. A search result is not
-// that: it is a private answer to a question this screen just asked, and it
-// belongs to this screen only. So search() returns the rows instead of
-// replacing the shared list.
-// ===========================================================================
-
-import 'dart:async';
-
-import 'package:flutter/material.dart';
-
-import '../models/user.dart';
-import '../models/expense.dart';
-import '../models/category.dart';
-import '../database/database_helper.dart';
-import '../providers/expense_provider.dart';
-import '../utils/constants.dart';
-import '../utils/formatters.dart';
-import '../utils/date_ranges.dart';
-import '../widgets/app_drawer.dart';
-import '../widgets/expense_card.dart';
-import 'expense_details_screen.dart';
-
-class SearchExpensesScreen extends StatefulWidget {
-  final User user;
-
-  const SearchExpensesScreen({super.key, required this.user});
-
-  @override
-  State<SearchExpensesScreen> createState() => _SearchExpensesScreenState();
-}
-
-class _SearchExpensesScreenState extends State<SearchExpensesScreen> {
-  final ExpenseProvider provider = ExpenseProvider();
-
-  // The category dropdown is the only thing this screen reads straight from
-  // the database: categories are not one of the two lists the providers own.
-  final DatabaseHelper _db = DatabaseHelper();
-
-  // ---- the filters ----
-  final titleController = TextEditingController(); // FR16
-  final minController = TextEditingController(); // FR19
-  final maxController = TextEditingController(); // FR19
-  DateRange? dateRange; // FR17
-  int? categoryId; // FR18
-
-  // ---- the data ----
-  List<Category> categories = [];
-  List<Expense> results = [];
-  bool isLoading = true;
-  String? errorMessage;
-  bool filtersOpen = true;
-
-  // Typing "coffee" fires six changes. Without this timer we would send six
-  // queries and the answers could even arrive out of order. Instead we wait
-  // until the user has stopped typing for a moment, then search once.
-  Timer? _debounce;
-
-  @override
-  void initState() {
-    super.initState();
-    loadCategories();
-    runSearch(); // no filters yet -> shows everything
-  }
-
-  @override
-  void dispose() {
-    // Controllers and timers hold memory and keep running after the screen is
-    // gone. Releasing them here is not optional.
-    _debounce?.cancel();
-    titleController.dispose();
-    minController.dispose();
-    maxController.dispose();
-    super.dispose();
-  }
-
-  Future<void> loadCategories() async {
-    try {
-      final rows = await _db.getAllCategories();
-      if (!mounted) return;
-      setState(() => categories = rows);
-    } catch (e) {
-      // A failed category list must not break the whole screen: the user can
-      // still search by name, date and amount.
-      if (!mounted) return;
-      setState(() => categories = []);
-    }
-  }
-
-  // -------------------------------------------------------------------------
-  // THE SEARCH ITSELF
-  // -------------------------------------------------------------------------
-  Future<void> runSearch() async {
-    setState(() {
-      isLoading = true;
-      errorMessage = null;
-    });
-
-    try {
-      final rows = await provider.search(
-        text: titleController.text, // FR16
-        range: dateRange, // FR17
-        categoryId: categoryId, // FR18
-        // tryParse returns null when the box is empty or holds nonsense, and
-        // null is exactly what "no amount filter" means - so a half-typed
-        // number simply does not filter instead of crashing.
-        minAmount: double.tryParse(minController.text.trim()), // FR19
-        maxAmount: double.tryParse(maxController.text.trim()), // FR19
-      );
-
-      if (!mounted) return;
-      setState(() {
-        results = rows;
-        isLoading = false;
-      });
-    } catch (e) {
-      if (!mounted) return;
-      setState(() {
-        errorMessage = 'Could not run the search.';
-        isLoading = false;
-      });
-    }
-  }
-
-  // Called on every keystroke. It only starts the search once the typing has
-  // paused for 350 milliseconds.
-  void onTextChanged() {
-    // Redraw now so the clear button and the filter badge react to the very
-    // first letter; the search itself still waits for the pause.
-    setState(() {});
-    _debounce?.cancel();
-    _debounce = Timer(const Duration(milliseconds: 350), runSearch);
-  }
-
-  // FR17: let the user pick two dates. showDateRangePicker is the built-in
-  // Flutter calendar for a start and an end day.
-  Future<void> pickDateRange() async {
-    final firstDate = DateTime(2000);
-    final lastDate = dateOnly(DateTime.now());
-
-    // THE BUG THIS GUARD FIXES
-    // showDateRangePicker refuses to open if the range it starts with reaches
-    // outside firstDate..lastDate - in debug it throws an assertion, so the
-    // button looks dead. "This month" runs to the 31st while lastDate is
-    // today, which is exactly that case. So we trim the starting range to
-    // what the picker allows, and pass nothing at all if trimming leaves an
-    // impossible range.
-    DateTimeRange? initialRange;
-    final current = dateRange;
-    if (current != null) {
-      final start = current.start.isBefore(firstDate) ? firstDate : current.start;
-      final end = current.end.isAfter(lastDate) ? lastDate : current.end;
-      if (!end.isBefore(start)) {
-        initialRange = DateTimeRange(start: start, end: end);
-      }
-    }
-
-    final picked = await showDateRangePicker(
-      context: context,
-      firstDate: firstDate,
-      lastDate: lastDate,
-      initialDateRange: initialRange,
-      helpText: 'Expenses between',
-    );
-
-    if (picked == null || !mounted) return;
-    setState(() => dateRange = DateRange(picked.start, picked.end));
-    runSearch();
-  }
-
-  // Quick buttons for the ranges people actually ask for.
-  void useQuickRange(DateRange? value) {
-    setState(() => dateRange = value);
-    runSearch();
-  }
-
-  void clearFilters() {
-    setState(() {
-      titleController.clear();
-      minController.clear();
-      maxController.clear();
-      dateRange = null;
-      categoryId = null;
-    });
-    runSearch();
-  }
-
-  // How many conditions are switched on. Shown as a badge so the user always
-  // knows the list is filtered, even with the panel collapsed.
-  int get activeFilterCount {
-    var count = 0;
-    if (titleController.text.trim().isNotEmpty) count++;
-    if (dateRange != null) count++;
-    if (categoryId != null) count++;
-    if (double.tryParse(minController.text.trim()) != null) count++;
-    if (double.tryParse(maxController.text.trim()) != null) count++;
-    return count;
-  }
-
-  // The sum of what is on screen. Useful on its own: "how much did I spend on
-  // food in July?" is a search plus a total.
-  double get resultsTotal {
-    return results.fold<double>(0, (sum, expense) => sum + expense.amount);
-  }
-
-  // -------------------------------------------------------------------------
-  // DRAWING
-  // -------------------------------------------------------------------------
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Search expenses'),
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.filter_alt_off),
-            tooltip: 'Clear filters',
-            onPressed: activeFilterCount == 0 ? null : clearFilters,
-          ),
-          const LogoutAction(),
-        ],
-      ),
-      drawer: AppDrawer(user: widget.user),
-      body: Column(
-        children: [
-          buildFilterPanel(),
-          const Divider(height: 1),
-          buildResultsHeader(),
-          Expanded(child: buildResults()),
-        ],
-      ),
-    );
-  }
-
-  Widget buildFilterPanel() {
-    return Container(
-      color: Colors.white,
-      child: Column(
-        children: [
-          // FR16: the name box is always visible - it is the one people use
-          // most. The rest of the filters hide behind the arrow.
-          Padding(
-            padding: const EdgeInsets.fromLTRB(kPadding, kPadding, kPadding, 8),
-            child: Row(
-              children: [
-                Expanded(
-                  child: TextField(
-                    controller: titleController,
-                    onChanged: (_) => onTextChanged(),
-                    textInputAction: TextInputAction.search,
-                    decoration: InputDecoration(
-                      hintText: 'Search by name',
-                      prefixIcon: const Icon(Icons.search),
-                      isDense: true,
-                      suffixIcon: titleController.text.isEmpty
-                          ? null
-                          : IconButton(
-                        icon: const Icon(Icons.close),
-                        onPressed: () {
-                          titleController.clear();
-                          runSearch();
-                        },
-                      ),
-                    ),
-                  ),
-                ),
-                IconButton(
-                  tooltip: filtersOpen ? 'Hide filters' : 'More filters',
-                  icon: Badge(
-                    // The badge is hidden when nothing is filtered, so it only
-                    // appears when it carries information.
-                    isLabelVisible: activeFilterCount > 0,
-                    label: Text('$activeFilterCount'),
-                    child: Icon(
-                      filtersOpen ? Icons.expand_less : Icons.tune,
-                    ),
-                  ),
-                  onPressed: () => setState(() => filtersOpen = !filtersOpen),
-                ),
-              ],
-            ),
-          ),
-
-          if (filtersOpen)
-            Padding(
-              padding: const EdgeInsets.fromLTRB(kPadding, 0, kPadding, kPadding),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  // ---- FR18: by category ----
-                  DropdownButtonFormField<int?>(
-                    initialValue: categoryId,
-                    isExpanded: true,
-                    decoration: const InputDecoration(
-                      labelText: 'Category',
-                      isDense: true,
-                    ),
-                    items: [
-                      // A null value is a real choice here: "all categories".
-                      const DropdownMenuItem<int?>(
-                        value: null,
-                        child: Text('All categories'),
-                      ),
-                      ...categories.map(
-                            (category) => DropdownMenuItem<int?>(
-                          value: category.id,
-                          child: Text(category.name),
-                        ),
-                      ),
-                    ],
-                    onChanged: (value) {
-                      setState(() => categoryId = value);
-                      runSearch();
-                    },
-                  ),
-                  const SizedBox(height: 12),
-
-                  // ---- FR19: by amount ----
-                  Row(
-                    children: [
-                      Expanded(
-                        child: TextField(
-                          controller: minController,
-                          keyboardType: const TextInputType.numberWithOptions(
-                            decimal: true,
-                          ),
-                          onChanged: (_) => onTextChanged(),
-                          decoration: const InputDecoration(
-                            labelText: 'More than',
-                            isDense: true,
-                          ),
-                        ),
-                      ),
-                      const SizedBox(width: 12),
-                      Expanded(
-                        child: TextField(
-                          controller: maxController,
-                          keyboardType: const TextInputType.numberWithOptions(
-                            decimal: true,
-                          ),
-                          onChanged: (_) => onTextChanged(),
-                          decoration: const InputDecoration(
-                            labelText: 'Less than',
-                            isDense: true,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: 12),
-
-                  // ---- FR17: by date ----
-                  const Text('Date', style: TextStyle(color: Colors.grey)),
-                  const SizedBox(height: 6),
-                  Wrap(
-                    spacing: 8,
-                    runSpacing: 4,
-                    children: [
-                      quickChip('Any time', dateRange == null, () {
-                        useQuickRange(null);
-                      }),
-                      quickChip(
-                        'Today',
-                        isSameRange(DateRange.day(DateTime.now())),
-                            () => useQuickRange(DateRange.day(DateTime.now())),
-                      ),
-                      quickChip(
-                        'This week',
-                        isSameRange(DateRange.week(DateTime.now())),
-                            () => useQuickRange(DateRange.week(DateTime.now())),
-                      ),
-                      quickChip(
-                        'This month',
-                        isSameRange(DateRange.month(DateTime.now())),
-                            () => useQuickRange(DateRange.month(DateTime.now())),
-                      ),
-                      ActionChip(
-                        avatar: const Icon(Icons.date_range, size: 18),
-                        label: const Text('Pick dates'),
-                        onPressed: pickDateRange,
-                      ),
-                    ],
-                  ),
-                  if (dateRange != null)
-                    Padding(
-                      padding: const EdgeInsets.only(top: 8),
-                      child: Text(
-                        'Showing ${dateRange!.label}',
-                        style: const TextStyle(
-                          fontSize: 12,
-                          color: kPrimaryColor,
-                        ),
-                      ),
-                    ),
-                ],
-              ),
-            ),
-        ],
-      ),
-    );
-  }
-
-  // Small helper so the four date chips are written once.
-  Widget quickChip(String label, bool selected, VoidCallback onTap) {
-    return ChoiceChip(
-      label: Text(label),
-      selected: selected,
-      showCheckmark: false,
-      selectedColor: kPrimaryColor,
-      labelStyle: TextStyle(
-        color: selected ? Colors.white : Colors.black87,
-        fontSize: 13,
-      ),
-      onSelected: (_) => onTap(),
-    );
-  }
-
-  // Is the chosen range the same as this preset? Compared by both ends,
-  // because "this week" and "this month" can start on the same day.
-  bool isSameRange(DateRange other) {
-    final current = dateRange;
-    if (current == null) return false;
-    return current.start == other.start && current.end == other.end;
-  }
-
-  // FR20 in one line: how many rows matched, and what they add up to.
-  Widget buildResultsHeader() {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: kPadding, vertical: 10),
-      child: Row(
-        children: [
-          Expanded(
-            child: Text(
-              isLoading
-                  ? 'Searching...'
-                  : '${results.length} ${results.length == 1 ? 'expense' : 'expenses'}',
-              style: const TextStyle(fontWeight: FontWeight.bold),
-            ),
-          ),
-          if (!isLoading && results.isNotEmpty)
-            Text(
-              'Total: ${formatAmount(resultsTotal)}',
-              style: const TextStyle(
-                fontWeight: FontWeight.bold,
-                color: kExpenseColor,
-              ),
-            ),
-        ],
-      ),
-    );
-  }
-
-  Widget buildResults() {
-    if (isLoading) {
-      return const Center(child: CircularProgressIndicator());
-    }
-
-    if (errorMessage != null) {
-      return Center(
-        child: Padding(
-          padding: const EdgeInsets.all(kPadding * 2),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const Icon(Icons.error_outline, size: 64, color: Colors.grey),
-              const SizedBox(height: 16),
-              Text(
-                errorMessage!,
-                textAlign: TextAlign.center,
-                style: const TextStyle(fontSize: 16, color: Colors.grey),
-              ),
-              const SizedBox(height: 20),
-              SizedBox(
-                width: 160,
-                child: ElevatedButton(
-                  onPressed: runSearch,
-                  child: const Text('Try again'),
-                ),
-              ),
-            ],
-          ),
-        ),
-      );
-    }
-
-    if (results.isEmpty) {
-      // An empty result is not an error: it means the filters are too narrow.
-      // The message says what to do about it.
-      return Center(
-        child: Padding(
-          padding: const EdgeInsets.all(kPadding * 2),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const Icon(Icons.search_off, size: 72, color: Colors.grey),
-              const SizedBox(height: 16),
-              const Text(
-                'No expense matches',
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-              ),
-              const SizedBox(height: 8),
-              const Text(
-                'Try a shorter word, a wider date range, or remove a filter.',
-                textAlign: TextAlign.center,
-                style: TextStyle(fontSize: 15, color: Colors.grey),
-              ),
-              if (activeFilterCount > 0) ...[
-                const SizedBox(height: 20),
-                SizedBox(
-                  width: 200,
-                  child: ElevatedButton(
-                    onPressed: clearFilters,
-                    child: const Text('Clear all filters'),
-                  ),
-                ),
-              ],
-            ],
-          ),
-        ),
-      );
-    }
-
-    return ListView.builder(
-      padding: const EdgeInsets.fromLTRB(kPadding, 8, kPadding, kPadding),
-      itemCount: results.length,
-      itemBuilder: (context, index) {
-        final expense = results[index];
-        return ExpenseCard(
-          expense: expense,
-          // The details screen can edit or delete the row, so we search again
-          // when we come back: a renamed expense may no longer match.
-          onTap: () async {
-            await Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (_) => ExpenseDetailsScreen(expense: expense),
-              ),
-            );
-            if (!mounted) return;
-            await runSearch();
-          },
-        );
-      },
-    );
-  }
-}
-```
-
-================================================================================
-FILE: lib/database/database_helper.dart
-================================================================================
-
-```dart
-// ===========================================================================
-// database_helper.dart  -  the database file of the project.
-//
-// We use SQLite (a small database inside the phone) through the "sqflite"
-// package. This is the ONLY file that writes SQL. Screens just call functions
-// like login() or addExpense().
-// ===========================================================================
-
-import 'package:path/path.dart'; // gives us join()
-import 'package:sqflite/sqflite.dart'; // gives us the database
-
-import '../models/user.dart';
-import '../models/category.dart';
-import '../models/expense.dart';
-import '../models/income.dart';
-import '../utils/date_ranges.dart';
-import '../utils/formatters.dart';
-
-class DatabaseHelper {
-  // -------------------------------------------------------------------------
-  // SINGLETON
-  // These 3 lines make sure only ONE DatabaseHelper exists in the whole app.
-  // Every time you write DatabaseHelper() you get the same object back.
-  // Reason: opening the same database file twice causes errors.
-  // -------------------------------------------------------------------------
-  static final DatabaseHelper _instance = DatabaseHelper._internal();
-  factory DatabaseHelper() => _instance;
-  DatabaseHelper._internal();
-
-  // The open connection. null until we open it the first time.
-  static Database? _db;
-
-  // Use this in every function:  final db = await database;
-  Future<Database> get database async {
-    if (_db != null) return _db!; // already open -> return it
-    _db = await _openDatabase(); // not open -> open it now
-    return _db!;
-  }
-
-  // Opens the database file (creates it if it does not exist).
-  Future<Database> _openDatabase() async {
-    final path = join(await getDatabasesPath(), 'app.db');
-    return openDatabase(
-      path,
-      version: 2, // increase this if you change the tables
-      onConfigure: _onConfigure, // runs EVERY time the file is opened
-      onCreate: _createTables, // runs ONLY when the file is first created
-      onUpgrade: _upgradeTables, // runs when version is higher than the file's
-    );
-  }
-
-  // Runs on every open, before anything else.
-  // SQLite ignores FOREIGN KEY rules unless you switch them on per connection.
-  // We switch them on so an expense can never point at a category that does
-  // not exist.
-  Future<void> _onConfigure(Database db) async {
-    await db.execute('PRAGMA foreign_keys = ON');
-  }
-
-  // -------------------------------------------------------------------------
-  // CREATING THE TABLES
-  // -------------------------------------------------------------------------
-  Future<void> _createTables(Database db, int version) async {
-    // ---- USERS table ----
-    await db.execute('''
-      CREATE TABLE users (
-        id       INTEGER PRIMARY KEY AUTOINCREMENT,
-        username TEXT UNIQUE,
-        password TEXT,
-        full_name TEXT
-      )
-    ''');
-
-    // Test accounts so we can log in right away.
-    await db.insert('users', {'username': 'Tammam', 'password': 'Tammam123456', 'full_name': 'Tammam Alhadwah'});
-    await db.insert('users', {'username': 'Karam', 'password': 'Karam123', 'full_name': 'Karam Kanaan'});
-
-
-    await db.execute('''
-       CREATE TABLE categories (
-         id         INTEGER PRIMARY KEY AUTOINCREMENT,
-         name       TEXT NOT NULL,
-         icon       TEXT,
-         color      TEXT
-       )
-     ''');
-
-
-    await db.execute('''
-       CREATE TABLE incomes (
-         id          INTEGER PRIMARY KEY AUTOINCREMENT,
-         title       TEXT,
-         amount      REAL,
-         income_date DATE,
-         notes       TEXT
-       )
-     ''');
-
-
-    await db.execute('''
-       CREATE TABLE expenses (
-         id           INTEGER PRIMARY KEY AUTOINCREMENT,
-         title        TEXT,
-         amount       REAL,
-         expense_date DATE,
-         category_id  INTEGER,
-         notes        TEXT,
-         FOREIGN KEY(category_id)
-         REFERENCES categories(id)
-       )
-     ''');
-
-    // An expense cannot be saved without a category, so the app must never
-    // start with an empty categories table.
-    await _seedDefaultCategories(db);
-  }
-
-  // -------------------------------------------------------------------------
-  // UPGRADING AN EXISTING FILE
-  // -------------------------------------------------------------------------
-  // onCreate only runs on a phone that has never installed the app. Everyone
-  // who already ran version 1 has the tables but NO categories, so we add
-  // them here instead of asking people to delete the database.
-  //
-  // Rule for the rest of the project: never edit a released CREATE TABLE -
-  // raise `version` and add a step here.
-  Future<void> _upgradeTables(Database db, int oldVersion, int newVersion) async {
-    if (oldVersion < 2) {
-      await _seedDefaultCategories(db);
-    }
-  }
-
-  // Inserts the starter categories, but only if the table is empty, so it can
-  // never duplicate them or overwrite categories the user created.
-  Future<void> _seedDefaultCategories(DatabaseExecutor db) async {
-    final existing = await db.query('categories', limit: 1);
-    if (existing.isNotEmpty) return;
-
-    // The icon values are keys from utils/category_style.dart.
-    const defaults = [
-      {'name': 'Food', 'icon': 'food', 'color': '#E4572E'},
-      {'name': 'Transport', 'icon': 'transport', 'color': '#1E5F8C'},
-      {'name': 'Bills', 'icon': 'bills', 'color': '#6C5B7B'},
-      {'name': 'Entertainment', 'icon': 'entertainment', 'color': '#F2A65A'},
-      {'name': 'Health', 'icon': 'health', 'color': '#3BA776'},
-      {'name': 'Education', 'icon': 'education', 'color': '#4FA3C4'},
-      {'name': 'Other', 'icon': 'other', 'color': '#7A8B99'},
-    ];
-
-    // A batch sends all the inserts in one go instead of seven round trips.
-    final batch = db.batch();
-    for (final category in defaults) {
-      batch.insert('categories', category);
-    }
-    await batch.commit(noResult: true);
-  }
-
-  // =========================================================================
-  // USERS
-  // =========================================================================
-
-  // Adds a new user. Returns the id of the new row.
-  //
-  // Throws a DatabaseException if the username is already taken, because the
-  // users table declares  username TEXT UNIQUE . The register screen checks
-  // usernameExists() first for a friendly message, but we keep the database
-  // rule as the LAST line of defence (two people could register at the same
-  // moment, and only the database can settle that race).
-  Future<int> addUser(String username, String password, String fullName) async {
-    final db = await database;
-    return db.insert(
-      'users',
-      {'username': username, 'password': password, 'full_name': fullName},
-      conflictAlgorithm: ConflictAlgorithm.abort, // duplicate -> throw, never overwrite
-    );
-  }
-
-  // Checks if username + password exist. Returns a User, or null if wrong.
-  Future<User?> login(String username, String password) async {
-    final db = await database;
-
-    final rows = await db.query(
-      'users',
-      // LOWER() on both sides makes the username case-insensitive, so
-      // "tammam" and "Tammam" are the same account (passwords stay exact).
-      where: 'LOWER(username) = ? AND password = ?',
-      whereArgs: [username.toLowerCase(), password],
-      limit: 1,
-      // The ? marks are replaced by whereArgs safely.
-      // NEVER build the query by joining strings (SQL injection risk).
-    );
-
-    if (rows.isEmpty) return null; // no match -> wrong login
-    return User.fromMap(rows.first); // match -> turn the row into a User
-  }
-
-  // Returns every user.
-  Future<List<User>> getAllUsers() async {
-    final db = await database;
-    final rows = await db.query('users');
-    // Turn each Map row into a User object.
-    return rows.map((row) => User.fromMap(row)).toList();
-  }
-
-  // Returns one user by id, or null if that id is gone.
-  Future<User?> getUserById(int id) async {
-    final db = await database;
-    final rows = await db.query(
-      'users',
-      where: 'id = ?',
-      whereArgs: [id],
-      limit: 1,
-    );
-    if (rows.isEmpty) return null;
-    return User.fromMap(rows.first);
-  }
-
-  // Checks if a username already exists (register screen + future edits).
-  // Comparison is case-insensitive, so "Ali" cannot be registered twice as
-  // "ali". excludeId lets a user keep their own name when editing a profile.
-  Future<bool> usernameExists(String username, {int? excludeId}) async {
-    final db = await database;
-    final rows = await db.query(
-      'users',
-      where: excludeId == null
-          ? 'LOWER(username) = ?'
-          : 'LOWER(username) = ? AND id != ?',
-      whereArgs: excludeId == null
-          ? [username.toLowerCase()]
-          : [username.toLowerCase(), excludeId],
-      limit: 1,
-    );
-    return rows.isNotEmpty;
-  }
-
-  // Is this the password of user #id ? Used by the change-password screen to
-  // confirm the CURRENT password before allowing a new one.
-  Future<bool> verifyPassword(int id, String password) async {
-    final db = await database;
-    final rows = await db.query(
-      'users',
-      where: 'id = ? AND password = ?',
-      whereArgs: [id, password],
-      limit: 1,
-    );
-    return rows.isNotEmpty;
-  }
-
-  // Returns how many rows changed: 1 = success, 0 = no user with that id.
-  Future<int> updatePassword(int id, String newPassword) async {
-    final db = await database;
-    return db.update(
-      'users',
-      {'password': newPassword},
-      where: 'id = ?',
-      whereArgs: [id],
-    );
-  }
-
-  Future<int> deleteUser(int id) async {
-    final db = await database;
-    return db.delete('users', where: 'id = ?', whereArgs: [id]);
-  }
-
-  // =========================================================================
-  // CATEGORIES
-  // =========================================================================
-
-  // Every category, A -> Z. Used by the expense form's dropdown.
-  Future<List<Category>> getAllCategories() async {
-    final db = await database;
-    final rows = await db.query('categories', orderBy: 'name COLLATE NOCASE ASC');
-    return rows.map((row) => Category.fromMap(row)).toList();
-  }
-
-  // One category, or null if it was deleted.
-  Future<Category?> getCategoryById(int id) async {
-    final db = await database;
-    final rows = await db.query(
-      'categories',
-      where: 'id = ?',
-      whereArgs: [id],
-      limit: 1,
-    );
-    if (rows.isEmpty) return null;
-    return Category.fromMap(rows.first);
-  }
-
-  // Is this category name already used? Case-insensitive, so "Food" and
-  // "food" count as the same category. excludeId lets a category keep its own
-  // name while being edited.
-  Future<bool> categoryNameExists(String name, {int? excludeId}) async {
-    final db = await database;
-    final rows = await db.query(
-      'categories',
-      where: excludeId == null
-          ? 'LOWER(name) = ?'
-          : 'LOWER(name) = ? AND id != ?',
-      whereArgs: excludeId == null
-          ? [name.toLowerCase()]
-          : [name.toLowerCase(), excludeId],
-      limit: 1,
-    );
-    return rows.isNotEmpty;
-  }
-
-  // How many expenses use each category, as {categoryId: count}.
-  //
-  // ONE query with GROUP BY instead of one query per category. With ten
-  // categories that is 1 round trip instead of 10 - the same "N+1 queries"
-  // trap the expenses JOIN avoids.
-  Future<Map<int, int>> getExpenseCountByCategory() async {
-    final db = await database;
-    final rows = await db.rawQuery('''
-      SELECT category_id, COUNT(*) AS total
-      FROM expenses
-      WHERE category_id IS NOT NULL
-      GROUP BY category_id
-    ''');
-
-    return {
-      for (final row in rows)
-        (row['category_id'] as int): (row['total'] as int),
-    };
-  }
-
-  // CREATE - returns the id of the new row.
-  Future<int> addCategory(Category category) async {
-    final db = await database;
-
-    final values = category.toMap();
-    values.remove('id'); // let SQLite generate the id
-
-    return db.insert('categories', values);
-  }
-
-  // UPDATE - returns the number of rows changed (1 = success, 0 = not found).
-  Future<int> updateCategory(Category category) async {
-    final db = await database;
-
-    final id = category.id;
-    if (id == null) {
-      throw ArgumentError('Cannot update a category that has no id');
-    }
-
-    final values = category.toMap();
-    values.remove('id'); // never overwrite the primary key
-
-    return db.update('categories', values, where: 'id = ?', whereArgs: [id]);
-  }
-
-  // DELETE.
-  //
-  // expenses.category_id REFERENCES categories(id), and we switched foreign
-  // keys ON, so SQLite REFUSES to delete a category that expenses still point
-  // at. That is the database protecting the data - not a bug to work around.
-  //
-  // detachExpenses: true means the user chose "delete it anyway". We then set
-  // those expenses' category_id to NULL first, so no expense is lost and none
-  // is left pointing at a row that no longer exists.
-  //
-  // Both statements run inside a transaction: either BOTH happen or NEITHER
-  // does. Without it, a crash between the two would leave the data broken.
-  Future<int> deleteCategory(int id, {bool detachExpenses = false}) async {
-    final db = await database;
-
-    return db.transaction((txn) async {
-      if (detachExpenses) {
-        await txn.update(
-          'expenses',
-          {'category_id': null},
-          where: 'category_id = ?',
-          whereArgs: [id],
-        );
-      }
-      return txn.delete('categories', where: 'id = ?', whereArgs: [id]);
-    });
-  }
-
-  // =========================================================================
-  // EXPENSES
-  // =========================================================================
-
-  // The SELECT used by every "read expenses" function.
-  //
-  // LEFT JOIN (not a plain JOIN): if the category was deleted, a plain JOIN
-  // would make the expense disappear from the list. With LEFT JOIN the
-  // expense still comes back, just with null category columns.
-  //
-  // The "AS category_name" aliases are what Expense.fromMap() reads.
-  static const String _expenseSelect = '''
-    SELECT
-      e.id, e.title, e.amount, e.expense_date, e.category_id, e.notes,
-      c.name  AS category_name,
-      c.icon  AS category_icon,
-      c.color AS category_color
-    FROM expenses e
-    LEFT JOIN categories c ON c.id = e.category_id
-  ''';
-
-  // CREATE - returns the id of the new row.
-  Future<int> addExpense(Expense expense) async {
-    final db = await database;
-
-    final values = expense.toMap();
-    values.remove('id'); // let SQLite generate the id
-
-    return db.insert('expenses', values);
-  }
-
-  // READ - newest first. Two sort keys, because several expenses can share a
-  // date; the id then keeps the order stable (last added on top).
-  Future<List<Expense>> getAllExpenses() async {
-    final db = await database;
-    final rows = await db.rawQuery(
-      '$_expenseSelect ORDER BY e.expense_date DESC, e.id DESC',
-    );
-    return rows.map((row) => Expense.fromMap(row)).toList();
-  }
-
-  // READ one - used by the details screen after an edit, so it always shows
-  // fresh data. Returns null if the row was deleted meanwhile.
-  Future<Expense?> getExpenseById(int id) async {
-    final db = await database;
-    final rows = await db.rawQuery('$_expenseSelect WHERE e.id = ?', [id]);
-    if (rows.isEmpty) return null;
-    return Expense.fromMap(rows.first);
-  }
-
-  // UPDATE - returns the number of rows changed (1 = success, 0 = not found).
-  Future<int> updateExpense(Expense expense) async {
-    final db = await database;
-
-    final id = expense.id;
-    if (id == null) {
-      // Programming mistake, not a user mistake: an unsaved expense has no
-      // row to update. Failing loudly here is better than silently doing
-      // nothing and leaving the user thinking their edit was saved.
-      throw ArgumentError('Cannot update an expense that has no id');
-    }
-
-    final values = expense.toMap();
-    values.remove('id'); // never overwrite the primary key
-
-    return db.update('expenses', values, where: 'id = ?', whereArgs: [id]);
-  }
-
-  // DELETE - returns the number of rows removed.
-  Future<int> deleteExpense(int id) async {
-    final db = await database;
-    return db.delete('expenses', where: 'id = ?', whereArgs: [id]);
-  }
-
-  // =========================================================================
-  // SEARCH AND FILTER   (FR16 - FR20)
-  // =========================================================================
-
-  // ONE function answers all five requirements, because they are the same
-  // question with different pieces filled in:
-  //
-  //   FR16 search by name      -> text
-  //   FR17 search by date      -> range   (a day, a month, anything)
-  //   FR18 search by category  -> categoryId
-  //   FR19 search by amount    -> minAmount / maxAmount ("more than", "less than")
-  //   FR20 combined search     -> pass several at once; they are AND-ed
-  //
-  // Every parameter is optional (null = "do not filter on this"), so the
-  // search screen can send only the fields the user actually filled in.
-  // Passing nothing at all returns the whole list, exactly like
-  // getAllExpenses().
-  //
-  // HOW THE QUERY IS BUILT
-  // We collect the conditions in a list and join them with AND. The VALUES
-  // are never glued into the SQL text - they go into `args` and SQLite puts
-  // them in the ? holes itself. That is what makes SQL injection impossible:
-  // a user typing  ' OR 1=1 --  into the search box searches for that text,
-  // it does not become part of the query.
-  Future<List<Expense>> searchExpenses({
-    String? text,
-    DateRange? range,
-    int? categoryId,
-    double? minAmount,
-    double? maxAmount,
-  }) async {
-    final db = await database;
-
-    final conditions = <String>[];
-    final args = <Object?>[];
-
-    // ---- FR16: by name ----
-    // LIKE '%word%' means "contains word". SQLite's LIKE ignores upper/lower
-    // case for plain letters, so "taxi" also finds "Taxi".
-    final trimmed = text?.trim() ?? '';
-    if (trimmed.isNotEmpty) {
-      conditions.add('e.title LIKE ?');
-      args.add('%$trimmed%');
-    }
-
-    // ---- FR17: by date ----
-    // Dates are stored as 'yyyy-MM-dd' text, and BETWEEN compares that text.
-    // It gives the right answer only because that format sorts correctly -
-    // this is exactly why formatters.dart forbids saving any other format.
-    if (range != null) {
-      conditions.add('e.expense_date BETWEEN ? AND ?');
-      args.add(toDbDate(range.start));
-      args.add(toDbDate(range.end));
-    }
-
-    // ---- FR18: by category ----
-    if (categoryId != null) {
-      conditions.add('e.category_id = ?');
-      args.add(categoryId);
-    }
-
-    // ---- FR19: by amount ----
-    // Sent separately so the user can ask for only one side ("more than 500")
-    // or both ("between 100 and 500").
-    if (minAmount != null) {
-      conditions.add('e.amount >= ?');
-      args.add(minAmount);
-    }
-    if (maxAmount != null) {
-      conditions.add('e.amount <= ?');
-      args.add(maxAmount);
-    }
-
-    // ---- FR20: everything above is combined with AND ----
-    final where = conditions.isEmpty ? '' : 'WHERE ${conditions.join(' AND ')}';
-
-    final rows = await db.rawQuery(
-      '$_expenseSelect $where ORDER BY e.expense_date DESC, e.id DESC',
-      args,
-    );
-    return rows.map((row) => Expense.fromMap(row)).toList();
-  }
-
-  // =========================================================================
-  // INCOMES
-  // =========================================================================
-  //
-  // Simpler than expenses: no category, so no JOIN is needed and the plain
-  // query/insert/update/delete helpers of sqflite are enough.
-
-  // CREATE - returns the id of the new row.
-  Future<int> addIncome(Income income) async {
-    final db = await database;
-
-    final values = income.toMap();
-    values.remove('id'); // let SQLite generate the id
-
-    return db.insert('incomes', values);
-  }
-
-  // READ - newest first. The id is the second sort key so incomes added on
-  // the same day keep a stable order (last added on top).
-  Future<List<Income>> getAllIncomes() async {
-    final db = await database;
-    final rows = await db.query(
-      'incomes',
-      orderBy: 'income_date DESC, id DESC',
-    );
-    return rows.map((row) => Income.fromMap(row)).toList();
-  }
-
-  // READ one - returns null if the row was deleted meanwhile.
-  Future<Income?> getIncomeById(int id) async {
-    final db = await database;
-    final rows = await db.query(
-      'incomes',
-      where: 'id = ?',
-      whereArgs: [id],
-      limit: 1,
-    );
-    if (rows.isEmpty) return null;
-    return Income.fromMap(rows.first);
-  }
-
-  // UPDATE - returns the number of rows changed (1 = success, 0 = not found).
-  Future<int> updateIncome(Income income) async {
-    final db = await database;
-
-    final id = income.id;
-    if (id == null) {
-      // Programming mistake, not a user mistake: an unsaved income has no row
-      // to update. Failing loudly beats silently saving nothing.
-      throw ArgumentError('Cannot update an income that has no id');
-    }
-
-    final values = income.toMap();
-    values.remove('id'); // never overwrite the primary key
-
-    return db.update('incomes', values, where: 'id = ?', whereArgs: [id]);
-  }
-
-  // DELETE - returns the number of rows removed.
-  Future<int> deleteIncome(int id) async {
-    final db = await database;
-    return db.delete('incomes', where: 'id = ?', whereArgs: [id]);
-  }
-
-  // =========================================================================
-  // HELPER - development only
-  // =========================================================================
-
-  // Deletes the whole database file. Call once after changing CREATE TABLE,
-  // then restart the app so the tables rebuild from zero.
-  Future<void> deleteEverything() async {
-    final path = join(await getDatabasesPath(), 'app.db');
-    await deleteDatabase(path);
-    _db = null;
-  }
-}
-```
-
-================================================================================
-FILE: lib/incomes/add_income_screen.dart
-================================================================================
-
-```dart
-// ===========================================================================
-// add_income_screen.dart  -  FR10: record a salary or any other income
-// (CREATE).
-//
-// Short on purpose: the fields and the rules live in widgets/income_form.dart.
-// This screen only says what "Save" does - hand the income to the provider
-// and close. The provider stores it and refreshes every screen showing income.
-// ===========================================================================
-
-import 'package:flutter/material.dart';
-
-import '../providers/income_provider.dart';
-import '../widgets/income_form.dart';
-
-class AddIncomeScreen extends StatelessWidget {
-  const AddIncomeScreen({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text('Add Income')),
-      body: IncomeForm(
-        submitLabel: 'ADD INCOME',
-        onSave: (income) async {
-          await IncomeProvider().addIncome(income);
-
-          // context.mounted: the screen may have been closed while the
-          // database was writing. Using a dead context crashes the app.
-          if (!context.mounted) return;
-
-          Navigator.pop(context, true);
-        },
-      ),
-    );
-  }
-}
-```
-
-================================================================================
-FILE: lib/incomes/edit_income_screen.dart
-================================================================================
-
-```dart
-// ===========================================================================
-// edit_income_screen.dart  -  FR11: change the value (or any other field) of
-// an existing income (UPDATE).
-//
-// The twin of add_income_screen.dart. Two differences: it receives the income
-// and hands it to the form as `initial` so the fields start filled in, and
-// "Save" calls updateIncome() instead of addIncome().
-// ===========================================================================
-
-import 'package:flutter/material.dart';
-
-import '../models/income.dart';
-import '../providers/income_provider.dart';
-import '../widgets/income_form.dart';
-
-class EditIncomeScreen extends StatelessWidget {
-  final Income income;
-
-  const EditIncomeScreen({super.key, required this.income});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text('Edit Income')),
-      body: IncomeForm(
-        initial: income, // <- the only real difference
-        submitLabel: 'SAVE CHANGES',
-        onSave: (updated) async {
-          // false = 0 rows changed, so the income was deleted meanwhile.
-          final saved = await IncomeProvider().updateIncome(updated);
-          if (!context.mounted) return;
-
-          if (!saved) {
-            ScaffoldMessenger.of(context).showSnackBar(
-              const SnackBar(content: Text('This income no longer exists')),
-            );
-            return;
-          }
-
-          Navigator.pop(context, true);
-        },
-      ),
-    );
-  }
-}
-```
-
-================================================================================
-FILE: lib/incomes/incomes_screen.dart
-================================================================================
-
-```dart
-// ===========================================================================
-// incomes_screen.dart  -  the income module's home: the list of all incomes
-// (READ) plus the entry points to add (FR10), edit (FR11) and delete (FR12).
-//
-// The mirror image of expenses_list_screen.dart: the screen owns no data, it
-// listens to IncomeProvider and redraws when the provider says so.
-//
-// Delete lives here rather than on a details screen: the specification asks
-// for add / edit / delete only, so income has no details screen.
-// ===========================================================================
-
-import 'package:flutter/material.dart';
-
-import '../models/user.dart';
-import '../models/income.dart';
-import '../providers/income_provider.dart';
-import '../utils/constants.dart';
-import '../utils/formatters.dart';
-import '../widgets/app_drawer.dart';
-import '../widgets/income_card.dart';
-import 'add_income_screen.dart';
-import 'edit_income_screen.dart';
-
-class IncomesScreen extends StatefulWidget {
-  // Needed only so this screen can show the same side menu as the dashboard.
-  final User user;
-
-  const IncomesScreen({super.key, required this.user});
-
-  @override
-  State<IncomesScreen> createState() => _IncomesScreenState();
-}
-
-class _IncomesScreenState extends State<IncomesScreen> {
-  // The one shared IncomeProvider - the same object the dashboard listens to.
-  final IncomeProvider provider = IncomeProvider();
-
-  @override
-  void initState() {
-    super.initState();
-    // Safe from initState: the provider defers its first notification.
-    provider.loadIncomes();
-  }
-
-  void _showMessage(String message, {bool isError = true}) {
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Text(message),
-        backgroundColor: isError ? kExpenseColor : kIncomeColor,
-      ),
-    );
-  }
-
-  // No reload afterwards: the add and edit screens write through the
-  // provider, and the provider redraws this list by itself.
-  void openScreen(Widget screen) {
-    Navigator.push(context, MaterialPageRoute(builder: (_) => screen));
-  }
-
-  // FR12: delete, but never without asking first.
-  Future<void> confirmAndDelete(Income income) async {
-    final confirmed = await showDialog<bool>(
-      context: context,
-      builder: (dialogContext) => AlertDialog(
-        title: const Text('Delete income'),
-        // Naming the row in the question prevents "wrong row" accidents.
-        content: Text(
-          'Delete "${income.title}" (${formatAmount(income.amount)})?\n'
-              'This cannot be undone.',
-        ),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.pop(dialogContext, false),
-            child: const Text('Cancel'),
-          ),
-          TextButton(
-            onPressed: () => Navigator.pop(dialogContext, true),
-            style: TextButton.styleFrom(foregroundColor: kExpenseColor),
-            child: const Text('Delete'),
-          ),
-        ],
-      ),
-    );
-
-    // null = the dialog was dismissed by tapping outside it.
-    if (confirmed != true || !mounted) return;
-
-    try {
-      await provider.deleteIncome(income.id!);
-      if (!mounted) return;
-      _showMessage('Income deleted', isError: false);
-    } catch (e) {
-      if (!mounted) return;
-      _showMessage('Could not delete the income. Please try again.');
-    }
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Incomes'),
-        actions: const [LogoutAction()],
-      ),
-      drawer: AppDrawer(user: widget.user),
-
-      floatingActionButton: FloatingActionButton.extended(
-        onPressed: () => openScreen(const AddIncomeScreen()),
-        backgroundColor: kIncomeColor,
-        foregroundColor: Colors.white,
-        icon: const Icon(Icons.add),
-        label: const Text('Add'),
-      ),
-
-      // Everything that depends on the data sits inside the builder, so only
-      // that part is rebuilt when the provider changes.
-      body: ListenableBuilder(
-        listenable: provider,
-        builder: (context, _) => buildBody(),
-      ),
-    );
-  }
-
-  // Keeping the body in its own method means one look at build() tells you
-  // the whole screen; the four states are separated here.
-  Widget buildBody() {
-    if (provider.isLoading) {
-      return const Center(child: CircularProgressIndicator());
-    }
-
-    if (provider.errorMessage != null) {
-      return Center(
-        child: Padding(
-          padding: const EdgeInsets.all(kPadding * 2),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const Icon(Icons.error_outline, size: 64, color: Colors.grey),
-              const SizedBox(height: 16),
-              Text(
-                provider.errorMessage!,
-                textAlign: TextAlign.center,
-                style: const TextStyle(fontSize: 16, color: Colors.grey),
-              ),
-              const SizedBox(height: 20),
-              SizedBox(
-                width: 160,
-                child: ElevatedButton(
-                  onPressed: provider.loadIncomes,
-                  child: const Text('Try again'),
-                ),
-              ),
-            ],
-          ),
-        ),
-      );
-    }
-
-    final incomes = provider.incomes;
-
-    if (incomes.isEmpty) {
-      return Center(
-        child: Padding(
-          padding: const EdgeInsets.all(kPadding * 2),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: const [
-              Icon(Icons.savings, size: 72, color: Colors.grey),
-              SizedBox(height: 16),
-              Text(
-                'No income recorded yet',
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-              ),
-              SizedBox(height: 8),
-              Text(
-                'Tap "Add" to record your salary or any other income.',
-                textAlign: TextAlign.center,
-                style: TextStyle(fontSize: 16, color: Colors.grey),
-              ),
-            ],
-          ),
-        ),
-      );
-    }
-
-    // RefreshIndicator = pull the list down to reload it.
-    return RefreshIndicator(
-      onRefresh: provider.loadIncomes,
-      child: ListView.builder(
-        // .builder only builds the visible rows, so a long list stays smooth.
-        padding: const EdgeInsets.fromLTRB(kPadding, kPadding, kPadding, 90),
-        itemCount: incomes.length,
-        itemBuilder: (context, index) {
-          final income = incomes[index];
-          return IncomeCard(
-            income: income,
-            // Tapping the row and choosing "Edit" do the same thing, so the
-            // action is easy to reach either way.
-            onTap: () => openScreen(EditIncomeScreen(income: income)),
-            onEdit: () => openScreen(EditIncomeScreen(income: income)),
-            onDelete: () => confirmAndDelete(income),
-          );
-        },
-      ),
-    );
-  }
-}
-```
-
-================================================================================
-FILE: lib/categories/categories_screen.dart
-================================================================================
-
-```dart
-// ===========================================================================
-// categories_screen.dart  -  the category module: add (FR13), edit (FR14)
-// and delete (FR15) the categories that expenses are grouped by.
-//
-// The form itself lives in widgets/category_form_sheet.dart; this screen owns
-// the list, the database calls and the rules that need the database:
-//   - a category name cannot be used twice
-//   - a category still used by expenses cannot just disappear
-// ===========================================================================
-
-import 'package:flutter/material.dart';
-
-import '../models/user.dart';
-import '../models/category.dart';
-import '../database/database_helper.dart';
-import '../utils/constants.dart';
-import '../utils/category_style.dart';
-import '../widgets/app_drawer.dart';
-import '../widgets/category_form_sheet.dart';
-
-class CategoriesScreen extends StatefulWidget {
-  // Needed only so this screen can show the same side menu as the dashboard.
-  final User user;
-
-  const CategoriesScreen({super.key, required this.user});
-
-  @override
-  State<CategoriesScreen> createState() => _CategoriesScreenState();
-}
-
-class _CategoriesScreenState extends State<CategoriesScreen> {
-  List<Category> categories = [];
-
-  // {categoryId: how many expenses use it}. Loaded in ONE query next to the
-  // categories, so the list can show "3 expenses" without a query per row.
-  Map<int, int> expenseCounts = {};
-
-  bool isLoading = true;
-  String? errorMessage;
-
-  @override
-  void initState() {
-    super.initState();
-    loadCategories();
-  }
-
-  Future<void> loadCategories() async {
-    setState(() {
-      isLoading = true;
-      errorMessage = null;
-    });
-
-    try {
-      final db = DatabaseHelper();
-      final rows = await db.getAllCategories();
-      final counts = await db.getExpenseCountByCategory();
-      if (!mounted) return;
-
-      setState(() {
-        categories = rows;
-        expenseCounts = counts;
-        isLoading = false;
-      });
-    } catch (e) {
-      if (!mounted) return;
-      setState(() {
-        errorMessage = 'Could not load your categories.';
-        isLoading = false;
-      });
-    }
-  }
-
-  void _showMessage(String message, {bool isError = true}) {
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Text(message),
-        backgroundColor: isError ? kExpenseColor : kIncomeColor,
-      ),
-    );
-  }
-
-  // -------------------------------------------------------------------------
-  // FR13 / FR14 - add and edit share one form and one save function.
-  // `initial` null means "add", otherwise "edit".
-  // -------------------------------------------------------------------------
-  Future<void> openForm({Category? initial}) async {
-    await showCategoryFormSheet(
-      context,
-      initial: initial,
-      onSave: (category) async {
-        // The rule that needs the database. excludeId lets a category keep
-        // its own name while being edited (without it, saving "Food" as
-        // "Food" would report a duplicate of itself).
-        final taken = await DatabaseHelper().categoryNameExists(
-          category.name,
-          excludeId: category.id,
-        );
-        if (taken) return 'A category with this name already exists';
-
-        if (category.id == null) {
-          await DatabaseHelper().addCategory(category);
-        } else {
-          final changed = await DatabaseHelper().updateCategory(category);
-          if (changed == 0) return 'This category no longer exists';
-        }
-
-        return null; // null = saved, the sheet closes itself
-      },
-    );
-
-    if (!mounted) return;
-    await loadCategories(); // reload whether it was saved or cancelled
-  }
-
-  // -------------------------------------------------------------------------
-  // FR15 - delete, with two different questions.
-  // -------------------------------------------------------------------------
-  Future<void> confirmAndDelete(Category category) async {
-    final used = expenseCounts[category.id] ?? 0;
-
-    final confirmed = await showDialog<bool>(
-      context: context,
-      builder: (dialogContext) => AlertDialog(
-        title: const Text('Delete category'),
-        content: Text(
-          used == 0
-              // Nothing depends on it: a plain confirmation.
-              ? 'Delete "${category.name}"?\nThis cannot be undone.'
-              // Something depends on it: say exactly what will happen to it.
-              // Deleting the expenses too would destroy the user's records,
-              // so we only remove the link - the expenses stay, without a
-              // category, and can be edited to a new one later.
-              : '"${category.name}" is used by $used '
-                  '${used == 1 ? 'expense' : 'expenses'}.\n\n'
-                  'Those expenses will be kept but will have no category.',
-        ),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.pop(dialogContext, false),
-            child: const Text('Cancel'),
-          ),
-          TextButton(
-            onPressed: () => Navigator.pop(dialogContext, true),
-            style: TextButton.styleFrom(foregroundColor: kExpenseColor),
-            child: Text(used == 0 ? 'Delete' : 'Delete anyway'),
-          ),
-        ],
-      ),
-    );
-
-    if (confirmed != true || !mounted) return;
-
-    try {
-      await DatabaseHelper().deleteCategory(
-        category.id!,
-        // Only pass true when it is really needed, so the foreign key still
-        // guards every other case.
-        detachExpenses: used > 0,
-      );
-      if (!mounted) return;
-      _showMessage('Category deleted', isError: false);
-      await loadCategories();
-    } catch (e) {
-      if (!mounted) return;
-      _showMessage('Could not delete the category. Please try again.');
-    }
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text('Categories')),
-      drawer: AppDrawer(user: widget.user),
-
-      floatingActionButton: FloatingActionButton.extended(
-        onPressed: () => openForm(),
-        icon: const Icon(Icons.add),
-        label: const Text('Add'),
-      ),
-
-      body: buildBody(),
-    );
-  }
-
-  Widget buildBody() {
-    if (isLoading) {
-      return const Center(child: CircularProgressIndicator());
-    }
-
-    if (errorMessage != null) {
-      return Center(
-        child: Padding(
-          padding: const EdgeInsets.all(kPadding * 2),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const Icon(Icons.error_outline, size: 64, color: Colors.grey),
-              const SizedBox(height: 16),
-              Text(
-                errorMessage!,
-                textAlign: TextAlign.center,
-                style: const TextStyle(fontSize: 16, color: Colors.grey),
-              ),
-              const SizedBox(height: 20),
-              SizedBox(
-                width: 160,
-                child: ElevatedButton(
-                  onPressed: loadCategories,
-                  child: const Text('Try again'),
-                ),
-              ),
-            ],
-          ),
-        ),
-      );
-    }
-
-    if (categories.isEmpty) {
-      // Expenses cannot be saved without a category, so this screen explains
-      // the consequence instead of just saying "empty".
-      return Center(
-        child: Padding(
-          padding: const EdgeInsets.all(kPadding * 2),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: const [
-              Icon(Icons.category_outlined, size: 72, color: Colors.grey),
-              SizedBox(height: 16),
-              Text(
-                'No categories',
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-              ),
-              SizedBox(height: 8),
-              Text(
-                'Add at least one category - an expense cannot be saved '
-                'without one.',
-                textAlign: TextAlign.center,
-                style: TextStyle(fontSize: 16, color: Colors.grey),
-              ),
-            ],
-          ),
-        ),
-      );
-    }
-
-    return RefreshIndicator(
-      onRefresh: loadCategories,
-      child: ListView.builder(
-        padding: const EdgeInsets.fromLTRB(kPadding, kPadding, kPadding, 90),
-        itemCount: categories.length,
-        itemBuilder: (context, index) {
-          final category = categories[index];
-          final color = categoryColor(category.color);
-          final used = expenseCounts[category.id] ?? 0;
-
-          return Card(
-            margin: const EdgeInsets.symmetric(vertical: 6),
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(kRadius),
-            ),
-            child: ListTile(
-              contentPadding: const EdgeInsets.only(left: kPadding, right: 4),
-              leading: CircleAvatar(
-                backgroundColor: color.withValues(alpha: 0.15),
-                child: Icon(categoryIcon(category.icon), color: color),
-              ),
-              title: Text(
-                category.name,
-                maxLines: 1,
-                overflow: TextOverflow.ellipsis,
-                style: const TextStyle(fontWeight: FontWeight.bold),
-              ),
-              subtitle: Text(
-                used == 0
-                    ? 'Not used yet'
-                    : '$used ${used == 1 ? 'expense' : 'expenses'}',
-              ),
-              trailing: PopupMenuButton<String>(
-                tooltip: 'Actions',
-                onSelected: (value) {
-                  if (value == 'edit') openForm(initial: category);
-                  if (value == 'delete') confirmAndDelete(category);
-                },
-                itemBuilder: (context) => const [
-                  PopupMenuItem(
-                    value: 'edit',
-                    child: ListTile(
-                      contentPadding: EdgeInsets.zero,
-                      leading: Icon(Icons.edit, color: kPrimaryColor),
-                      title: Text('Edit'),
-                    ),
-                  ),
-                  PopupMenuItem(
-                    value: 'delete',
-                    child: ListTile(
-                      contentPadding: EdgeInsets.zero,
-                      leading: Icon(Icons.delete, color: kExpenseColor),
-                      title: Text('Delete'),
-                    ),
-                  ),
-                ],
-              ),
-              // Tapping the row opens the same edit form as the menu.
-              onTap: () => openForm(initial: category),
-            ),
-          );
-        },
-      ),
-    );
-  }
-}
-
-```
-
-================================================================================
-FILE: lib/models/category.dart
-================================================================================
-
-```dart
-// ===========================================================================
-// category.dart  -  the Category model  (e.g. Food, Transport, Bills).
-//
-// Mirrors the categories table from the specification:
-//    categories(id, name, icon, color)
-//
-// Both icon and color are TEXT columns, so we store TEXT:
-//   icon  -> a key such as 'food' (see utils/category_style.dart)
-//   color -> a hex string such as '#D2544F'
-//
-// WHY NOT STORE THE ICON AS A NUMBER (its codePoint)?
-// Because building an IconData from a number at runtime is not constant, and
-// Flutter's release build ("tree shaking") removes icons it cannot see being
-// used - the app would then show blank squares. A key + a fixed map keeps
-// every icon constant and safe.
-// ===========================================================================
-
-class Category {
-  final int? id;
-  final String name;
-  final String icon; // key into kCategoryIcons
-  final String color; // '#RRGGBB'
-
-  Category({
-    this.id,
-    required this.name,
-    this.icon = 'other',
-    this.color = '#1E5F8C',
-  });
-
-  Map<String, dynamic> toMap() {
-    return {'id': id, 'name': name, 'icon': icon, 'color': color};
-  }
-
-  factory Category.fromMap(Map<String, dynamic> map) {
-    return Category(
-      id: map['id'] as int?,
-      name: (map['name'] as String?) ?? '',
-      // Old or hand-written rows may hold null; fall back to safe defaults.
-      icon: (map['icon'] as String?) ?? 'other',
-      color: (map['color'] as String?) ?? '#1E5F8C',
-    );
-  }
-
-  Category copyWith({int? id, String? name, String? icon, String? color}) {
-    return Category(
-      id: id ?? this.id,
-      name: name ?? this.name,
-      icon: icon ?? this.icon,
-      color: color ?? this.color,
-    );
-  }
-}
-
-```
-
-================================================================================
-FILE: lib/models/expense.dart
-================================================================================
-
-```dart
-// ===========================================================================
-// expense.dart  -  the Expense model  (money going OUT).
-//
-// Mirrors the expenses table from the specification:
-//    expenses(id, title, amount, expense_date, category_id, notes)
-//
-// The Dart names are camelCase, the columns are snake_case; toMap/fromMap do
-// the translation so no screen ever writes a column name by hand.
-// ===========================================================================
-
-import '../utils/formatters.dart';
-
-class Expense {
-  final int? id;
-  final String title;
-  final double amount;
-  final DateTime expenseDate;
-  final int? categoryId; // null = the category was deleted
-  final String notes;
-
-  // -------------------------------------------------------------------------
-  // DISPLAY-ONLY FIELDS
-  // -------------------------------------------------------------------------
-  // These do NOT exist in the expenses table. getAllExpenses() JOINs the
-  // categories table and fills them in, so a list can show the category name,
-  // icon and color without asking the database once per row (the classic
-  // "N+1 queries" mistake). They are never written back - see toMap().
-  final String? categoryName;
-  final String? categoryIcon;
-  final String? categoryColor;
-
-  Expense({
-    this.id,
-    required this.title,
-    required this.amount,
-    required this.expenseDate,
-    this.categoryId,
-    this.notes = '',
-    this.categoryName,
-    this.categoryIcon,
-    this.categoryColor,
-  });
-
-  // Object -> Map (for saving). Only real columns are listed here.
-  // 'id' is included so update() knows which row to change; on insert it is
-  // null and SQLite generates the value.
-  Map<String, dynamic> toMap() {
-    return {
-      'id': id,
-      'title': title,
-      'amount': amount,
-      'expense_date': toDbDate(expenseDate), // always 'yyyy-MM-dd'
-      'category_id': categoryId,
-      'notes': notes,
-    };
-  }
-
-  // Map -> Object (for reading).
-  factory Expense.fromMap(Map<String, dynamic> map) {
-    return Expense(
-      id: map['id'] as int?,
-      title: (map['title'] as String?) ?? '',
-      // A REAL column can come back as int (e.g. 20 instead of 20.0),
-      // so we read it as num and convert. Casting straight to double crashes.
-      amount: (map['amount'] as num?)?.toDouble() ?? 0.0,
-      expenseDate: parseDbDate(map['expense_date'] as String?),
-      categoryId: map['category_id'] as int?,
-      notes: (map['notes'] as String?) ?? '',
-      // Present only when the query JOINed the categories table.
-      categoryName: map['category_name'] as String?,
-      categoryIcon: map['category_icon'] as String?,
-      categoryColor: map['category_color'] as String?,
-    );
-  }
-
-  Expense copyWith({
-    int? id,
-    String? title,
-    double? amount,
-    DateTime? expenseDate,
-    int? categoryId,
-    String? notes,
-  }) {
-    return Expense(
-      id: id ?? this.id,
-      title: title ?? this.title,
-      amount: amount ?? this.amount,
-      expenseDate: expenseDate ?? this.expenseDate,
-      categoryId: categoryId ?? this.categoryId,
-      notes: notes ?? this.notes,
-      categoryName: categoryName,
-      categoryIcon: categoryIcon,
-      categoryColor: categoryColor,
-    );
-  }
-}
-
-```
-
-================================================================================
-FILE: lib/models/income.dart
-================================================================================
-
-```dart
-// ===========================================================================
-// income.dart  -  the Income model  (money coming IN).
-//
-// Mirrors the incomes table from the specification:
-//    incomes(id, title, amount, income_date, notes)
-//
-// Same shape as expense.dart, minus the category: income is not classified in
-// this project, so there is no category_id and no JOIN.
-// ===========================================================================
-
-import '../utils/formatters.dart';
-
-class Income {
-  final int? id;
-  final String title;
-  final double amount;
-  final DateTime incomeDate;
-  final String notes;
-
-  Income({
-    this.id,
-    required this.title,
-    required this.amount,
-    required this.incomeDate,
-    this.notes = '',
-  });
-
-  // Object -> Map (for saving). The date is written in the database format
-  // 'yyyy-MM-dd' - never the pretty screen format.
-  Map<String, dynamic> toMap() {
-    return {
-      'id': id,
-      'title': title,
-      'amount': amount,
-      'income_date': toDbDate(incomeDate),
-      'notes': notes,
-    };
-  }
-
-  // Map -> Object (for reading).
-  factory Income.fromMap(Map<String, dynamic> map) {
-    return Income(
-      id: map['id'] as int?,
-      title: (map['title'] as String?) ?? '',
-      // A REAL column can come back as int (20 instead of 20.0), so we read
-      // it as num first. Casting straight to double crashes.
-      amount: (map['amount'] as num?)?.toDouble() ?? 0.0,
-      incomeDate: parseDbDate(map['income_date'] as String?),
-      notes: (map['notes'] as String?) ?? '',
-    );
-  }
-
-  Income copyWith({
-    int? id,
-    String? title,
-    double? amount,
-    DateTime? incomeDate,
-    String? notes,
-  }) {
-    return Income(
-      id: id ?? this.id,
-      title: title ?? this.title,
-      amount: amount ?? this.amount,
-      incomeDate: incomeDate ?? this.incomeDate,
-      notes: notes ?? this.notes,
-    );
-  }
-}
-
-```
-
-================================================================================
-FILE: lib/models/user.dart
-================================================================================
-
-```dart
-// ===========================================================================
-// user.dart  -  the User model.
-//
-// A "model" is a plain class that describes ONE thing in the app.
-// The database speaks Maps; our screens speak objects. This class translates
-// between the two using toMap() and fromMap().
-//
-// The users table is:
-//    users(id, username, password, full_name)
-// so the model must carry full_name too - the drawer and the dashboard greet
-// the user by their real name, not by their login name.
-// ===========================================================================
-
-class User {
-  final int? id; // null before saving; the database fills it in
-  final String username;
-  final String password;
-  final String fullName;
-
-  User({
-    this.id,
-    required this.username,
-    required this.password,
-    this.fullName = '',
-  });
-
-  // What the screens should print.
-  //
-  // Registration asks for a full name, but the two seeded test accounts and
-  // any older row could still have it empty, so we fall back to the username
-  // instead of showing a blank space where a name should be.
-  String get displayName => fullName.trim().isEmpty ? username : fullName;
-
-  // Object  ->  Map   (used when SAVING to the database)
-  Map<String, dynamic> toMap() {
-    return {
-      'id': id,
-      'username': username,
-      'password': password,
-      'full_name': fullName,
-    };
-  }
-
-  // Map  ->  Object   (used when READING from the database)
-  factory User.fromMap(Map<String, dynamic> map) {
-    return User(
-      id: map['id'] as int?,
-      username: map['username'] as String,
-      password: map['password'] as String,
-      // full_name can be NULL for rows written before this column was used,
-      // so we never cast it straight to String.
-      fullName: (map['full_name'] as String?) ?? '',
-    );
-  }
-
-  // Returns a copy with some fields changed. Used after a password change:
-  // the screen gets a NEW User object instead of editing a final field.
-  User copyWith({int? id, String? username, String? password, String? fullName}) {
-    return User(
-      id: id ?? this.id,
-      username: username ?? this.username,
-      password: password ?? this.password,
-      fullName: fullName ?? this.fullName,
-    );
-  }
-}
 ```
 
 ================================================================================

@@ -31,6 +31,7 @@ import 'package:flutter/foundation.dart';
 
 import '../models/expense.dart';
 import '../database/database_helper.dart';
+import '../utils/session.dart';
 import '../utils/date_ranges.dart';
 import '../utils/formatters.dart';
 
@@ -86,6 +87,12 @@ class ExpenseProvider extends ChangeNotifier {
   String? _errorMessage;
   bool _hasLoadedOnce = false;
 
+  // WHICH user the list in memory belongs to.
+  // The provider is a singleton, so it outlives a logout: without this, the
+  // next person to log in would be shown the previous person's expenses out
+  // of the cache, even though the database query is now filtered correctly.
+  int? _cachedForUserId;
+
   // ---- read-only views for the screens ----
   // List.unmodifiable: the screens may read the list, never edit it.
   List<Expense> get expenses => List.unmodifiable(_expenses);
@@ -101,7 +108,25 @@ class ExpenseProvider extends ChangeNotifier {
   // That is what keeps the promise above: after any change the list is read
   // again and every listening screen is told.
 
+  // Empties the cache. Called on logout, and whenever nobody is logged in.
+  void clear() {
+    _expenses = [];
+    _errorMessage = null;
+    _isLoading = false;
+    _hasLoadedOnce = false;
+    _cachedForUserId = null;
+    notifyListeners();
+  }
+
   Future<void> loadExpenses() async {
+    final userId = Session.userId;
+    if (userId == null) {
+      // Nobody is logged in (this can only happen on the way out of the app),
+      // so there is nothing to show and nothing to ask the database.
+      clear();
+      return;
+    }
+
     _isLoading = true;
     _errorMessage = null;
 
@@ -114,7 +139,8 @@ class ExpenseProvider extends ChangeNotifier {
     scheduleMicrotask(notifyListeners); // screens show their spinner
 
     try {
-      _expenses = await _db.getAllExpenses(); // newest first, category JOINed
+      _expenses = await _db.getAllExpenses(userId); // only THIS user's rows
+      _cachedForUserId = userId;
       _errorMessage = null;
     } catch (e) {
       _errorMessage = 'Could not load your expenses.';
@@ -130,6 +156,12 @@ class ExpenseProvider extends ChangeNotifier {
   // data immediately instead of blinking a spinner over a list we already
   // have.
   Future<void> ensureLoaded() async {
+    // A different user than the one the cache belongs to must always cause a
+    // real reload, even if we "have loaded once" already.
+    if (_cachedForUserId != Session.userId) {
+      await loadExpenses();
+      return;
+    }
     if (_hasLoadedOnce || _isLoading) return;
     await loadExpenses();
   }
@@ -138,27 +170,28 @@ class ExpenseProvider extends ChangeNotifier {
   // new row WITH its category columns filled in by the JOIN - cheaper to do
   // than to rebuild that row correctly by hand.
   Future<void> addExpense(Expense expense) async {
-    await _db.addExpense(expense);
+    await _db.addExpense(expense, Session.requireUserId());
     await loadExpenses();
   }
 
   // FR6. Returns false when 0 rows changed, which means the expense was
   // deleted from somewhere else while this screen was open.
   Future<bool> updateExpense(Expense expense) async {
-    final changed = await _db.updateExpense(expense);
+    final changed = await _db.updateExpense(expense, Session.requireUserId());
     await loadExpenses();
     return changed > 0;
   }
 
   // FR7.
   Future<void> deleteExpense(int id) async {
-    await _db.deleteExpense(id);
+    await _db.deleteExpense(id, Session.requireUserId());
     await loadExpenses();
   }
 
   // FR9: one fresh row, read straight from the database so a details screen
   // never shows values that were edited meanwhile.
-  Future<Expense?> getById(int id) => _db.getExpenseById(id);
+  Future<Expense?> getById(int id) =>
+      _db.getExpenseById(id, Session.requireUserId());
 
   // FR16 - FR20. This one does NOT touch _expenses on purpose.
   //
@@ -175,6 +208,8 @@ class ExpenseProvider extends ChangeNotifier {
     double? maxAmount,
   }) {
     return _db.searchExpenses(
+      // Even a search with no filters must stay inside this user's data.
+      userId: Session.requireUserId(),
       text: text,
       range: range,
       categoryId: categoryId,

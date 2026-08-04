@@ -15,6 +15,7 @@ import '../models/category.dart';
 import '../database/database_helper.dart';
 import '../utils/constants.dart';
 import '../utils/category_style.dart';
+import '../utils/session.dart';
 import '../widgets/app_drawer.dart';
 import '../widgets/category_form_sheet.dart';
 
@@ -53,7 +54,11 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
     try {
       final db = DatabaseHelper();
       final rows = await db.getAllCategories();
-      final counts = await db.getExpenseCountByCategory();
+      // Categories are shared by every user, but the "3 expenses" line under
+      // each one must count only the expenses of the person looking at it.
+      final counts = await db.getExpenseCountByCategory(
+        Session.requireUserId(),
+      );
       if (!mounted) return;
 
       setState(() {
@@ -116,7 +121,18 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
   // FR15 - delete, with two different questions.
   // -------------------------------------------------------------------------
   Future<void> confirmAndDelete(Category category) async {
-    final used = expenseCounts[category.id] ?? 0;
+    // The list shows how many of MY expenses use this category, but the
+    // decision needs the total across all accounts: categories are shared, and
+    // the foreign key counts every row, not only mine.
+    final int used;
+    try {
+      used = await DatabaseHelper().countExpensesInCategory(category.id!);
+    } catch (e) {
+      if (!mounted) return;
+      _showMessage('Could not check the category. Please try again.');
+      return;
+    }
+    if (!mounted) return;
 
     final confirmed = await showDialog<bool>(
       context: context,

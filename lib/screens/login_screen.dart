@@ -12,6 +12,7 @@ import 'package:flutter/material.dart';
 
 import '../utils/constants.dart';
 import '../utils/validators.dart';
+import '../utils/session.dart';
 import '../database/database_helper.dart';
 import 'dashboard_screen.dart';
 import 'register_screen.dart';
@@ -84,8 +85,13 @@ class _LoginScreenState extends State<LoginScreen> {
         // reveal whether it was the username or the password that was wrong.
         _showMessage('Wrong username or password');
       } else {
-        // Match -> go to the dashboard, carrying the whole User with us
-        // (we need the id later, for example to change the password).
+        // Match. Session.start() must happen BEFORE the dashboard is built:
+        // the dashboard asks the providers for data as soon as it appears,
+        // and they ask Session whose data to load.
+        Session.start(user);
+
+        // Go to the dashboard, carrying the whole User with us (we need the
+        // id later, for example to change the password).
         // pushReplacement REPLACES the login screen instead of stacking on
         // top of it, so pressing back cannot come back here.
         Navigator.pushReplacement(

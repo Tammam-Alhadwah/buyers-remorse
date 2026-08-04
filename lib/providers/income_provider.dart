@@ -17,6 +17,7 @@ import 'package:flutter/foundation.dart';
 
 import '../models/income.dart';
 import '../database/database_helper.dart';
+import '../utils/session.dart';
 import '../utils/date_ranges.dart';
 import '../utils/formatters.dart';
 
@@ -35,6 +36,10 @@ class IncomeProvider extends ChangeNotifier {
   String? _errorMessage;
   bool _hasLoadedOnce = false;
 
+  // Which user the cached list belongs to - see expense_provider.dart for
+  // why a singleton needs this.
+  int? _cachedForUserId;
+
   List<Income> get incomes => List.unmodifiable(_incomes);
   bool get isLoading => _isLoading;
   String? get errorMessage => _errorMessage;
@@ -45,7 +50,23 @@ class IncomeProvider extends ChangeNotifier {
   // LOADING AND CRUD
   // =========================================================================
 
+  // Empties the cache. Called on logout, and whenever nobody is logged in.
+  void clear() {
+    _incomes = [];
+    _errorMessage = null;
+    _isLoading = false;
+    _hasLoadedOnce = false;
+    _cachedForUserId = null;
+    notifyListeners();
+  }
+
   Future<void> loadIncomes() async {
+    final userId = Session.userId;
+    if (userId == null) {
+      clear();
+      return;
+    }
+
     _isLoading = true;
     _errorMessage = null;
 
@@ -56,7 +77,8 @@ class IncomeProvider extends ChangeNotifier {
     scheduleMicrotask(notifyListeners);
 
     try {
-      _incomes = await _db.getAllIncomes(); // newest first
+      _incomes = await _db.getAllIncomes(userId); // only THIS user's rows
+      _cachedForUserId = userId;
       _errorMessage = null;
     } catch (e) {
       _errorMessage = 'Could not load your incomes.';
@@ -69,30 +91,36 @@ class IncomeProvider extends ChangeNotifier {
   }
 
   Future<void> ensureLoaded() async {
+    // A different user than the cached one always forces a real reload.
+    if (_cachedForUserId != Session.userId) {
+      await loadIncomes();
+      return;
+    }
     if (_hasLoadedOnce || _isLoading) return;
     await loadIncomes();
   }
 
   // FR10.
   Future<void> addIncome(Income income) async {
-    await _db.addIncome(income);
+    await _db.addIncome(income, Session.requireUserId());
     await loadIncomes();
   }
 
   // FR11. false = 0 rows changed, so the income no longer exists.
   Future<bool> updateIncome(Income income) async {
-    final changed = await _db.updateIncome(income);
+    final changed = await _db.updateIncome(income, Session.requireUserId());
     await loadIncomes();
     return changed > 0;
   }
 
   // FR12.
   Future<void> deleteIncome(int id) async {
-    await _db.deleteIncome(id);
+    await _db.deleteIncome(id, Session.requireUserId());
     await loadIncomes();
   }
 
-  Future<Income?> getById(int id) => _db.getIncomeById(id);
+  Future<Income?> getById(int id) =>
+      _db.getIncomeById(id, Session.requireUserId());
 
   // =========================================================================
   // STATISTICS  -  calculated from the list already in memory

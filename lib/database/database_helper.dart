@@ -42,7 +42,7 @@ class DatabaseHelper {
     final path = join(await getDatabasesPath(), 'app.db');
     return openDatabase(
       path,
-      version: 2, // increase this if you change the tables
+      version: 3, // increase this if you change the tables
       onConfigure: _onConfigure, // runs EVERY time the file is opened
       onCreate: _createTables, // runs ONLY when the file is first created
       onUpgrade: _upgradeTables, // runs when version is higher than the file's
@@ -92,7 +92,10 @@ class DatabaseHelper {
          title       TEXT,
          amount      REAL,
          income_date DATE,
-         notes       TEXT
+         notes       TEXT,
+         user_id     INTEGER,
+         FOREIGN KEY(user_id)
+         REFERENCES users(id)
        )
      ''');
 
@@ -105,14 +108,32 @@ class DatabaseHelper {
          expense_date DATE,
          category_id  INTEGER,
          notes        TEXT,
+         user_id      INTEGER,
          FOREIGN KEY(category_id)
-         REFERENCES categories(id)
+         REFERENCES categories(id),
+         FOREIGN KEY(user_id)
+         REFERENCES users(id)
        )
      ''');
 
     // An expense cannot be saved without a category, so the app must never
     // start with an empty categories table.
     await _seedDefaultCategories(db);
+
+    // Every list is now read with  WHERE user_id = ? , so give SQLite an
+    // index to answer that with instead of reading the whole table.
+    await _createOwnerIndexes(db);
+  }
+
+  // Used by BOTH _createTables (fresh install) and _upgradeTables (existing
+  // file), so the two paths always end at the same schema.
+  Future<void> _createOwnerIndexes(DatabaseExecutor db) async {
+    await db.execute(
+      'CREATE INDEX IF NOT EXISTS idx_expenses_user ON expenses(user_id)',
+    );
+    await db.execute(
+      'CREATE INDEX IF NOT EXISTS idx_incomes_user ON incomes(user_id)',
+    );
   }
 
   // -------------------------------------------------------------------------
@@ -127,6 +148,38 @@ class DatabaseHelper {
   Future<void> _upgradeTables(Database db, int oldVersion, int newVersion) async {
     if (oldVersion < 2) {
       await _seedDefaultCategories(db);
+    }
+
+    // ---- version 3: expenses and incomes belong to ONE user ----
+    //
+    // Before this version every row belonged to the app, so whoever logged in
+    // saw the same data. These two columns are what makes an expense somebody's
+    // expense.
+    //
+    // SQLite cannot add a NOT NULL column to a table that already has rows, so
+    // the column is nullable. Rows written from now on always get a value; the
+    // rows that already exist are handed to the oldest account below, so no
+    // data disappears from the lists (a row with user_id NULL would match no
+    // WHERE user_id = ? and would look deleted).
+    if (oldVersion < 3) {
+      await db.execute(
+        'ALTER TABLE expenses ADD COLUMN user_id INTEGER REFERENCES users(id)',
+      );
+      await db.execute(
+        'ALTER TABLE incomes ADD COLUMN user_id INTEGER REFERENCES users(id)',
+      );
+
+      // MIN(id) = the account that was created first.
+      await db.execute(
+        'UPDATE expenses SET user_id = (SELECT MIN(id) FROM users) '
+        'WHERE user_id IS NULL',
+      );
+      await db.execute(
+        'UPDATE incomes SET user_id = (SELECT MIN(id) FROM users) '
+        'WHERE user_id IS NULL',
+      );
+
+      await _createOwnerIndexes(db);
     }
   }
 
@@ -309,19 +362,36 @@ class DatabaseHelper {
   // ONE query with GROUP BY instead of one query per category. With ten
   // categories that is 1 round trip instead of 10 - the same "N+1 queries"
   // trap the expenses JOIN avoids.
-  Future<Map<int, int>> getExpenseCountByCategory() async {
+  // Counts only the expenses of ONE user: categories are shared by everybody,
+  // but "3 expenses" must mean three of YOUR expenses.
+  Future<Map<int, int>> getExpenseCountByCategory(int userId) async {
     final db = await database;
     final rows = await db.rawQuery('''
       SELECT category_id, COUNT(*) AS total
       FROM expenses
-      WHERE category_id IS NOT NULL
+      WHERE category_id IS NOT NULL AND user_id = ?
       GROUP BY category_id
-    ''');
+    ''', [userId]);
 
     return {
       for (final row in rows)
         (row['category_id'] as int): (row['total'] as int),
     };
+  }
+
+  // How many expenses use this category, counting EVERY user.
+  //
+  // Categories are shared by all accounts, so deleting one is decided by the
+  // total: if another account still has expenses in it, deleting without
+  // detaching them first would break the foreign key and fail.
+  Future<int> countExpensesInCategory(int categoryId) async {
+    final db = await database;
+    final rows = await db.rawQuery(
+      'SELECT COUNT(*) AS total FROM expenses WHERE category_id = ?',
+      [categoryId],
+    );
+    // COUNT always returns exactly one row, so first is safe.
+    return (rows.first['total'] as int?) ?? 0;
   }
 
   // CREATE - returns the id of the new row.
@@ -399,36 +469,49 @@ class DatabaseHelper {
   ''';
 
   // CREATE - returns the id of the new row.
-  Future<int> addExpense(Expense expense) async {
+  //
+  // The owner is a parameter, not a field of Expense: who is logged in is not
+  // a property of the expense the user typed, and taking it from the caller
+  // means a screen can never save a row into somebody else's data by
+  // forgetting to fill a field.
+  Future<int> addExpense(Expense expense, int userId) async {
     final db = await database;
 
     final values = expense.toMap();
     values.remove('id'); // let SQLite generate the id
+    values['user_id'] = userId; // stamp the owner
 
     return db.insert('expenses', values);
   }
 
   // READ - newest first. Two sort keys, because several expenses can share a
   // date; the id then keeps the order stable (last added on top).
-  Future<List<Expense>> getAllExpenses() async {
+  Future<List<Expense>> getAllExpenses(int userId) async {
     final db = await database;
     final rows = await db.rawQuery(
-      '$_expenseSelect ORDER BY e.expense_date DESC, e.id DESC',
+      '$_expenseSelect WHERE e.user_id = ? '
+      'ORDER BY e.expense_date DESC, e.id DESC',
+      [userId],
     );
     return rows.map((row) => Expense.fromMap(row)).toList();
   }
 
   // READ one - used by the details screen after an edit, so it always shows
   // fresh data. Returns null if the row was deleted meanwhile.
-  Future<Expense?> getExpenseById(int id) async {
+  // The owner is part of the question, not an afterthought: asking for row 7
+  // must return nothing when row 7 belongs to somebody else.
+  Future<Expense?> getExpenseById(int id, int userId) async {
     final db = await database;
-    final rows = await db.rawQuery('$_expenseSelect WHERE e.id = ?', [id]);
+    final rows = await db.rawQuery(
+      '$_expenseSelect WHERE e.id = ? AND e.user_id = ?',
+      [id, userId],
+    );
     if (rows.isEmpty) return null;
     return Expense.fromMap(rows.first);
   }
 
   // UPDATE - returns the number of rows changed (1 = success, 0 = not found).
-  Future<int> updateExpense(Expense expense) async {
+  Future<int> updateExpense(Expense expense, int userId) async {
     final db = await database;
 
     final id = expense.id;
@@ -441,14 +524,26 @@ class DatabaseHelper {
 
     final values = expense.toMap();
     values.remove('id'); // never overwrite the primary key
+    values.remove('user_id'); // an expense never changes owner
 
-    return db.update('expenses', values, where: 'id = ?', whereArgs: [id]);
+    // user_id is part of the WHERE, so an edit can only ever touch a row the
+    // logged-in user owns. 0 rows changed then means "not yours, or gone".
+    return db.update(
+      'expenses',
+      values,
+      where: 'id = ? AND user_id = ?',
+      whereArgs: [id, userId],
+    );
   }
 
   // DELETE - returns the number of rows removed.
-  Future<int> deleteExpense(int id) async {
+  Future<int> deleteExpense(int id, int userId) async {
     final db = await database;
-    return db.delete('expenses', where: 'id = ?', whereArgs: [id]);
+    return db.delete(
+      'expenses',
+      where: 'id = ? AND user_id = ?',
+      whereArgs: [id, userId],
+    );
   }
 
   // =========================================================================
@@ -476,6 +571,7 @@ class DatabaseHelper {
   // a user typing  ' OR 1=1 --  into the search box searches for that text,
   // it does not become part of the query.
   Future<List<Expense>> searchExpenses({
+    required int userId,
     String? text,
     DateRange? range,
     int? categoryId,
@@ -486,6 +582,12 @@ class DatabaseHelper {
 
     final conditions = <String>[];
     final args = <Object?>[];
+
+    // ---- the owner: the one condition that is never optional ----
+    // It is added first so that searching with no filters at all still
+    // returns only this user's expenses.
+    conditions.add('e.user_id = ?');
+    args.add(userId);
 
     // ---- FR16: by name ----
     // LIKE '%word%' means "contains word". SQLite's LIKE ignores upper/lower
@@ -525,7 +627,8 @@ class DatabaseHelper {
     }
 
     // ---- FR20: everything above is combined with AND ----
-    final where = conditions.isEmpty ? '' : 'WHERE ${conditions.join(' AND ')}';
+    // conditions is never empty now (the owner is always in it).
+    final where = 'WHERE ${conditions.join(' AND ')}';
 
     final rows = await db.rawQuery(
       '$_expenseSelect $where ORDER BY e.expense_date DESC, e.id DESC',
@@ -542,33 +645,36 @@ class DatabaseHelper {
   // query/insert/update/delete helpers of sqflite are enough.
 
   // CREATE - returns the id of the new row.
-  Future<int> addIncome(Income income) async {
+  Future<int> addIncome(Income income, int userId) async {
     final db = await database;
 
     final values = income.toMap();
     values.remove('id'); // let SQLite generate the id
+    values['user_id'] = userId; // stamp the owner
 
     return db.insert('incomes', values);
   }
 
   // READ - newest first. The id is the second sort key so incomes added on
   // the same day keep a stable order (last added on top).
-  Future<List<Income>> getAllIncomes() async {
+  Future<List<Income>> getAllIncomes(int userId) async {
     final db = await database;
     final rows = await db.query(
       'incomes',
+      where: 'user_id = ?',
+      whereArgs: [userId],
       orderBy: 'income_date DESC, id DESC',
     );
     return rows.map((row) => Income.fromMap(row)).toList();
   }
 
   // READ one - returns null if the row was deleted meanwhile.
-  Future<Income?> getIncomeById(int id) async {
+  Future<Income?> getIncomeById(int id, int userId) async {
     final db = await database;
     final rows = await db.query(
       'incomes',
-      where: 'id = ?',
-      whereArgs: [id],
+      where: 'id = ? AND user_id = ?',
+      whereArgs: [id, userId],
       limit: 1,
     );
     if (rows.isEmpty) return null;
@@ -576,7 +682,7 @@ class DatabaseHelper {
   }
 
   // UPDATE - returns the number of rows changed (1 = success, 0 = not found).
-  Future<int> updateIncome(Income income) async {
+  Future<int> updateIncome(Income income, int userId) async {
     final db = await database;
 
     final id = income.id;
@@ -588,14 +694,24 @@ class DatabaseHelper {
 
     final values = income.toMap();
     values.remove('id'); // never overwrite the primary key
+    values.remove('user_id'); // an income never changes owner
 
-    return db.update('incomes', values, where: 'id = ?', whereArgs: [id]);
+    return db.update(
+      'incomes',
+      values,
+      where: 'id = ? AND user_id = ?',
+      whereArgs: [id, userId],
+    );
   }
 
   // DELETE - returns the number of rows removed.
-  Future<int> deleteIncome(int id) async {
+  Future<int> deleteIncome(int id, int userId) async {
     final db = await database;
-    return db.delete('incomes', where: 'id = ?', whereArgs: [id]);
+    return db.delete(
+      'incomes',
+      where: 'id = ? AND user_id = ?',
+      whereArgs: [id, userId],
+    );
   }
 
   // =========================================================================
